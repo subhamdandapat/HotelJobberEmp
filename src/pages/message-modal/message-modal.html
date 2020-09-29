@@ -1,0 +1,58 @@
+<ion-content class="main-view" padding>
+  <div class="modal_content">
+  <ion-item no-lines>
+    <ion-icon name="custom-SMS" item-start></ion-icon>
+      Send SMS to Candidate
+    <ion-icon name="ios-close-outline" icon-only (click)="closeMessageModal()" item-end ></ion-icon>
+  </ion-item>
+
+  <div class='messageBox' *ngIf="jobInfo.candidateName">
+    <ion-label>Dear {{jobInfo.candidateName}},</ion-label>
+    <ion-label>Job available for {{jobInfo.post}}</ion-label>
+    <ion-label>Salary Rs.&nbsp;{{jobInfo.minSalary}} - {{jobInfo.maxSalary}}</ion-label>
+    <ion-label *ngIf="loginPersonCity">Location: {{loginPersonCity}}</ion-label>
+    <ion-label>Call {{loginPersonName}}  {{loginPersonMobile}}</ion-label>
+  </div>
+
+  <ion-row>
+    <ion-col col-6>
+      <button ion-button (click)="changeSMSSetting()">
+        Edit Contact Details
+      </button>
+    </ion-col>
+    <ion-col col-6>
+      <button ion-button (click)="sendMessage()">
+        Send
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <div *ngIf="isCustomBoxOPen">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <ion-label>Name</ion-label>
+          <ion-input type="ios-person-outline" required [(ngModel)]="loginPersonName" item-right></ion-input>
+        </ion-col>
+        <ion-col col-6>
+          <ion-label>Contact No.</ion-label>
+          <ion-input type="text" [(ngModel)]="loginPersonMobile" item-right></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>City Name</ion-label>
+            <ion-searchbar
+              [(ngModel)]="loginPersonCity"
+              placeholder="Type Your City"
+              required
+              debounce=500>
+            </ion-searchbar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  </div>
+</ion-content>
+
+

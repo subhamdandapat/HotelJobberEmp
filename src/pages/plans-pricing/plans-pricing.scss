@@ -1,0 +1,382 @@
+page-plans-pricing {
+
+
+
+  .count{
+    font-size:25px ;color:#478963;
+    margin-right: 3px;
+
+
+}
+.back{
+  float:right;
+  margin-top:7px;color:#fff;font-size:17px;
+
+}
+.box {
+    // margin:15px 15px 15px 15px;
+    overflow: hidden;
+   // padding: 15px 15px 15px 15px ;
+}
+.next-btn1 {
+  background: #098D68;
+  height: 30px;
+  float: right;
+
+}
+
+.exp-date{
+  font-size:12px;float:right;color:rgb(156, 86, 86);font-style:italic;padding-left: 5px
+}
+.purchase{
+  font-size:12px;float:right ; font-style:italic;color:rgb(56, 146, 56);
+}
+.box-white{
+
+    // margin: 10px 10px 0px 10px;
+       background: #EFFFDA;
+       padding: 10px ;
+       margin-top:10px;
+       overflow: hidden;
+       border: 2px solid #e6e4e4;
+       border-radius: 10px !important;
+
+
+
+   }
+
+   .background-red{
+     background: rgb(250, 238, 238);
+   }
+.job-details{
+ // float:left;
+
+ margin-top: 3px;
+}
+.top{
+  float: left;
+    overflow: hidden;
+    clear: both;
+}
+
+.candidate-data{
+    color:#478963;
+    // float:left;
+     font-size: 16px;
+
+
+}
+.mylikes{
+  padding: 0px 0px 0px 10px;
+ width: 100px;
+ float: right;
+     }
+
+.align-right-item{
+    float: right;
+}
+.active-icon{
+    color: #098D68;
+  }
+  .big{
+    font-size: 30px;
+  }
+
+  .list-ios {
+     margin:  0px 5px  0px 5px;
+}
+
+  .search-btn{
+    color:#000;
+    text-decoration:underline;
+    padding: 0px;
+    height: 20px;;
+
+  }
+  .roll-text{
+    font-size: 16px;
+    color: #478963;
+    font-weight: bold;
+  }
+
+  .btn-red{
+    color:#D9534F;
+
+    padding-right: 5px;
+
+
+
+  }
+
+.green-circle{
+  background: #098D68;
+  padding: 5px ;
+//display: inline;
+  float:left;
+  border-radius: 10px;
+  width: 10px;
+
+
+
+}
+
+.g{
+  margin: 4px 3px 0px 5px;
+  background: #098D68;
+  padding: 5px;
+  float: left;
+  border-radius: 15px;
+
+  width: 3px !important;
+  height: 3px !important;
+}
+.r{
+  margin: 4px 3px 0px 5px;
+  background: #D9534F;
+  padding: 5px;
+  float: left;
+  border-radius: 15px;
+
+  width: 3px !important;
+  height: 3px !important;
+}
+.j-title{
+  color:#0366C6;
+   width: 100%;
+  font-size: 18px;
+  padding: 12px 0px 0px 10px;
+  text-transform: capitalize;
+ overflow: hidden;
+  text-decoration: underline;
+}
+
+.red-circle{
+  background: #D9534F;
+  padding: 5px ;
+  //display: inline;
+    float:left;
+    border-radius: 10px;
+    width: 10px;
+
+}
+
+h1{
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 0px 0px 10px;
+}
+
+.renew-btn{
+  background: #FF7900;
+  border-radius: 5px !important;
+   font-size:16px;
+
+}
+
+.discount{
+  margin-top: 10px;
+  padding: 10px 5px 10px 5px;
+  background: #FFFBB2;
+  text-align:center;
+  border: 2px solid #D2E4BA;
+  font-size: 18px;
+  border-radius: 10px;
+}
+  .next-btn  {
+    background: #FF7900;
+    border-radius: 5px !important;
+     font-size: 22px;
+    text-align: center;
+    width:45%;
+     margin-bottom: 10px;
+    text-transform: none;
+    padding: 10px;
+
+  }
+  .details-btns{
+    background: white;
+    float: right;
+   font-weight: normal;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 2px 10px 2px 10px;
+    border:1px solid #D4E6BE;
+  }
+
+  .p-list{
+    margin-top:30px;margin-right:-4px;
+  }
+  .active-plan{
+    font-size:20px;color:#098D68;font-weight:bold;margin-top:12px;padding-left:10px;float:left;
+  }
+
+  .paid{
+    font-size:20px;color:#FF7900;font-weight:bold;margin-top:12px;float:right;padding:0px 0px 5px 0px;
+  }
+  .a-p-price{
+    font-size:22px;font-weight:bold;margin-top:12px;float:right;padding:0px 0px 5px 0px;
+  }
+  .a-p-name{
+    font-size:18px;font-weight:bold;float:left;margin-left:10px;
+  }
+  .a-p-duration{
+    font-size:13px;color:#098D68;font-weight:bold;padding:13px 5px 0px 2px;
+  }
+  .p-name{
+    font-size:18px;font-weight:bold;margin-top:18px;float:left;
+  }
+  .p-price{
+    font-size:22px;font-weight:bold;margin-top:10px;float:right;padding:0px 0px 5px 0px;color: #CA3F40;
+  }
+  .p-duration{
+    font-size:13px;color:#098D68;font-weight:bold;padding:13px 5px 0px 2px;
+  }
+  .item-md h2 {
+    margin: 16px 0;
+    font-size: 20px;
+    font-weight: normal;
+}
+  .btn-align{
+     width: 100% !important;
+     text-align: center;
+  }
+  .details-btn{
+   float: right;
+
+     font-size: 20px;
+
+
+    color:#3B6DCD;
+    padding: 10px;
+  }
+         ion-item {
+             border-radius: 15px !important;
+
+             font-size: 0.9em;
+             margin-bottom: 20px;
+
+             border: 1px solid #adacac;
+
+         }
+
+         .back{
+            float:right;
+            margin-top:7px;color:#fff;font-size:17px;
+
+        }
+         .center{
+             text-align: center;
+         }
+         .box {
+            background: #FFFFDD;
+            padding: 0px 10px 0px 10px;
+          overflow: hidden;
+          border: 2px solid #F5DF78;
+          border-radius: 10px !important;
+
+        }
+
+
+        .item-ios {
+          padding-left: 16px;
+        }
+
+
+.bottom-text{
+    font-size: 18px;
+    color: black;
+
+}
+
+.a{
+    font-size: 20px;
+}
+// .button-md {
+//     border-radius: 10px;
+//     padding:0px;
+//     overflow: hidden;
+//     height: 3.6rem;
+//     font-size: 2.4rem;
+//     margin-top: 0px;
+//     font-weight: 300;
+
+//      text-transform: none;
+//     }
+
+        .text-center {
+         //  float:center;
+        }
+
+     .left-icon{
+      float: left;
+      width: 20%;
+      padding: 7px 0px 7px 0px;
+
+     }
+.i-desc{
+    margin-top: 10px;
+  padding: 0px 0px 0px 12px;
+  margin-bottom: 10px;
+  width: 100%;
+
+}
+.i-desc h1{
+  color: #000;
+}
+.i-desc ul{
+  list-style: none;
+  padding-left: 0px;
+  font-size: 16px;
+  margin-top: 0px;
+  width: 100%;
+  margin-bottom: 0px;
+}
+.i-desc ul li{
+  list-style:none;
+ font-size: 15px;
+ padding-top: 10px;
+}
+
+ul.icon li{
+    margin-left: 1.7em;
+}
+
+ ul.icon li:before {
+    content: '\f058';
+    font-family: 'FontAwesome';
+    float: left;
+    margin-left: -1.5em;
+    color: #098D68;
+    font-size: 18px;
+ }
+
+
+.active-icon{
+  color: #098D68;
+}
+.big{
+  font-size: 60px;
+}
+
+      //  .next-btn {
+      //   background: #FF7900;
+
+      //  font-size: 25px;
+      // padding: 15px;
+      //    border-radius: 10px !important;
+
+
+      // }
+
+  .item-md .item-button {
+    padding:15px;
+    font-size: 16px;
+    }
+    .item-md {
+      padding-left: 0px;
+    }
+
+}
+ion-app.md [padding] .scroll-content {
+ // padding: 10px !important;
+}

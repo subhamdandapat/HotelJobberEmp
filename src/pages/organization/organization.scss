@@ -1,0 +1,254 @@
+page-organization {
+
+  ion-navbar {
+    ion-badge {
+      padding: 2px 5px !important;
+      border-radius: 13px !important;
+    }
+  }
+
+  ion-content {
+    ion-refresher {
+      top: 50px !important;
+      .refresher-refreshing-text {
+        font-size: 12px;
+        color: #0093AD;
+      }
+      ion-spinner {
+        width: 30px !important;
+        height: 30px !important;
+      }
+    }
+
+    @keyframes blinker {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .no-org {
+      animation: blinker 1.80s linear infinite;
+    }
+
+  }
+
+    .login-content {
+        background: rgb(255, 255, 255);
+     overflow: hidden;
+
+        .top-box{
+          background: rgb(255, 255, 255);
+         // padding: 10px;
+          overflow: hidden;
+          border: 1px solid #e6e4e4;
+         //position: relative;
+          margin-bottom: 4px;
+          border-radius: 10px !important;
+        }
+
+        .alert-md .alert-button {
+
+          color: #19b819;
+        }
+        .change-logo{
+          font-size: 12px;text-decoration: underline;
+          padding-left: 7px;
+          color: #5794FF;
+        }
+
+         ion-item {
+             border-radius: 15px !important;
+
+             font-size: 0.9em;
+             margin-bottom: 20px;
+
+             border: 1px solid #adacac;
+
+         }
+         .box {
+          background: rgb(255, 255, 255);
+          padding: 15px 15px 5px 15px;
+          overflow: hidden;
+
+        }
+     .left-icon{
+      float: left;
+      width: 20%;
+      padding: 7px 0px 7px 0px;
+      margin: 0px 5px;
+
+     }
+
+
+
+.large{
+  font-size: 36px;
+
+}
+
+.medium{
+  font-size: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.i-desc{
+  float: left;
+  width: 75%;
+
+}
+.i-desc h1{
+  color: #000;
+}
+.i-desc ul{
+  list-style: none;
+  padding-left: 0px;
+  font-size: 16px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.i-desc ul li{
+  list-style:none;
+  padding-bottom: 5px;
+}
+.active-icon{
+  color: #098D68;
+}
+.big{
+  font-size: 60px;
+}
+        .box-yellow{
+          background: #FFF8B0;
+          padding: 10px 10px 10px 10px;
+          overflow: hidden;
+          border: 1px solid #e6e4e4;
+          margin-top:50px;
+          border-radius: 10px !important;
+
+        }
+         .text-area {
+
+           // padding-left: 20px !important;
+           font-size: 0.9em;
+           margin-top: 10px;
+
+       }
+
+       .mylikes {
+         padding: 5px 0px 0px 10px;
+        width: 100px;
+         margin-right: 5px;
+            }
+
+        //  .next-btn {
+        //    background: #FF7900;
+        //     border-radius: 6px !important;
+        //    // margin-right: 10px;
+        //     font-size: 11px;
+
+
+        //  }
+         .search-btn{
+          color:#000;
+          text-decoration:underline;
+          padding: 0px;
+          margin-right: 20px;
+          height: 20px;;
+        }
+        .btn-red {
+          color:#D9534F;
+          padding-right: 5px;
+        }
+
+         .next-btn1 {
+          background: #098D68;
+          height: 30px;
+          margin:10px 20px 0px 20px;
+        }
+        .next-remove {
+          color: #e35757;
+          float: right;
+          font-size: 12px;
+          font-weight: bold;
+          text-decoration: underline;
+          margin:10px 20px 0px 20px;
+        }
+
+        .myjobs {
+             color: rgb(8, 94, 143);
+             float: right;
+             font-size: 14px;
+             font-weight: bold;
+             text-decoration: underline;
+        }
+
+.org-content {
+  float:left;
+  width: 100%;
+  padding: 15px;
+  background: #F5F5F5;
+  .jobZero {
+    background-color: #D9534F !important;
+    animation: blinker 1.80s linear infinite;
+  }
+  .fab-md {
+    background-color: #11AD6E;
+  }
+  .fab {
+    width: 45px;
+    height: 45px;
+  }
+  p {
+    float: right;
+    white-space: revert;
+    line-height: 1;
+    border: 1px solid #c1c1;
+    font-size: 10px;
+
+  }
+  p:active {
+    border: 1px solid #0093AD;
+  }
+}
+         .fb-btn {
+            background: #1E448B;
+             border-radius: 15px !important;
+          }
+          .job_desc{
+            float: right;
+            width: 56%;
+          }
+
+.left-image{
+  float: left;
+
+  padding: 0px 20px 0px 0px;
+}
+
+
+.clear{
+  clear:both;
+}
+.center{
+  text-align: center;
+}
+
+
+.right-icon{
+  position: absolute;
+  right: 12px;
+  top: initial;
+ }
+}
+
+
+}
+h1{
+  font-size: 22px;
+  font-weight: bold;
+  padding: 5px 0px 0px 10px;
+}
+.alert-md .alert-button {
+  color: green;
+}

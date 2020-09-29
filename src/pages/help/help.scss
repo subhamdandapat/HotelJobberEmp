@@ -1,0 +1,46 @@
+page-help {
+    .col-10{
+
+         color: #4E4E4E;
+     }
+  .location {
+    overflow: hidden;
+    padding: 16px;
+    border: 1px solid #DADADA;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    iframe {
+      width: 288px;
+    }
+    span {
+      vertical-align: super;
+      padding-left: 16px;
+    }
+    a {
+      vertical-align: super;
+      padding-left: 16px;
+    }
+  }
+     .click-icon {
+         width:25px;line-height: 20px;
+     }
+     .underline {
+        text-decoration:underline;
+        color:rgb(0, 99, 192);
+        line-height:25px;
+      }
+      .h-office {
+       font-weight: bold;
+      }
+
+      .email {
+        padding: 6px 2px 0px 0px;;float:left;
+        text-decoration: underline;
+        color: rgb(0, 99, 192)
+      }
+  .appVersion {
+    text-align: center;
+    color: #c1c1c1;
+    font-size: 12px;
+  }
+}

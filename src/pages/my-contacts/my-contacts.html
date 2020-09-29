@@ -1,0 +1,124 @@
+<ion-header>
+
+  <ion-navbar hideBackButton>
+
+    <ion-buttons left (click)="back()">
+      <button ion-button icon-only>
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+        Balance Information
+    </ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content class="login-content" padding>
+
+  <div class="box">
+    <h1>My Contacts</h1>
+
+    <ion-row>
+      <ion-col>
+
+        <h6>
+          {{Total_Contact}} Contacts Purchased
+        </h6>
+        <span class="text-colors-green">
+          <!-- {{Total_Contact}} -->Activated on: {{countsData?.order_date | date :'dd MMM yyyy'}}
+        </span>
+
+      </ion-col>
+<!-- <div class="line"></div> -->
+
+    </ion-row>
+
+    <div class="box-yellow">
+      <div class="i-desc">
+        <h5 style="padding-right:-2px;">
+          Viewed
+        </h5>
+        <div class="h1size red1">
+          {{View_Contact}}
+        </div>
+      </div>
+
+      <div class="i-desc">
+        <h5 style="padding-right:-2px;">
+          Balance
+        </h5>
+        <div class="h1size">
+          {{balance_contact}}
+        </div>
+      </div>
+    </div>
+
+    <div class="text-colors text-colors-gray">
+      Your Plan Validity Expires On: <span class="text-colors-red">{{newDate | date :'dd MMM yyyy'}}</span>
+    </div>
+
+  </div>
+<div *ngIf="Total_Contact > 0">
+
+  <div *ngFor="let item of plans;let i = index" class="box-white box-color-white" (click)="setStatusColor(true,i,item)">
+    <div *ngIf="index==i;else main_content" [ngStyle]="{background: getStatusColor(flag)}" class="inner-padding">
+      <div>
+        <table style="width:100%">
+
+          <tr>
+            <td *ngIf="index==i;else other_content"><i class="fa fa-check-circle active-icon large"></i></td>
+            <ng-template #other_content>
+
+              <td><i class="fa fa-check-circle deactive-icon large"></i></td>
+            </ng-template>
+
+            <td style="font-size:16px;" [innerHTML]="item?.plan_description"> </td>
+
+            <td style="font-size:22px;;text-align: right;padding-right: 10px"> {{item.plan_cost | currency:'INR':true:'1.0-1'}}</td>
+            <!-- <i class="fa fa-inr active-icon  medium"></i> -->
+          </tr>
+
+        </table>
+      </div>
+
+
+    </div>
+
+    <ng-template #main_content>
+
+      <div class="inner-padding">
+
+        <table style="width:100%">
+
+          <tr>
+            <td *ngIf="index==i;else other_content"><i class="fa fa-check-circle active-icon large"></i></td>
+            <ng-template #other_content>
+
+              <td><i class="fa fa-check-circle deactive-icon large"></i></td>
+            </ng-template>
+
+            <td style="font-size:18px;" [innerHTML]="item?.plan_description"> </td>
+
+            <td style="font-size:22px;text-align: right;padding-right: 10px"> {{item.plan_cost | currency:'INR':true:'1.0-1'}}</td>
+            <!-- <i class="fa fa-inr active-icon  medium"></i> -->
+          </tr>
+
+        </table>
+      </div>
+    </ng-template>
+
+
+  </div>
+
+
+  <!--<div class="box">
+    <button class="next-btn" ion-button (click)="PaymentDetails()"> Buy Now</button>
+  </div>-->
+
+</div>
+
+</ion-content>

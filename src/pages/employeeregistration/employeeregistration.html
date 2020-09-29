@@ -1,0 +1,98 @@
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <img style="width:70%;padding: 7px;" src="assets/imgs/apps-header-logo.svg" />
+    <ion-buttons end style="margin-right: 20px;" (click)="goToLogin()">
+      <button ion-button>
+        Login
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="login-content">
+
+  <div class="box">
+
+    <div class="inner-box">
+      <div>
+        <h1 style=" margin:0px">
+          Register As Employer
+        </h1>
+        <div class="main-header">(Ex. Hotel/ Restaurant/ Cafe Owners)</div>
+      </div>
+      <form [formGroup]="registration_form">
+
+
+        <ion-item no-lines>
+          <ion-label floating>Name*</ion-label>
+          <ion-input type="text" formControlName="name" name="name"></ion-input>
+        </ion-item>
+        <div *ngIf=" (registration_form.controls['name'].dirty  && (!registration_form.controls.name.valid ))" style="color:red;margin:0px;padding:0px;font-size: 13px;">
+          Name greater than 2 character
+        </div>
+
+
+        <ion-item no-lines>
+          <ion-label floating>Email*</ion-label>
+          <ion-input type="email" formControlName="emailid" name="emailid"></ion-input>
+        </ion-item>
+        <div *ngIf=" (registration_form.controls['emailid'].dirty  && (!registration_form.controls.emailid.valid ))"
+          style="color:red;margin:0px;padding:0px;font-size: 13px;">
+          Enter valid email
+        </div>
+
+        <ion-item no-lines  style="padding-top:10px ;margin-bottom: -10px;">
+          <select-searchable style="text-align:center;"
+                             title="Select City*"
+                             formControlName="selectedCity"
+                             searchPlaceholder="Type city name"
+                             itemValueField="optionId"
+                             itemTextField="optionTitle"
+                             [canSearch]="true"
+                             (onChange)="portSelectCity($event)"
+                             (onSearch)="searchPorts($event)"
+                             [class.removeLabel] = "removeLabel != null">
+          </select-searchable>
+          <div *ngIf=" (registration_form.controls['name'].dirty  && (!registration_form.controls.name.valid ))" style="color:red;margin:0px;padding:0px;font-size: 13px;">
+            Enter City
+          </div>
+        </ion-item>
+
+          <ion-item no-lines>
+            <ion-label floating>Mobile*</ion-label>
+            <ion-input type="number" formControlName="mobile" name="mobile"></ion-input>
+          </ion-item>
+          <div *ngIf=" (registration_form.controls['mobile'].dirty  && (!registration_form.controls.mobile.valid ))"
+            style="color:red;margin:0px;padding:0px;font-size: 13px;">
+            Enter minimum 6 digit mobile number
+          </div>
+
+          <ion-item no-lines>
+            <ion-label floating>Password*</ion-label>
+            <ion-input type="password" formControlName="password" name="password"></ion-input>
+          </ion-item>
+          <div *ngIf=" (registration_form.controls['password'].dirty  && (!registration_form.controls.password.valid ))"
+            style="color:red;margin:0px;padding:0px;font-size: 13px;">
+            Password at least 6 digit long
+          </div>
+
+          <ion-item no-lines>
+            <ion-label floating>Confirm Password*</ion-label>
+            <ion-input type="password" formControlName="conform_password" name="conform_password"></ion-input>
+          </ion-item>
+          <div *ngIf=" (registration_form.controls['conform_password'].dirty  && (!registration_form.controls.conform_password.valid ))"
+            style="color:red;margin:0px;padding:0px;font-size: 13px;">
+            Confirm password
+          </div>
+
+          <div class="btn-next">
+            <button ion-button [disabled]="!registration_form.valid" class="submit-btn" (click)="register()">
+              Register</button>
+          </div>
+      </form>
+    </div>
+
+    <img style="width:88%; margin-top: 30px;" (click)="playStore()" src="assets/imgs/candidate-redirect.svg" />
+
+  </div>
+</ion-content>

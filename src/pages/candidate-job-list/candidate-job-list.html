@@ -1,0 +1,211 @@
+<ion-header>
+  <ion-navbar>
+
+    <button  class="menu-btn" item-start ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <span>
+      <img class="logo" src="assets/imgs/apps-header-logo.svg">
+    </span>
+
+    <ion-buttons end style="margin-right: 20px;">
+      <button ion-button (click)="showNotification()">
+        <img class="notification-icon" src="assets/imgs/notification.svg">
+        <ion-badge  *ngIf="empProvider.totalNotification>0" class="top-right" id="notifications-badge" color="danger">{{empProvider.totalNotification}}</ion-badge>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div ion-fixed  class="fix-content">
+    <div class="box">
+      <!--When candidate job list open-->
+      <h4 *ngIf="!myJobsOpen"><span *ngIf="totalJobs" class="box-green">{{totalJobs}}</span> <span style="margin-left: 2px">{{pageTitle}}</span></h4>
+
+      <!--When employer job list open-->
+      <div *ngIf="myJobsOpen" style="display: inline">
+        <!--Title-->
+        <h4> <span style="margin-left: 2px">{{pageTitle}}</span> </h4>
+        <!--Avtive-->
+        <span class="box-green2">{{activeJobCount}}</span>Active
+        <!--Expired-->
+        <span class="box-red2">{{expiredJobCount}}</span>Expired
+      </div>
+
+      <!--Back Button Right-->
+      <div class="myJobsTitle" *ngIf="!myJobsOpen" (click)="changePage()">My Jobs</div>
+      <div class="back-arrow" *ngIf="myJobsOpen" (click)="changePage()">
+        < Back
+      </div>
+      <ion-item [hidden]="myJobsOpen"  class="input-search">
+        <select-searchable
+          style="margin-left:3px; width:100%"
+          title="Select Job Category"
+          [items]="jobRollList"
+          itemValueField="RoleID"
+          itemTextField="Roll"
+          [canSearch]="true"
+          (onChange)="portChangeRoll($event)"
+          [class.removeLabel]="removeLabel">
+        </select-searchable>
+      </ion-item>
+    </div>
+  </div>
+<!--Candidate job list-->
+  <div class="cand-list" *ngIf="!myJobsOpen">
+    <ion-refresher  (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingIcon="arrow-dropdown"
+                             pullingText="Pull to refresh"
+                             refreshingSpinner="circles"
+                             refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+      <div class="box-white" *ngFor="let item of candidateJobList; let i = index">
+       <ion-grid no-padding>
+         <ion-row>
+           <ion-col col-2 padding>
+             <img *ngIf="item.organisation_logo != ''" src="https://www.hoteljobber.com/org_logos/{{item.organisation_logo}}" />
+             <img class="img-logo" *ngIf="item.organisation_logo == ''" src="assets/imgs/icon-org-logo.png"  />
+           </ion-col>
+           <ion-col col-10 padding>
+             <div>
+                <span style="float: right;font-size: xx-small;font-weight: bold; font-style: italic">
+                 <span style="font-weight: bold;">Posted:</span>
+                 <span style="color: #3e8e41">{{item.Post_Time | amTimeAgo}} </span>
+               </span>
+               <span (click)="candidateJobDetails(item)" class="list-resto-name"> {{item.Organisation_Name }}</span>
+             </div>
+
+             <div class="org-type">{{item?.Organisation_Type}}</div>
+             <img  class="applied" (click)="showCandidateApp()" src="assets/imgs/btn-apply.svg" />
+             <div class="location">
+               <ion-icon name="pin" small></ion-icon>
+               <span *ngIf="item.city!=''"> {{ item.City }}-{{ item.Country }}</span>
+             </div>
+           </ion-col>
+         </ion-row>
+       </ion-grid>
+
+        <div class="jobExtra">
+            <p class="list-title" (click)="candidateJobDetails(item)"> {{ item?.JobTitle }} Required</p>
+            <span *ngIf="item.Experience!=''">
+              <div class="jobCat">
+                <span>Job Category:
+                <img height="12px" src="assets/imgs/icon-candidates.svg"> <span class="list-roll">{{ item.Roll }}</span>
+                </span>
+              </div>
+              <div class="workExp">
+                <span>
+                  Work Exp:
+                  <img src="assets/imgs/icon-s-exp.svg"  height="12px">
+                  <div style="display: inline-block;" *ngIf="(item?.MinExp > 0)">{{ item.MinExp }} yrs.</div>
+                  <div style="display: inline-block;" *ngIf="(item?.MinExp == 0)">Fresher</div>
+                </span>
+              </div>
+              <div class="salaryExp">
+                <span>
+                  Salary Offering:
+                  <span style="margin-top:5px" *ngIf="item.MinSalary!=''">{{ item.MinSalary | currency:'INR':true:'1.0-0' }} - <span *ngIf="item.MaxSalary!=''"> {{ item.MaxSalary  | currency:'INR':true:'1.0-0' }} </span>
+                  </span>
+                </span>
+              </div>
+            </span>
+          </div>
+        </div>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+
+<!--My Job List-->
+  <div style="margin-top:42px" *ngIf="myJobsOpen">
+    <ion-list *ngFor="let job of empJobList; let i = index">
+      <div class="box-white myJobs"  [class.background-red]="job.Expired">
+        <!--Active-->
+       <div style="padding-bottom: 30px">
+          <div class="top">
+            <span *ngIf="!job.Expired; else elseBlock">
+              <span class="activeDot activeExepired"></span>
+              <span>Active</span>
+            </span>
+            <ng-template #elseBlock>
+              <span class="expDot activeExepired"></span> <span>Expired</span>
+            </ng-template>
+          </div>
+          <!--Time and date-->
+          <div>
+            <div style="font-size:11px;float:right;color:#d06464;font-style:italic;padding-left: 5px">{{job.Expiry_Date | date: 'dd MMM yyyy'}}</div>
+            <div style="font-size:11px;float:right ; font-style:italic;color:#7bb541;">{{job.Post_Date | date: 'dd MMM yyyy'}} <span style="color:black">To</span></div>
+          </div>
+       </div>
+
+  <!--Details-->
+       <ion-grid no-padding>
+          <ion-row no-padding>
+  <!--Logo-->
+            <ion-col col-3>
+              <img *ngIf="job.organisation_logo != ''" src="https://www.hoteljobber.com/org_logos/{{job.organisation_logo}}" />
+              <img class="img-logo" *ngIf="job.organisation_logo == ''" src="assets/imgs/icon-org-logo.png" />
+            </ion-col>
+  <!--Content-->
+            <ion-col col-9>
+              <div class="roll-text" (click)="myJobDetails(job.ID)">
+                {{job.Organisation_Name}}
+              </div>
+
+              <div class="location">
+                <ion-icon name="pin"></ion-icon>
+                <span> {{ job.City }}, {{ job.Country }}</span>
+              </div>
+
+            </ion-col>
+          </ion-row>
+       </ion-grid>
+
+        <div class="jobExtra">
+          <p class="list-title" (click)="myJobDetails(job.ID)"> {{  job?.JobTitle}} Required</p>
+          <div>
+
+            <!--Applied Count-->
+            <div class="applied" *ngIf="job?.Applied_Count > 0" (click)="openAppliedList(job.ID)">
+              <p ion-fab right>{{job?.Applied_Count}}</p>
+              <span style="text-align: center">Applied</span>
+            </div>
+
+              <div class="jobCat">
+                <span>Job Category:
+                <img height="12px" src="assets/imgs/icon-candidates.svg"> <span class="my-value">{{ job.Roll }}</span>
+                </span>
+              </div>
+
+              <div class="workExp">
+                <span>
+                  Work Exp:
+                  <img src="assets/imgs/icon-s-exp.svg"  height="12px">
+                  <div  class="my-value" *ngIf="(job?.MinExp > 0)">{{ job.MinExp }} yrs.</div>
+                  <div  class="my-value" *ngIf="(job?.MinExp == 0)">Fresher</div>
+                </span>
+              </div>
+              <div class="salaryExp">
+                <span>
+                  Salary Offer:
+                  <span class="my-value" *ngIf="job.MinSalary!=''">{{ job.MinSalary | currency:'INR':true:'1.0-0' }} - <span *ngIf="job.MaxSalary!=''"> {{ job.MaxSalary  | currency:'INR':true:'1.0-0' }} </span>
+                  </span>
+                </span>
+              </div>
+            </div>
+        </div>
+      </div>
+    </ion-list>
+  </div>
+  <ion-footer ion-fixed class="foot">
+    <ion-toolbar [class.HideScroll]="hideScroll">
+      <button right (click)="ScrollToTop()" ion-fab mini end ><ion-icon icon-only small name="arrow-round-up"></ion-icon></button>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

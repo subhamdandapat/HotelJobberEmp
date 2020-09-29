@@ -1,0 +1,219 @@
+// http://ionicframework.com/docs/theming/
+
+// Ionic custom icons
+ion-icon {
+  &[class*="custom-"] {
+    mask-size: contain;
+    mask-position: 50% 50%;
+    mask-repeat: no-repeat;
+    background: currentColor;
+    width: 1.5em;
+    height: 1.5em;
+  }
+  &[class*="custom-SMS"] {
+    mask-image: url(../assets/imgs/icon-send-sms.svg);
+  }
+}
+
+@font-face {
+  font-family: 'Roboto Condensed', sans-serif ;
+  src:url('../assets/fonts/robato.woff2');
+}
+
+* {
+  font-family: 'Roboto Condensed', sans-serif ;
+}
+
+.notification-icon {
+  height: 24px;
+}
+.menu-btn:hover {
+  background: rgb(103, 185, 199);
+}
+
+body.keyboard-is-open .hideElementOnKeyboardShown {
+  display: none;
+}
+.button-md {
+  border-radius: 6px;
+  text-transform: none;
+  font-weight: 300;
+}
+.btn-large{
+  border-radius: 20px !important;
+  margin-top: 10px;
+  font-size: 22px;
+  padding: 22px 32px 22px 32px;
+}
+
+.top-right {
+  position: absolute;
+  bottom: 22px;
+  left: 14px;
+  color: white;
+}
+.bold{ font-weight: 500;font-size: 24px;}
+.left{float:left;}
+.right{float:right;}
+.clear{clear: both;}
+.center{text-align: center;}
+nav .logo{
+  padding: 10px;
+  width: 100px;
+}
+nav .slogan{
+  color: #ffffff;
+  font-size: 26px;
+  line-height: 55px;
+  margin-left: 0px;
+}
+
+.select-searchable-icon {
+  display: none;
+}
+.select-searchable {
+
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.back{
+  float:right;
+  margin-top:9px;
+  color:#fff;font-size:17px;
+
+}
+.no-data{
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  padding-top: 250px;
+}
+.my-loading {
+  ion-backdrop {
+    top: 15%;
+    border-radius: 25px;
+    // height: 70%;
+    background: transparent;
+  }
+}
+.main-header{
+  font-size:18px;
+  font-weight:500;
+  width: 50%;
+  float: left;
+
+}
+
+.col-12 { width: 100%; }
+.col-11 { width: 91.66666667%; }
+.col-10 { width: 83.33333333%; }
+.col-9 { width: 75%; }
+.col-8 { width: 66.66666667%; }
+.col-7 { width: 58.33333333%; }
+.col-6 { width: 50%; }
+.col-5 { width: 41.66666667%; }
+.col-4 { width: 33.33333333%; }
+.col-3 { width: 25%; }
+.col-2 { width: 16.66666667%; }
+.col-1 { width: 8.33333333%; }
+
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 { float: left; }
+
+.validation{
+  color:red;margin:0px;padding:5px;background:#FFE0E0;border-radius:8px;
+}
+.logo{
+  float: left;;height:35px;
+}
+
+
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+
+  background-image: none;
+
+}
+ion-spinner {
+  width: 40px;
+  height: 40px;
+}
+.loading-md .loading-wrapper {
+  background: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+ion-backdrop {
+  background-color: #fff;
+}
+
+.noty_alert {
+  .alert-wrapper {
+    .alert-head {
+      h2 {
+        font-size: 20px !important;
+      }
+    }
+    .alert-message {
+      display: none;
+    }
+    .alert-button-group {
+      padding-bottom: 20px !important;
+    }
+
+    .noty-btn {
+      border: 1px solid #c1c1c1 !important;
+      padding: 10px 16px 10px 16px !important;
+      text-transform: capitalize !important;
+      background-color: #EE7374 !important;
+      color: white !important;
+      margin-right: 32% !important;
+    }
+
+  }
+}
+
+.alert-wrapper {
+  .alert-message {
+    font-size: 20px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .alert-button-group {
+    padding: 6px 4px 20px 18px;
+  }
+
+  .alert-button {
+    line-height: 10px !important;
+  }
+
+  .myAppCloseCancel {
+    border: 1px solid #c1c1c1;
+    padding: 6px !important;
+    margin-right: 44px;
+    text-transform: capitalize !important;
+    background-color: whitesmoke;
+  }
+
+  .myAppClose {
+    border: 1px solid #c1c1c1;
+    padding: 6px !important;
+    margin-right: 52px !important;
+    text-transform: capitalize !important;
+    color: #EE7374 !important;
+    background-color: whitesmoke;
+  }
+  .alert-head {
+     h2 {
+       text-align: center;
+     }
+  }
+
+}
+//.dialog-modal .modal-wrapper { width: 80%; height: 60%; }
+
+//Tab active color top border
+/*.tabbar a[aria-selected=true] {
+  border-top: 1px solid #0093AD;
+}*/

@@ -1,0 +1,60 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Broadcast List</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding style="overflow-y: hidden;">
+  <div class="sentBroadcast" *ngIf="broadcastList.length > 0">
+    <div>
+      <div *ngFor="let post of broadcastList">
+        <div ion-row  class="box">
+          <div ion-col col-12>
+            <div class="editProfile">
+              <p [innerHTML]="post.Message"></p>
+              <!--<div class="edit">
+                <ion-icon class="edit-icon" name="done-all" small></ion-icon>
+              </div>-->
+            </div>
+            <div class="broadcastSent">
+              <div text-center>Broadcasted on: {{post?.Date | date : 'dd MMM yyyy'}} </div>
+              <div text-center>Ref ID: <span style="color: #CD6669">{{post.ID}}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles"></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+  </div>
+
+
+  <!--If No broadcast found-->
+  <div class="no-job" *ngIf="broadcastList.length == 0" (click)="createOrganizationPage()">
+  <!--  <div class="circle">
+      <span>Create</span>
+      <div>Organisation</div>
+      <img width="30px" src="assets/imgs/icon-footer-org.svg"/>
+    </div>
+
+    <img width="16px" style="padding-bottom: 31px;animation: blinker 1.80s linear infinite;" src="assets/imgs/step-arrows.png"/>
+
+    <div class="circle">
+      <span>Post</span>
+      <div>Job</div>
+      <img width="30px" src="assets/imgs/icon-footer-jobs.svg"/>
+    </div>
+
+    <img width="16px" style="padding-bottom: 31px;animation: blinker 1.80s linear infinite;" src="assets/imgs/step-arrows.png"/>
+
+    <div class="circle">
+      <span>And</span>
+      <div>Broadcast</div>
+      <img width="30px" src="assets/imgs/icon-footer-broadcast2.svg"/>
+    </div>-->
+  </div>
+
+</ion-content>

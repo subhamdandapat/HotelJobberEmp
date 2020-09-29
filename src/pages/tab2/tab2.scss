@@ -1,0 +1,359 @@
+page-tab2 {
+  ion-navbar {
+    ion-badge {
+      padding: 2px 5px !important;
+      border-radius: 13px !important;
+    }
+  }
+
+  ion-content {
+
+    //Button touch effect start
+    .sendSMS {
+      img:active {
+        width: 70px !important;
+      }
+    }
+    .optionsLD {
+      img:active {
+        height: 60px;
+      }
+    }
+    //Button touch effect end
+
+
+    ion-col {
+      .item-inner {
+        padding-right: 6px;
+        border-bottom: none !important;
+      }
+    }
+    .item-md {
+      ion-avatar img {
+        width: 50px !important;
+        height: 50px !important;
+      }
+    }
+    .city {
+      color:rgb(139, 141, 141);
+      white-space: normal;
+    }
+    ion-refresher {
+      top: 40px !important;
+      .refresher-refreshing-text {
+        font-size: 12px;
+        color: #0093AD;
+      }
+      ion-spinner {
+        width: 25px !important;
+        height: 25px !important;
+      }
+    }
+    .foot {
+      background-color: transparent;
+      width: 14% !important;
+      left: 83% !important;
+      button {
+        float: right !important;
+        background-color:white !important;
+        border: 1px solid #D8D8D8;
+      }
+      ion-icon {
+        color: #0093AD;
+        font-size: 1.5em !important;
+      }
+      ion-toolbar .toolbar-background {
+        background-color: transparent;
+      }
+    }
+    .HideScroll {
+      display: none !important;
+    }
+
+    .sendSMS {
+      position: absolute;
+      top: 32%;
+      right: 10px;
+    }
+
+    .optionsLD {
+      position: absolute;
+      right: 8px;
+      bottom: -2px;
+      img {
+        width: 24px;
+      }
+    }
+
+    .wtsApp {
+      border: 1px solid #c1c1c1;
+      border-radius: 7px;
+      width: 75px;
+      margin-top: 5px;
+    }
+
+  }
+  .mylikes{
+    width: 85px;
+        }
+        .count{
+          font-size:23px ;color:#478963;
+
+          float: left;
+          margin: 5px 3px 3px 3px;
+
+      }
+      .half{
+        float: left;
+        width:48%;
+        margin:5px 3px 0px 3px;
+
+
+      }
+      .item-block {
+        min-height: 35px;
+      }
+      .select-searchable-label {
+        flex: none;
+        font-size: 13px
+      }
+      .select-searchable-value-item {
+        overflow: visible;
+        font-size: 13px
+
+      }
+      .box{
+        margin:10px ;
+        overflow: hidden;
+        clear: both;
+         // padding: 15px 15px 15px 15px ;
+      }
+     .item-md ion-avatar[item-start], .item-md ion-thumbnail[item-start] {
+        margin: 5px 8px 3px 1px !important;
+     }
+      .box-white {
+        position: relative;
+        margin-right: 5px;
+        margin-left: 5px;
+        background: rgb(255, 255, 255);
+        overflow: hidden;
+        border: 1px solid #e6e4e4;
+        border-radius: 10px !important;
+        clear: both;
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+        border-right-color: #F1C14D;
+          .tabList {
+            margin: 2px 0px 2px 0px !important;
+          }
+         }
+  .border-shortlisted {
+     border-right-color: #2AA52A !important;
+  }
+
+      ion-item-sliding ion-item.first-child {
+        padding-left: 8px !important;
+      }
+      ion-item {
+        .item-md ion-avatar[item-start], .item-md ion-thumbnail[item-start] {
+          margin: 5px 3px 2px 0px !important;
+        }
+      }
+         .item-cover {
+          /* left: 0; */
+          /* top: 0; */
+          position: relative;
+          width: 100%;
+          height: 100%;
+          background: transparent;
+          /* cursor: pointer; */
+      }
+
+
+      .input-search{
+        border-radius: 5px !important;
+        font-size: 0.9em;
+        // margin-top: 35px;
+        padding-left: 5px;
+
+       line-height: 30px;
+        border: 1px solid #adacac;
+      }
+
+         ion-input {
+          background-color: #fff;
+          padding: 0px;
+      }
+         .search-btn{
+
+         margin-top: 5px;
+      }
+
+      .fix-content{
+        overflow: hidden;
+        background: #fff;
+        width: 100%;
+        height: 105px;
+      }
+      .candidate-data {
+           color:#434443;
+           float:left;
+           font-weight: bold;
+           font-size: 12px;
+           margin-right:5px;
+           text-transform:capitalize!important;
+           white-space: normal;
+      }
+      .cand-list {
+        margin-top:110px;
+      }
+      .balance {
+        font-size:9px ;float:left;line-height: 10px;color:#4786CF;text-transform: uppercase;
+      }
+      .headers {
+        font-weight: bold;
+        font-size: 12px;
+      }
+      .squre {
+        background: #F3FEFF;
+        border-radius: 4px;
+        padding: 0px;
+        float: left;
+        font-size: 11px;
+        border: 1px solid #c7d8da;
+        margin-right: 2px;
+        img {
+          float:left;
+          height: 15px;
+        }
+        label {
+          float:left;
+          line-height: 18px;
+          padding-left: 1px;
+          padding-right: 2px;
+        }
+      }
+
+      .main-header{
+        width: auto;;
+        font-size: 16px;
+      }
+
+      .squre-yellow {
+        background:#FFFBB5;
+        margin: 0px;
+        padding:0px 0px 0px 5px;
+        border:1px solid rgb(199, 196, 136);
+
+      }
+      .squre-red{
+        background:#FF7900;
+        border:1px solid #FF7900;
+        float: right;
+        margin: 2px;
+        padding:2px;
+        color: white;
+        font-size: 11px;
+      }
+      .align-right-item{
+          float: right;
+          overflow: hidden;
+          // margin-bottom: 5px;
+      }
+      .active-icon{
+          color: #098D68;
+        }
+        .big{
+          font-size: 30px;
+        }
+
+        .list-ios {
+           margin:  0px 5px  0px 5px;
+      }
+
+        //.btn-pink{
+        //  background:#46AD74;
+        //  float: right;
+          // padding: 10px;
+          // font-size: 10px;
+          // line-height: 13px;
+          // border-radius: 8px;
+          // text-transform: uppercase;
+
+
+      //  }
+      .no-data {
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        padding-top: 2px;
+      }
+      .label-md {
+        margin:0px
+     }
+      .report-text{
+        line-height: 20px;
+        text-align: right;
+        padding-right: 5px;
+      }
+      .show-contact {
+        background: #11AD6E;
+        color: white;
+        padding:2px 4px 2px 4px;
+        border-radius: 5px;
+        position: relative;
+      }
+      .msg-icon{
+        float: left;
+        font-size: 22px;
+        color: #4092d9;
+        padding: 0px 0px 0px 10px;
+      }
+        .btn-pink {
+          //  background:#46AD74;
+          padding: 5px 5px 0px 0px;
+            float: right;
+            width: 75px;
+            // padding: 10px;
+            // font-size: 10px;
+            // line-height: 13px;
+            // border-radius: 8px;
+            // text-transform: uppercase;
+
+
+          }
+        .contact {
+          float: right;
+          padding-top: 4px
+
+        }
+        .select-searchable-md .select-searchable-value {
+           padding-left: 0px;
+
+      }
+
+      .desc-icon {
+        float:left;
+        height: 15px;
+        margin-left: 2px;
+      }
+        .candi-name {
+          margin-top:0px;margin-bottom:0px;
+          text-transform: capitalize;
+          font-weight: bold !important;
+          font-size: 15px;
+          width:100%;
+          text-decoration:underline;
+          color:  #9933CC;
+        }
+      }
+      .item-md ion-icon[item-left] + .item-inner, .item-md ion-icon[item-left] + .item-input, .item-md ion-icon[item-start] + .item-inner, .item-md ion-icon[item-start] + .item-input {
+        margin-left:5px;
+
+      }
+      .item-md h2 {
+        margin: 2px 0;
+        font-size: 13px;
+        font-weight: normal;
+        white-space: nowrap !important;
+      }

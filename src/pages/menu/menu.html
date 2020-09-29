@@ -1,0 +1,36 @@
+<ion-menu [content]="content" >
+
+  <ion-content style="background:#fff">
+    <div class="profile">
+      <div *ngIf="fb_data?.picture.data.url" style="width:40%;float:left">
+        <img src="{{fb_data?.picture.data.url}}" class="custom-avatar" />
+      </div>
+      <img class="logo1" src="assets/imgs/apps-header-logo.svg">
+
+      <div class="separator" *ngIf="Emp_details?.Name">
+        <div style="color:white!important;font-weight:bold;"> Welcome - {{Emp_details.Name}}</div>
+        <div style="color:white!important;margin-top: 5px;">Reg. No: {{Emp_details?.Mobile}} | Emp.ID {{Emp_details?.ID}}</div>
+      </div>
+    </div>
+
+    <ion-list>
+     <!-- <div class="side-menu-item">
+        <ion-item>
+          <span style="color:#000000;padding-left:10px;font-size:15px;line-height:42px">Touch Sound</span>
+          <ion-toggle checked (ionChange)="touchSound()"></ion-toggle>
+        </ion-item>
+      </div>-->
+
+      <div style="background:#fff;height:50px" ion-item menuClose *ngFor="let p of pages; let i = index" (click)="openPage(p, i)">
+        <div menuClose class="side-menu-item">
+          <ion-icon  left  [name]="p.icon" style="width:15%;padding:5px"></ion-icon>
+          <span style="color:#000000;padding-left:10px;font-size:15px;line-height:42px">{{ p.title }}</span>
+        </div>
+      </div>
+    </ion-list>
+
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+

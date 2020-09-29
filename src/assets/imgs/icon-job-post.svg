@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="8.5in" height="8.5in" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 8.5 8.5"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ version="1.1">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:#1F1A17}
+    .fil2 {fill:#969594}
+    .fil1 {fill:white}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_101850800">
+   <path id="_101856032" class="fil0" d="M3.42843 2.08533l-1.53466 0.212902 0.674185 4.27575 4.81687 -0.718539c0,0 -0.133063,0.0177402 -0.399189,-1.0645 -0.266126,-1.08224 -0.656445,-3.16689 -0.656445,-3.16689l-1.28627 0.195157c0,0 0.266126,0.434673 0.0887087,0.824988 -0.177417,0.390319 -0.674185,0.754024 -1.25079,0.470157 -0.576606,-0.283866 -0.479028,-0.895957 -0.452413,-1.02902z"/>
+   <ellipse id="_99721616" class="fil0" cx="4.30866" cy="2.17866" rx="0.683056" ry="0.669748"/>
+   <ellipse id="_101849120" class="fil1" cx="4.29979" cy="1.78391" rx="0.461285" ry="0.408059"/>
+   <ellipse id="_101866856" class="fil0" cx="4.29979" cy="1.4069" rx="0.399189" ry="0.350397"/>
+   <polygon id="_101848064" class="fil2" points="1.83371,3.6734 2.28613,6.60078 1.11517,6.28143 "/>
+   <path id="_101854688" class="fil2" d="M2.96026 6.8048l2.54594 -0.399189c0,0 -0.150807,0.824988 -0.0443543,1.03789 -0.975965,-0.230713 -2.50158,-0.638701 -2.50158,-0.638701z"/>
+  </g>
+ </g>
+</svg>

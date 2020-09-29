@@ -1,0 +1,81 @@
+
+number : 88888875 check pranjal
+razar pay
+
+
+my app got suspended from android playstore… Email what i got is like
+Issue with your app
+Your app contains content that doesn’t comply with the Malicious Behavior policy. We found your app is using a non-compliant version of Cordova plugin App-update SDK which contains code to download or install applications from unknown sources outside of Google Play.
+
+Note: after removal of this plugin : giving me message :[ERROR] Error initialization Version Plugin: Class not found
+
+Please help me
+
+http://preview.themeforest.net/item/listeo-directory-listings-html-template/full_screen_preview/19986813?_ga=2.228099230.204529797.1596714714-1842250766.1588931579&_gac=1.161694286.1596714714.CjwKCAjw1K75BRAEEiwAd41h1Ja9IdO8CqMpTpU__Yi0k_8AXTxYH5YRYQO555W4lyB45qGNu_bOxhoCqnsQAvD_BwE
+
+
+Employee
+ID:9673866789
+PS:1...6
+
+May-8-plugins for Employee App
+
+cordova-plugin-app-update 1.6.0 "AppUpdate"
+cordova-plugin-appversion 1.0.0 "App Version"
+cordova-plugin-camera 2.4.1 "Camera"
+cordova-plugin-compat 1.2.0 "Compat"
+cordova-plugin-device 2.0.1 "Device"
+cordova-plugin-facebook4 4.2.1 "Facebook Connect"
+cordova-plugin-fcm 2.1.2 "FCMPlugin"
+cordova-plugin-file 5.0.0 "File"
+cordova-plugin-file-transfer 1.7.1 "File Transfer"
+cordova-plugin-filepath 1.0.2 "FilePath"
+cordova-plugin-geolocation 4.0.1 "Geolocation"
+cordova-plugin-inappbrowser 3.0.0 "InAppBrowser"
+cordova-plugin-ionic-keyboard 2.0.5 "cordova-plugin-ionic-keyboard"
+cordova-plugin-ionic-webview 1.1.16 "cordova-plugin-ionic-webview"
+cordova-plugin-nativegeocoder 3.2.2 "NativeGeocoder"
+cordova-plugin-splashscreen 5.0.2 "Splashscreen"
+cordova-plugin-whitelist 1.3.3 "Whitelist"
+cordova-plugin-x-socialsharing 5.4.1 "SocialSharing"
+es6-promise-plugin 4.2.2 "Promise"
+ionic-plugin-keyboard 2.2.1 "Keyboard"
+mx.ferreyra.callnumber 0.0.2 "Cordova Call Number Plugin"
+
+
+
+
+//Step to build release
+
+0) $ionic cordova plugin rm cordova-plugin-console
+1) Change your app version in config.xml file(Old 1.1.3 -> 1.1.4)
+2) $ ionic build --release android // cordova build --release --prod android
+3) This will build unasigned.apk in build folder 
+4) Move this apk to root folder
+5) Also place your old keystore file in root folder 
+   {
+    To find alias name: $ keytool -list -v -keystore oldKeyStoreFile.keystore
+    Alias Name: hj and hjc
+    
+   }
+6) jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore hjkeystore.keystore app-release-unsigned.apk hj
+6.2) jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore candidatekey.keystore android-release-unsigned.apk hjc
+
+password: india020
+
+7) Go to this directory D:\Ionic\androidApps\sdk\build-tools\19.1.0 copy apk here
+
+8) $zipalign -v 4 app-release-unsigned.apk android-signed.apk
+9) Ready to upload dude!
+
+ 
+
+// Candidate Imgae upload URL
+
+https://www.hoteljobber.com/user_upload_image.php
+
+// get Candidate image 
+https://www.hoteljobber.com/user_image/1560755004.jpg
+
+// build Error
+platforms -> android -> build.gradle -> allProject { rep{ }}

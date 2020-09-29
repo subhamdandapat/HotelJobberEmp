@@ -1,0 +1,36 @@
+{
+    "data": [
+        {
+            "id":1,
+            "name":"Phone Switch Off"
+
+        },
+        {
+            "id":2,
+            "name":"Arrogant Behaviour"
+
+
+        }, {
+            "id":3,
+            "name":"Not Receiving Call"
+        },
+        {
+            "id":4,
+            "name":"Wrong Designation"
+
+        },
+
+        {
+            "id":5,
+            "name":"Already Working"
+
+        }
+
+
+    ]
+  }
+
+
+
+
+

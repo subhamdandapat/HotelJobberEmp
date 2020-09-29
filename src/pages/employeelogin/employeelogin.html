@@ -1,0 +1,55 @@
+<ion-header>
+
+  <ion-navbar hideBackButton>
+
+    <img style="width:85%;padding: 10px;" src="assets/imgs/Logo-android-2019-header-apps.svg" />
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="login-content">
+
+
+  <div class="box">
+    <div style=" margin-top:20px">
+      <div>
+        <h1 style=" margin:0px">
+          Employer Login
+        </h1>
+        <div class="main-header">(Hotel / Restaurant / Cafe Owners)</div>
+      </div>
+
+      <form [formGroup]="login_form">
+
+        <ion-item no-lines>
+          <ion-label floating>Mobile Number/Email ID*</ion-label>
+          <ion-input type="text" formControlName="email" name="email"></ion-input>
+        </ion-item>
+        <div *ngIf=" (login_form.controls['email'].dirty  && (!login_form.controls.email.valid ))" style="color:red;margin:0px;padding:0px;font-size: 13px;float: left;">
+          Please enter Email or Mobile No.
+        </div>
+
+        <ion-item no-lines>
+          <ion-label floating>Password*</ion-label>
+          <ion-input type="password" formControlName="password" name="password"></ion-input>
+        </ion-item>
+        <div *ngIf=" (login_form.controls['password'].dirty  && (!login_form.controls.password.valid ))" style="color:red;margin:0px;padding:0px;font-size: 13px;float: left;">
+          Please enter Password.
+        </div>
+
+        <div class="btn-next">
+          <div style="overflow:hidden">
+            <button ion-button [disabled]="!login_form.valid" class="submit-btn" (click)="loginUser()"> Login</button>
+            <button ion-button class="forgot" block clear (click)="forgetPassword()">Forgot Password?</button>
+          </div>
+          <div class="line"></div>
+
+          <div class="main-header" style="color:#000">New User? Please click below button to register</div>
+          <button ion-button class="register-btn" (click)="getRegister()">Register</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+</ion-content>

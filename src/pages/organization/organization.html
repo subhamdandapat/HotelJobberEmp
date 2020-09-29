@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-navbar>
+    <button class="menu-btn" item-start ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <span>
+      <img class="logo" src="assets/imgs/apps-header-logo.svg">
+    </span>
+
+    <ion-buttons end style="margin-right: 20px;">
+      <button ion-button (click)="showNotification()">
+        <img class="notification-icon" src="assets/imgs/notification.svg">
+        <ion-badge  *ngIf="empProvider.totalNotification>0" class="top-right" id="notifications-badge" color="danger">{{empProvider.totalNotification}}</ion-badge>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content class="login-content" padding>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown"
+                           pullingText="Pull to refresh"
+                           refreshingSpinner="circles"
+                           refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div style="overflow:hidden;background:#fff;width:100% ;padding:5px;">
+    <div class="main-header" style="padding-left:1px;width:60%"><h4>My Organisations</h4></div>
+    <!-- <button class="myjobs" ion-button clear (click)="gotoMyJobs()">MY JOBS</button> -->
+  </div>
+
+  <div *ngFor="let item of organizationList;let i=index;">
+    <!--<div *ngIf="i==0" style="margin-top:10px">
+
+    </div>-->
+    <div class="top-box">
+
+      <span class="right-icon" (click)="updateOrg(item?.ID)">
+      <i class="fa fa-edit medium "></i>
+    </span>
+
+      <div>
+
+        <div class="box">
+          <div class="left-image" *ngIf="item?.organisation_logo;else else_part"  (click)="changeLogo(item.ID, i)">
+            <img style="width:80px;height:80px" start src="https://hoteljobber.com/org_logos/{{item.organisation_logo}}">
+            <div class="change-logo">Edit Logo</div>
+          </div>
+          <ng-template #else_part>
+            <div class="left-image"  (click)="changeLogo(item.ID, i)">
+              <img style="width:80px;height:80px" start src="assets/imgs/company.jpg">
+              <div class="change-logo">Upload Logo</div>
+            </div>
+          </ng-template>
+
+          <div>
+            <div style="font-size:18px;font-weight:bold">
+              {{item.organisation_name}}
+              <br>
+              <span style="color:#11AD6E;font-weight:bold;font-size:14px">
+                {{item.organisation_type}}
+              </span>
+            </div>
+
+            <div style="margin-top:5px">
+              <img alt="logo" width="16" height="16" style="float:left;margin-top:3px" src="assets/imgs/icon-location.svg">
+              <span style="line-height:25px;padding-left:5px">  {{item.City}}, {{item.State}}, {{item.Country}}. </span>
+            </div>
+          </div>
+        </div>
+<!---->
+        <div class="org-content">
+          <div style="margin-top:10px;color:#838282">
+            <p [class.jobZero]="(item?.TotalJobs == 0)" (click)="openMyJobs(item)" ion-fab >Job {{item?.TotalJobs}}</p>
+            Contact: <span style="color:#000000">
+              {{item.organisation_phone}}
+            <span *ngIf="item.organisation_phone1">/ {{item.organisation_phone1}}</span>
+            </span>
+          </div>
+          <div>
+            <div style="margin-top:10px;color:#838282">
+              Email: <a style="color:#0847BD"> {{item.organisation_email}} </a>
+            </div>
+          </div>
+          <div>
+            <div style="margin-top:10px;color:#838282 ">
+              Address: <a style="color:#383838"> {{item.organisation_branch}}, {{item.organisation_address}}</a>
+            </div>
+          </div>
+
+           <div>
+           </div>
+        </div>
+        <div class="org-btn">
+          <img class="mylikes" (click)="postJobPage(item.ID, item.TotalJobs)" src="assets/imgs/icon-my-jobs.svg">
+          <div style="float:right;margin-top:5px;">
+            <button class="search-btn" ion-button clear (click)="remove(item.ID)">
+              <ion-icon class="btn-red" name="trash"></ion-icon>Remove
+            </button>
+          </div>
+          <!-- <button class="next-btn1" ion-button (click)="postJobPage(item.ID)"> Post Job</button> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 25px;padding-bottom: 30px;" [class.no-org]="organizationList.length == 0" (click)="createOrganizationPage()">
+    <img   src="assets/imgs/msg-org-c.svg">
+  </div>
+</ion-content>

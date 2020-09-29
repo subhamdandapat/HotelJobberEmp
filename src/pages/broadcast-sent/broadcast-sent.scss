@@ -1,0 +1,46 @@
+page-broadcast-sent {
+  .sentBroadcast {
+    div.box {
+      position: relative;
+      width: auto;
+      padding: 3px;
+      color: white;
+      border-radius: 5px;
+      background: #38bc61;
+      margin-bottom: 7px;
+      padding-bottom: 8px;
+      .broadcastSent {
+        background-color: white;
+        color:black;
+        font-weight: bold;
+        padding: 5px 20px 5px 20px;
+        display: inline-block;
+        margin-left: 32px;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .no-job {
+    margin-top: 110px;
+    text-align: center;
+    img {
+      display: inline-block;
+    }
+    .circle {
+      display: inline-block;
+      background-color: #AAD3A9;
+      padding-top: 20px;
+      border-radius: 52%;
+      text-align: center;
+      width: 85px;
+      height: 85px;
+      font-size: 12px;
+      font-weight: bold;
+      ion-icon {
+        // margin-left: 24px !important;
+        background-color: white;
+      }
+    }
+  }
+}

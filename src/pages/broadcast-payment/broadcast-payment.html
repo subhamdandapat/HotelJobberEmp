@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Broadcast My Requirement</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div class="box-white">
+    <div class="box-title">
+       <span>Confirm Job Details</span>
+       <!--<span class="edit" (click)="openEditModal()">Edit</span>-->
+    </div>
+
+    <!--Message box-->
+    <div class='broadMessageBox' *ngIf="broadMessage?.jobTitle">
+      <p style="text-transform: capitalize !important;">Required {{broadMessage?.jobTitle}}</p>
+      <p>{{broadMessage?.hotelName}}, {{broadMessage.city}}</p>
+      <p>Salary Rs.&nbsp;{{broadMessage.minSal}} - {{broadMessage.maxSal}}</p>
+      <p>Contact: <span style="color: #f0f057;">{{broadMessage.contact}}</span></p>
+    </div>
+
+    <!--Note-->
+    <div class="note">
+      <span>*Note:</span>
+      <ul>
+        <li>Your contact number will be visible to hotel staff</li>
+        <li>Give good salary offer, Ad gets good response</li>
+        <li>Please ADD organization Logo & property photo for better response (ignore if already added)</li>
+      </ul>
+    </div>
+
+    <div *ngIf="!isPaymentCompleted" class="broad-button" (click)="payNow()">
+      <span class="pay-now">{{plan_name}}</span>
+      <span class="price">Rs. {{plan_cost}}</span>
+    </div>
+
+    <div *ngIf="isPaymentCompleted" class="broad-button" (click)="fireBroadcast()">
+      <img class="bro-img" height="30px" src="assets/imgs/icon-footer-broadcast2.svg"/>
+      <span class="pay-now bro-now">{{plan_name}}</span>
+    </div>
+
+    <div class="broad-label">
+      <span>Reach upto 5000 staff in seconds</span>
+    </div>
+
+    <!--Benefits-->
+    <div class="benifits-box" *ngIf="planList">
+      <h4>Benefits</h4>
+      <div class="i-desc" [innerHTML]="planList[0]?.plan_description">
+      </div>
+    </div>
+
+  </div>
+</ion-content>

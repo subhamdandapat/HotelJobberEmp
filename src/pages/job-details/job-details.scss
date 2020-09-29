@@ -1,0 +1,116 @@
+page-job-details {
+  ion-content {
+    .box {
+      margin:6px 5px 0px 5px;
+      background: white;
+      padding: 4px;
+      overflow: hidden;
+      border: 1px solid #e6e4e4;
+      border-radius: 8px !important;
+      padding-bottom: 75% !important;
+      .job-title {
+        margin: 2px 0px 8px 5px;
+        color: #0066cc;
+        text-transform: capitalize;
+        font-size: 18px;
+      }
+      ion-col[col-2] {
+        img {
+          width: 60px;
+          border: 1px solid #c1c1c1;
+          border-radius: 30px;
+          height: 60px;
+        }
+        .img-logo {
+          opacity: 0.5;
+          padding: 8px;
+        }
+      }
+
+      ion-col[col-10] {
+        padding-left: 5px !important;
+        .text-header {
+          font-size: 12px;
+          font-weight: bold;
+        }
+        .org-name {
+          font-size: 15px;
+          font-weight: bold;
+          display: block;
+        }
+        .org-type {
+          color: #867f7f;
+          display: block;
+          margin-bottom: 4px;
+        }
+        .org-location {
+          display: block;
+        }
+      }
+      .text-title {
+        font-weight: bold;
+        color: #373232;;
+      }
+      .org-add-name {
+        font-weight: bold;
+        color: #4d4949;
+        display: block;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      div {
+        ion-icon {
+          color: #D9534F;
+        }
+      }
+    }
+  }
+
+  .back {
+    float:right;
+    margin-top:5px;color:#fff;font-size:17px;
+  }
+  header {
+    font-size: 20px;
+    color: #0066cc;
+  }
+  .line{
+    background: #D6D6D6;
+    height: 3px;
+    padding: 0px;
+    margin: 18px 0px 20px 0px;
+  }
+  .text-header {
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .list-icon {
+    height: 15px;
+    margin-bottom: -2px;
+  }
+
+
+  div{
+    padding-top:5px;
+  }
+  .jd{
+    font-size: 13px;
+    color: rgb(102, 101, 101)
+  }
+
+  .btn-apply{
+    background:#FF7900;
+    float: left;
+    // padding: 0px 10px 0px 10px;
+    font-size: 10px;
+    margin-left: 10px;
+    border-radius: 8px;
+
+  }
+  .fb-btn {
+    background: #1E448B;
+    font-size: 10px;
+    margin-left: 10px;
+    border-radius: 8px;
+  }
+}

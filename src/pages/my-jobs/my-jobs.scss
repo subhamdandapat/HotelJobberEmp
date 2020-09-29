@@ -1,0 +1,129 @@
+page-my-jobs {
+
+  ion-content {
+    .background-red {
+      background: rgb(247, 235, 235) !important;
+    }
+    ion-list {
+      margin-bottom: 8px !important;
+    }
+    .box-white {
+      background: rgb(255, 255, 255);
+      padding: 10px 10px 5px 5px;
+      margin-top: 10px;
+      overflow: hidden;
+      border: 1px solid #e6e4e4;
+      border-radius: 10px !important;
+
+      ion-col[col-3] {
+        img {
+          width: 60px;
+          border: 1px solid #c1c1c1;
+          border-radius: 30px;
+          height: 60px;
+        }
+
+        .img-logo {
+          padding: 8px;
+          opacity: 0.5;
+        }
+      }
+
+      ion-col[col-9] {
+
+        .roll-text {
+          font-size: 14px;
+          color: #0093AD;
+          font-weight: bold;
+        }
+
+        .location {
+          margin-top: 4px;
+
+          ion-icon {
+            font-size: 1em;
+          }
+
+          span {
+            color: #686363;
+            font-weight: bold;
+            font-size: 12px;
+          }
+        }
+
+        .org-type {
+          font-size: 12px;
+          font-weight: bold;
+          color: #43bb97;
+        }
+      }
+
+      .top {
+        float: left;
+        .activeDot {
+          background: #43bb97;
+        }
+        .activeExepired {
+          margin: 4px 3px 0px 5px;
+          padding: 5px;
+          float: left;
+          border-radius: 15px;
+          width: 3px !important;
+          height: 3px !important;
+        }
+        .expDot {
+          background: #D9534F;
+        }
+      }
+
+      .jobExtra {
+        margin-top:5px;
+        font-size:13px;
+        line-height: 1.5;
+        p.list-title {
+          margin-top: 2px;
+          margin-bottom: 2px;
+          color: #0066cc;
+          text-transform: capitalize;
+          font-weight: bold;
+          font-size: 14px;
+          text-decoration:underline;
+        }
+        .title-value {
+          font-weight: bold;
+        }
+        .applied {
+          color: #a69b9b;
+          float: right;
+          padding-right: 6px;
+          .fab {
+            width: 40px;
+            height: 40px;
+            background-color: #2AA52A;
+            margin: 2px;
+          }
+          p {
+            font-size: 16px;
+            font-weight: normal !important;
+          }
+        }
+
+        .applied:active {
+          .fab {
+            width: 42px !important;
+            height: 42px !important;
+            border: 5px solid #0093AD;
+          }
+        }
+      }
+
+    }
+
+    div.pause {
+      margin-top: 10px;
+      padding-bottom: 4px;
+      margin-left: 2px;
+      color: #867d7d;
+    }
+  }
+}

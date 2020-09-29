@@ -1,0 +1,247 @@
+page-broadcast {
+
+  ion-navbar {
+    ion-badge {
+      padding: 2px 5px !important;
+      border-radius: 13px !important;
+    }
+  }
+
+  ion-content {
+    ion-app.md [padding] .scroll-content {
+      padding: 8px !important;
+    }
+
+    .fix-content {
+      overflow: hidden;
+      background: #fff;
+      width: 100%;
+      height: auto;
+
+    }
+
+    ion-refresher {
+      top: 50px !important;
+
+      .refresher-refreshing-text {
+        font-size: 12px;
+        color: #0093AD;
+      }
+
+      ion-spinner {
+        width: 30px !important;
+        height: 30px !important;
+      }
+    }
+
+    // Title
+    ion-row ion-col {
+      .title1 {
+        font-weight: 500;
+        font-size: 2rem;
+        font-family: 'Roboto Condensed', sans-serif;
+
+        .subtitle {
+          font-size: 1.3rem;
+          color: #D9455B;
+          margin-top: 1px;
+        }
+      }
+
+      .more-info {
+        background-color:#F0C14D;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        text-align: center;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 13px;
+        margin-top: 3px;
+      }
+
+      .back-arrow {
+        color: #9d9999;
+        display: inline;
+        float: right;
+        padding: 7px;
+        font-weight: bold;
+      }
+    }
+
+    //My Job List
+    .box-white {
+      background: rgb(255, 255, 255);
+      padding: 10px 10px 10px 6px;
+      overflow: hidden;
+      border: 1px solid #e6e4e4;
+      border-radius: 10px !important;
+
+      ion-col[col-3] {
+        img {
+          width: 60px;
+          border: 1px solid #c1c1c1;
+          border-radius: 30px;
+          height: 60px;
+        }
+
+        .img-logo {
+          padding: 8px;
+          opacity: 0.5;
+        }
+      }
+
+      ion-col[col-9] {
+
+        .roll-text {
+          font-size: 14px;
+          color: #0093AD;
+          font-weight: bold;
+        }
+
+        .location {
+          margin-top: 4px;
+
+          ion-icon {
+            font-size: 1em;
+          }
+
+          span {
+            color: #686363;
+            font-weight: bold;
+            font-size: 12px;
+          }
+        }
+
+        .org-type {
+          font-size: 12px;
+          font-weight: bold;
+          color: #43bb97;
+        }
+      }
+
+      .top {
+        float: left;
+        .activeDot {
+          background: #43bb97;
+        }
+        .activeExepired {
+          margin: 4px 3px 0px 5px;
+          padding: 5px;
+          float: left;
+          border-radius: 15px;
+          width: 3px !important;
+          height: 3px !important;
+        }
+        .expDot {
+          background: #D9534F;
+        }
+      }
+
+      .applied {
+        font-weight: bold;
+        float: right;
+        padding-right: 6px;
+        .fab {
+          width: 40px;
+          height: 40px;
+          background-color: whitesmoke;
+          margin: 4px;
+        }
+        p {
+          font-size: 16px;
+          font-weight: normal !important;
+        }
+      }
+
+      .applied:active {
+        .fab {
+          width: 42px !important;
+          height: 42px !important;
+          border: 2px solid #0093AD;
+        }
+      }
+
+      .jobExtra {
+        margin-top:5px;
+        font-size:13px;
+        line-height: 1.5;
+        p.list-title {
+          margin-top: 2px;
+          margin-bottom: 2px;
+          color: #0066cc;
+          text-transform: capitalize;
+          font-weight: bold;
+          font-size: 14px;
+          text-decoration:underline;
+        }
+        .title-value {
+          font-weight: bold;
+        }
+        .more-info {
+          float: right;
+          padding-right: 4px;
+          text-decoration: underline;
+          color: blue;
+        }
+      }
+    }
+    //
+    /*.titleHeader {
+      color: #F6904F;
+      font-weight: bold;
+      text-align: center;
+      font-size: 13px;
+      margin: 10px 0px 10px 0px;
+    }*/
+
+    .no-job {
+      margin-top: 130px;
+      text-align: center;
+      color: white;
+      width: 100%;
+      .circle-box {
+        padding: 2px;
+        display: inline-block;
+        .pointer {
+          height: 25px;
+          display: block;
+          padding-left: 40px;
+          animation: blinker 1.80s linear infinite;
+        }
+      }
+
+      .steps {
+        color: black;
+        padding-bottom: 3px;
+        font-weight: bold;
+      }
+      img {
+        display: inline-block;
+      }
+      .circle-green {
+        background-color: #15C24E !important;
+        opacity: 1 !important;
+      }
+      .circle {
+        display: inline-block;
+        background-color: #FF6F6F;;
+        padding-top: 20px;
+        border-radius: 52%;
+        text-align: center;
+        width: 96px;
+        height: 96px;
+        font-size: 11px;
+        font-weight: bold;
+        box-shadow: 1px 1px 5px 3px #c1c1c1;
+        border: 2px solid white;
+        opacity: 0.8;
+        ion-icon {
+         // margin-left: 24px !important;
+          background-color: white;
+        }
+      }
+    }
+
+
+  }
+}

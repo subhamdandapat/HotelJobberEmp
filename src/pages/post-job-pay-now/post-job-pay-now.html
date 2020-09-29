@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-buttons left (click)="back()">
+      <div class="back">Back</div>
+      <button ion-button icon-only>
+        <!-- or your method, this is for closing a modal -->
+        <img width="25" height="25" src="assets/imgs/backicon.png">
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="login-content" padding>
+
+  <div class="main-header" style="padding: 8px 0px 0px 5px;">Post Job   <span style="font-size: 14px; float: right; text-decoration: underline; color: #6DB3E2;" (click)="goToJobList()">Go to my job list</span></div>
+
+      <div class="box ">
+        <!--<div class=" center" *ngIf="!flag;  else hotjob">
+        </div>-->
+        <!-- <ng-template #hotjob> -->
+          <div class=" center">
+            <div class="success-checkmark">
+              <div class="check-icon">
+                <span class="icon-line line-tip"></span>
+                <span class="icon-line line-long"></span>
+                <div class="icon-circle"></div>
+                <div class="icon-fix"></div>
+              </div>
+            </div>
+          </div>
+
+        <div class="bottom-text">
+          <span>
+           Job Posted Successfully
+          </span>
+        </div>
+
+      </div>
+</ion-content>

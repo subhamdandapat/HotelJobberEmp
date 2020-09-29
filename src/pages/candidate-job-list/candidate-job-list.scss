@@ -1,0 +1,332 @@
+page-candidate-job-list {
+  ion-navbar {
+    ion-badge {
+      padding: 2px 5px !important;
+      border-radius: 13px !important;
+    }
+  }
+
+  ion-content {
+
+    //Common CSS
+    .img-logo {
+      padding: 8px;
+      opacity: 0.5;
+    }
+    ion-list {
+      margin-bottom: 8px !important;
+    }
+
+    .box-green {
+      background-color: #30AE05;
+      color: white;
+      Padding: 2px 5px 2px 5px;
+      font-size: large;
+      border-radius: 3px;
+      margin: 2px;
+    }
+
+    .box-red {
+      background-color: #EC5C5B;
+      color: white;
+      Padding: 2px 5px 2px 5px;
+      font-size: large;
+      border-radius: 3px;
+      margin: 2px;
+    }
+
+    .box-green2 {
+      background-color: #30AE05;
+      color: white;
+      padding: 1px 7px 1px 7px;
+      font-size: 15px;
+      border-radius: 3px;
+      margin: 2px;
+    }
+
+    .box-red2 {
+      background-color: #EC5C5B;
+      color: white;
+      Padding: 1px 7px 1px 7px;
+      font-size: 15px;
+      border-radius: 3px;
+      margin: 2px;
+    }
+
+    .fix-content {
+      overflow: hidden;
+      background: #fff;
+      width: 100%;
+      height: auto;
+      .box {
+        margin: 15px 15px 0px 15px;
+        overflow: hidden;
+        ion-item {
+          padding-left: 0px;
+        }
+        h4 {
+          font-size: 20px;
+          display: inline-block;
+          margin-top: 3px;
+          margin-right: 3px;
+        }
+        div.myJobsTitle {
+          display: inline;
+          float: right;
+          padding: 6px;
+          color: blue;
+          text-decoration: underline;
+        }
+        .back-arrow:active {
+          background-color: #c1c1c1;
+        }
+        div.back-arrow {
+          color: #9d9999;
+          display: inline;
+          float: right;
+          padding: 7px;
+          font-weight: bold;
+        }
+
+      }
+      .input-search {
+        border-radius: 5px !important;
+        font-size: 0.9em;
+        height: 30px;
+        border: 1px solid #adacac;
+        select-searchable {
+          .select-searchable-icon {
+            display: inline-block !important;
+          }
+        }
+        .select-searchable-label {
+          margin-left: 4px;
+        }
+        .removeLabel {
+          .select-searchable-label {
+            display: none;
+          }
+          .select-searchable-value {
+            max-width: 100% !important;
+            overflow: inherit !important;
+          }
+        }
+      }
+    }
+
+    ion-refresher {
+      top: 25px !important;
+      .refresher-refreshing-text {
+        font-size: 12px;
+        color: #0093AD;
+      }
+      ion-spinner {
+        width: 25px !important;
+        height: 25px !important;
+      }
+    }
+    .cand-list {
+      margin-top: 84px;
+      overflow:hidden;
+      .box-white {
+        ion-col[col-2] {
+             img {
+               width: 50px;
+               border: 1px solid #c1c1c1;
+               border-radius: 40px;
+             }
+        }
+        ion-col[col-10] {
+          padding-left: 5px!important;
+          .location {
+            span {
+              color: #6F6F6F;
+              font-weight: bold;
+              font-size: 12px;
+            }
+            ion-icon {
+              font-size: 1.0em;
+              color: #D9534F;
+            }
+          }
+          .list-resto-name {
+            color:#0093AD;
+            font-size: 14px;
+            text-transform: capitalize;
+            font-weight: bold;
+            white-space: normal;
+          }
+          .org-type {
+            color:#919191;
+            font-size:12px;
+            font-style: italic;
+            font-weight: bold;
+            text-transform: capitalize;
+            margin: 2px 0px 2px 0px;
+            display: inline;
+          }
+        }
+        .applied {
+          float: right;
+         height: 25px;
+         display: inline-block;
+        }
+
+      }
+    }
+
+    .jobExtra {
+      margin-top:5px;
+      font-size:13px;
+      line-height: 1.5;
+      padding-bottom: 5px;
+      margin-left: 5px;
+      p.list-title {
+        margin-top: 2px;
+        margin-bottom: 2px;
+        color: #0066cc;
+        text-transform: capitalize;
+        font-weight: bold;
+        font-size: 14px;
+        text-decoration:underline;
+      }
+      .my-value {
+        font-weight: bold;
+        display: inline-block;
+      }
+
+      .applied {
+        color: #a69b9b;
+        float: right;
+        padding-right: 6px;
+        .fab {
+          width: 40px;
+          height: 40px;
+          background-color: #2AA52A;
+          margin: 3px;
+        }
+        p {
+          font-size: 14px;
+        }
+
+      }
+      .applied:active {
+         .fab {
+           width: 42px !important;
+           height: 42px !important;
+           border: 5px solid #0093AD;
+         }
+      }
+
+    }
+
+    .foot {
+      background-color: transparent;
+      width: 14% !important;
+      left: 83%;
+      button {
+        float: right !important;
+        background-color:white !important;
+        border: 1px solid #D8D8D8;
+      }
+      ion-icon {
+        color: #0093AD;
+        font-size: 1.5em !important;
+      }
+      ion-toolbar .toolbar-background {
+        background-color: transparent;
+      }
+    }
+    .HideScroll {
+      display: none !important;
+    }
+
+  // Emp post job my job list
+
+    .background-red {
+      background: rgb(247, 235, 235) !important;
+    }
+    .background-white {
+      background: white;
+    }
+
+    .myJobs {
+      ion-col[col-3] {
+        img {
+          width: 60px;
+          border: 1px solid #c1c1c1;
+          border-radius: 30px;
+          height: 60px;
+        }
+
+      }
+
+      ion-col[col-9] {
+        padding-top: 8px!important;
+        .roll-text {
+          font-size: 14px;
+          color: #0093AD;
+          font-weight: bold;
+        }
+        .location {
+          margin-top: 4px;
+          ion-icon {
+            font-size: 1em;
+          }
+          span {
+            color: #686363;
+            font-weight: bold;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    .box-white {
+      padding: 6px 6px 6px 6px;
+      margin: 2px 0px 8px 0px;
+      overflow: hidden;
+      border: 1px solid #e6e4e4;
+      border-radius: 10px !important;
+      .top {
+        float: left;
+        .activeDot {
+          background: #43bb97;
+        }
+        .activeExepired {
+          margin: 4px 3px 0px 5px;
+          padding: 5px;
+          float: left;
+          border-radius: 15px;
+          width: 3px !important;
+          height: 3px !important;
+        }
+        .expDot {
+          background: #D9534F;
+        }
+      }
+      .j-title {
+        color:#0066cc;
+        width: 100%;
+        font-size: 15px;
+        padding: 10px 0px 5px 10px;
+        text-transform: capitalize;
+        overflow: hidden;
+        text-decoration: underline;
+      }
+
+      ion-icon {
+        color: #D9534F;
+      }
+      .job-details {
+        margin-top: 8px;
+      }
+
+    }
+
+  }
+
+
+
+
+}
+

@@ -1,0 +1,96 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left (click)="closeModal()">
+      <button ion-button icon-only>
+        <ion-icon  name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Job Applications</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h6 text-center>For Post Of <span *ngIf="contactDetails" text-center style="color: #0092AC"> {{ contactDetails }}</span></h6>
+
+  <div class="cand-list" *ngIf="items.length">
+    <ion-list class="box-white candidate" *ngFor="let item of items; let i = index">
+     <ion-grid no-padding>
+       <ion-row no-padding>
+         <ion-col col-7>
+           <ion-item no-padding no-lines>
+             <ion-avatar  item-start no-padding (click)="goToCandidateDetail(item, i)">
+               <img  style="border: 2px solid #DEDEDD;" *ngIf="item.Image" src="https://hoteljobber.com/user_image/{{item.Image}}" />
+               <img  *ngIf="!item.Image"  src="assets/imgs/icon-footer-candidates.svg" />
+             </ion-avatar>
+             <!--Name active bulb-->
+             <h2 style="display: inline;" class="candi-name"[class.name-color]="item?.view_status==false" (click)="goToCandidateDetail(item, i)">
+               {{ item?.FirstName }} {{item?.LastName}}
+               <span *ngIf="item.Active_status==1">
+              <img start style="width:11px" src="assets/imgs/icon-sbulb-on.svg" />
+             </span>
+               <span *ngIf="item.Active_status==0">
+            <img start style="width:11px" src="assets/imgs/icon-sbulb-off.svg" />
+            </span>
+             </h2>
+             <!--Work Experience-->
+             <div style="font-size: 12px;font-weight: bold;">
+               <label *ngIf="item.Experience > 0; else frshr">Exp: {{item.Experience}} yrs.</label>
+               <ng-template #frshr>
+                 <label>Exp: Fresher</label>
+               </ng-template>
+             </div>
+           </ion-item>
+           <!--Salary-->
+           <div style="margin-top:2px" *ngIf="item.MinSalary!=''"><span class="headers"> Salary Exp.:</span>
+             <span style="color:#11AD6E;font-size: 13px;"> {{ item.MinSalary |currency:'INR':true:'1.0-0' }}-
+                <span *ngIf="item.MaxSalary!=''"> {{ item.MaxSalary | currency:'INR':true:'1.0-0' }} </span>
+              </span>
+           </div>
+           <!--From-->
+           <div style="padding-top:2px; font-size: 12px">
+             <span style="color:#a8a3a3">From:</span>
+             <span style="color:rgb(139, 141, 141);" *ngIf="item.city!=''">{{ item.City }} - {{ item.Country }}</span> <i style="width: 14px;" class="flag-icon flag-icon-{{item?.CountryFlag.toLowerCase( )}}"></i>
+           </div>
+           <div>&nbsp;    &nbsp;      &nbsp;    &nbsp;    &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;  &nbsp;  &nbsp;</div>
+         </ion-col>
+<!--Col-->
+         <ion-col col-5>
+           <!--Time-->
+           <div *ngIf="item?.MyLabel" style="float: right;font-size:10px; color:#7E7B7B;font-style: italic;text-align: end;">
+             <ion-icon icon-only name="time" small></ion-icon>  {{item?.MyLabel}} {{item?.Last_Update | amTimeAgo }}
+           </div>
+           <!--Call and MSG-->
+           <i *ngIf="item.ShowMobile==true" style="width: 14px; top: 25px; position: absolute;right: 98px;" class="flag-icon flag-icon-{{item?.CountryFlag.toLowerCase( )}}"></i>
+
+
+           <div class="contact" *ngIf="item.ShowMobile==true">
+             <div (click)="callJoint(item.Mobile)" class="show-contact">
+               <img style="width:15px;margin: 3px 3px 0px 0px;" src="assets/imgs/icon-call1.svg" />
+                  <span style="line-height: 22px;font-size: 12px;text-align: center; float: right;">
+                   {{item.Mobile}}
+                 </span>
+             </div>
+
+             <div class="sendSMS">
+               <!--Whats app-->
+               <a style="display: block;color: #11AD6E;" [href]="getWtsApp(item.Mobile)"><img  src="assets/imgs/wtsApp.png"  class="wtsApp"></a>
+              <!-- <img start *ngIf='!item.SmsSend else SmsSend' class="wtsApp" style="margin-top: 5px;" src="./assets/imgs/smsApp.png" (click)="sendMsg(i)" />
+               <ng-template #SmsSend>
+                 <img start style="width:75px"  src="./assets/imgs/sent-sms.png" />
+               </ng-template>-->
+             </div>
+           </div>
+
+         </ion-col>
+       </ion-row>
+     </ion-grid>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+
+</ion-content>

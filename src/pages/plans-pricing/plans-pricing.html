@@ -1,0 +1,190 @@
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <ion-buttons left (click)="back()">
+      <div class="back">Back</div>
+      <button ion-button icon-only>
+        <!-- or your method, this is for closing a modal -->
+        <img width="25" height="25" src="assets/imgs/backicon.png">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content padding>
+
+  <div ion-fixed style="float:left; overflow:hidden;background:#fff;width:100% ;padding-top:10px;">
+    <h1>Plans & Pricing</h1>
+
+  </div>
+
+<div *ngIf="no_plan_present=='yes_plan'">
+
+
+
+  <div style="margin-top:40px" *ngIf="myPlan=='active'">
+    <!-- [class.background-red]="!expiredStatusArray[i]" -->
+
+    <div class="box-white">
+
+      <div class="top" >
+        <span class="g">
+        </span><span>Active</span>
+      </div>
+      <div>
+        <div style="font-size:12px;float:right;color:rgb(156, 86, 86);font-style:italic;padding-left: 5px">{{MyplansData?.Expiry_Date
+          | date: 'dd MMM yyyy'}}</div>
+        <div style="font-size:12px;float:right ; font-style:italic;color:rgb(56, 146, 56);">{{MyplansData?.Purchase_Date
+          | date: 'dd MMM yyyy'}}<span style="color:black;padding-left: 5px">To</span></div>
+
+      </div>
+      <div class="j-title">{{MyplansData?.plan_name}}
+
+      </div>
+      <div style="padding-left:10px;font-weight: 500">
+        <div class="job-details">
+          <span>Plan Name:</span> {{MyplansData?.plan_name}}
+
+        </div>
+        <div class="job-details">
+          <span>Purchase Price Rs.:</span> <span style="color:red">{{MyplansData?.plan_cost |
+            currency:'INR':true:'1.0-1'}}</span>
+        </div>
+
+
+        <div class="job-details">
+          <span>Credited Contacts:</span> <span>{{MyplansData?.Purchase_Contact}}</span>
+        </div>
+
+
+        <div class="job-details">
+          <span>Registered On:</span> <span style="color:rgb(56, 146, 56);font-style:italic">{{MyplansData?.Purchase_Date
+            | date: 'dd MMM yyyy' }}</span>
+        </div>
+
+        <div class="job-details">
+          <span>Validity:</span> <span>{{MyplansData?.plan_duration}} Months</span>
+        </div>
+
+        <div class="job-details">
+          <span>Your plan will expire on:</span> <span style="color:rgb(156, 86, 86);font-style:italic">{{MyplansData?.Expiry_Date
+            | date: 'dd MMM yyyy'}}</span>
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+  </div>
+
+
+  <!-- <ng-template #else_status> -->
+
+
+    <div style="margin-top:40px"  *ngIf="myPlan=='expired'" >
+      <!-- [class.background-red]="!expiredStatusArray[i]" -->
+
+      <div class="box-white" style="background:#F9E6E2">
+
+        <div class="top">
+
+
+          <span class="r"></span> <span>Expired</span>
+
+
+
+        </div>
+        <div>
+          <div style="font-size:12px;float:right;color:rgb(156, 86, 86);font-style:italic;padding-left: 5px">{{MyplansData?.Expiry_Date
+            | date: 'dd MMM yyyy'}}</div>
+          <div style="font-size:12px;float:right ; font-style:italic;color:rgb(56, 146, 56);">{{MyplansData?.Purchase_Date
+            | date: 'dd MMM yyyy'}}<span style="color:black;padding-left: 5px">To</span></div>
+
+        </div>
+        <div class="j-title">{{MyplansData?.plan_name}}
+
+          <!-- <span class="details-btns">
+                  Detalis
+                </span> -->
+
+        </div>
+        <div style="padding-left:10px;font-weight: 500">
+          <div class="job-details">
+            <span>Plan Name: </span>{{MyplansData?.plan_name}}
+
+          </div>
+          <div class="job-details">
+            <span>Purchase Price Rs.:</span> <span style="color:red">{{MyplansData?.plan_cost |
+              currency:'INR':true:'1.0-1'}}</span>
+          </div>
+
+          <div class="job-details">
+            <span>Credited Contacts:</span> <span>{{MyplansData?.Purchase_Contact}}</span>
+          </div>
+
+          <div class="job-details">
+            <span>Registered On:</span> <span style="color:rgb(56, 146, 56);font-style:italic">{{MyplansData?.Purchase_Date
+              | date: 'dd MMM yyyy'}}</span>
+          </div>
+
+          <div class="job-details">
+            <span>Validity:</span> <span>{{MyplansData?.plan_duration}} Months</span>
+          </div>
+
+          <div class="job-details">
+            <span>Your plan will expire on:</span> <span style="color:rgb(156, 86, 86);font-style:italic">{{MyplansData?.Expiry_Date
+              | date: 'dd MMM yyyy'}}</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  <!-- </ng-template> -->
+
+</div>
+<div  class="p-list">
+
+  <ion-list >
+
+    <ion-item no-lines *ngFor="let plan of data; let i= index">
+
+
+      <div class="box " (click)="toggleDetails(plan,i)">
+
+        <div>
+
+          <ion-icon style="float:left;font-size:30px;" color="primary" item-left [name]="plan.icon"></ion-icon>
+
+          <h2 class="p-name">{{plan.plan_name}} </h2>
+          <!-- <span style="font-size:13px;color:#098D68;font-weight:bold;margin:20px 5px 0px 5px;float:left">({{plan.plan_duration}} months) </span> -->
+          <span class="p-price"> {{plan.price | currency:'INR':true:'1.0-1'}}</span>
+
+        </div>
+
+        <div *ngIf="plan.showDetails" style="float:left;width: 100%;font-size:30px;">
+          <div class="i-desc" [innerHTML]="plan?.details" (click)="toggleDetails(plan,i)">This
+          </div>
+
+          <div class="btn-align">
+            <button class="next-btn" style="text-align:center" ion-button (click)="buyNow(plan)">Buy Now</button>
+          </div>
+        </div>
+
+      </div>
+
+    </ion-item>
+
+  </ion-list>
+</div>
+
+</ion-content>

@@ -1,0 +1,272 @@
+page-applied-candidate {
+
+  .modal-wrapper {
+    width: 450px !important;
+    height: 500px !important;
+  }
+  ion-content {
+    .item-md ion-avatar[item-start] {
+      margin: 8px 8px 8px 0 !important;
+    }
+       ion-avatar img {
+         width: 50px !important;
+         height: 50px !important;
+       }
+    h6 {
+      font-weight: bold !important;
+      font-family: 'Roboto Condensed', sans-serif !important;
+      font-size: 1.4rem !important;
+      padding-top: 6px !important;
+    }
+    .sendSMS {
+      position: absolute;
+      top: 75px;
+      right: 1px;
+    }
+
+    .optionsLD {
+      position: absolute;
+      top: 100px;
+      right: 6px;
+    }
+  }
+  .mylikes{
+    width: 85px;
+  }
+  .count{
+    font-size:23px ;color:#478963;
+
+    float: left;
+    margin: 5px 3px 3px 3px;
+
+  }
+  .half{
+    float: left;
+    width:48%;
+    margin:5px 3px 0px 3px;
+
+
+  }
+  .name-color
+  {
+    color: #0093DD;
+  }
+  .item-block {
+
+    min-height: 35px;
+
+  }
+  .select-searchable-label {
+    flex: none;
+    font-size: 13px
+  }
+  .select-searchable-value {
+    overflow: inherit;
+    text-overflow: ellipsis;
+    font-size: 13px
+
+  }
+  .box{
+    margin:10px ;
+    overflow: hidden;
+    clear: both;
+    // padding: 15px 15px 15px 15px ;
+  }
+
+  .box-white {
+    position: relative;
+    background: white;
+    padding: 5px 5px 1px 8px;
+    overflow: hidden;
+    border: 1px solid #e6e4e4;
+    border-radius: 10px !important;
+    clear: both;
+    margin-bottom: 5px;
+  }
+
+  .item-cover {
+    /* left: 0; */
+    /* top: 0; */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+     cursor: pointer;
+  }
+
+  .input-search{
+    border-radius: 5px !important;
+    font-size: 0.9em;
+    // margin-top: 35px;
+    padding-left: 5px;
+
+    line-height: 30px;
+    border: 1px solid #adacac;
+  }
+
+  ion-input {
+    background-color: #fff;
+    padding: 0px;
+  }
+  .search-btn{
+
+    margin-top: 5px;
+  }
+
+  .fix-content{
+    overflow: hidden;
+    background: #fff;
+    width: 100%;
+    height: 105px;
+  }
+  .candidate-data{
+    color:#434443;
+    float:left;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right:5px;
+    text-transform:capitalize!important;
+  }
+  .background{
+    background: #F4F7F7;
+  }
+  .cand-list{
+    //margin-top:110px;
+  }
+  .balance{
+    font-size:9px ;float:left;line-height: 10px;color:#4786CF;text-transform: uppercase;
+
+  }
+  .headers{
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .squre {
+    background: #F3FEFF;border-radius: 5px;
+    padding:2px;
+    margin: 5px 5px 0px 0px;
+    float: left;
+    font-size: 11px;
+    border:1px solid rgb(199, 216, 218);
+
+  }
+  .main-header {
+    width: auto;;
+    font-size: 16px;
+  }
+
+  .squre-yellow {
+    background:#FFFBB5;
+    margin: 0px;
+    padding:0px 0px 0px 5px;
+    border:1px solid rgb(199, 196, 136);
+
+  }
+  .squre-red {
+    background:#FF7900;
+    border:1px solid #FF7900;
+    float: right;
+    margin: 2px;
+    padding:2px;
+    color: white;
+    font-size: 11px;
+  }
+  .align-right-item {
+    float: right;
+    overflow: hidden;
+    // margin-bottom: 5px;
+  }
+  .active-icon{
+    color: #098D68;
+  }
+  .big{
+    font-size: 30px;
+  }
+
+  .list-ios {
+    margin:  0px 5px  0px 5px;
+  }
+
+  .wtsApp {
+    border: 1px solid #c1c1c1;
+    border-radius: 7px;
+    width: 75px;
+  }
+
+  .no-data {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding-top: 140px;
+  }
+  .label-md {
+    margin:0px
+  }
+  .report-text{
+    line-height: 20px;
+    text-align: right;
+    padding-right: 5px;
+  }
+  .show-contact {
+    background: #11AD6E;
+    color: white;
+    padding:2px 4px 2px 4px;
+    border-radius: 5px;
+    position: absolute;
+    top: 19px;
+    right: 1px
+  }
+  .msg-icon{
+    float: left;
+    font-size: 22px;
+    color: #4092d9;
+    padding: 0px 0px 0px 10px;
+  }
+  .btn-pink{
+    //  background:#46AD74;
+    padding: 5px 5px 0px 0px;
+    float: right;
+    width: 75px;
+    // padding: 10px;
+    // font-size: 10px;
+    // line-height: 13px;
+    // border-radius: 8px;
+    // text-transform: uppercase;
+
+
+  }
+  .contact {
+    float: right;
+    text-align: center;
+    padding-top: 6px
+
+  }
+  .select-searchable-md .select-searchable-value {
+    padding-left: 0px;
+
+  }
+  .desc-icon{
+    float:left;
+    height: 15px;
+  }
+  .candi-name {
+    margin-top:0px;margin-bottom:0px;
+    text-transform: capitalize;
+    font-weight: bold !important;
+    font-size: 15px;
+    width:100%;
+    text-decoration:underline;
+    font-style: normal !important;
+    color: #0092AC;
+  }
+}
+.item-md ion-icon[item-left] + .item-inner, .item-md ion-icon[item-left] + .item-input, .item-md ion-icon[item-start] + .item-inner, .item-md ion-icon[item-start] + .item-input {
+  margin-left:5px;
+
+}
+.item-md h2 {
+  margin: 2px 0;
+  font-size: 13px;
+  font-weight: normal;
+}
+

@@ -1,0 +1,150 @@
+page-candidate-details {
+  .optionsLD {
+    margin-top: 3px;
+    display: inline-block;
+
+    img {
+      //margin-right: 5px;
+    }
+    img:active {
+      border: 2px solid #c1c1c1;
+      border-radius: 15px;
+    }
+  }
+  ion-content {
+    .scroll-content {
+      margin-top: 58px !important;
+      padding: 12px !important;
+    }
+    //Common
+    .exp-group-title {
+      font-size: 12px;
+      color: #716b6b;
+    }
+    .exp-group-value {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    //register date
+    .reg-update {
+      .reg-date {
+        display: inline;
+      }
+      .update-date {
+        display: inline-block;
+        float: right;
+      }
+    }
+
+    .main-box {
+      padding-bottom: 100px !important;
+      margin-top: 6px;
+      ion-item {
+        ion-thumbnail[item-start] {
+          margin: 8px 8px 8px 0 !important;
+        }
+        ion-thumbnail {
+          img {
+            width: 90px;
+            height: 100px;
+            border: 1px solid #c4c4c4;
+          }
+          div.id {
+            font-size: 12px;
+            text-align: center;
+            color: #9b9191;
+            margin-top: 5px;
+          }
+        }
+        .item-inner {
+          padding:0px !important;
+          .label-md {
+            margin: 0px 8px 15px 0 !important;
+          }
+        }
+        .name-box {
+          font-weight: bold;
+          white-space: normal;
+          .name {
+            display: inline;
+            font-size: 16px;
+          }
+          .job-roll {
+            color: #11AD6E;
+            font-size: small;
+          }
+        }
+
+        .exp-group {
+          margin-top: 2px;
+          white-space: normal;
+        }
+
+
+      }
+    //Grid
+      ion-grid {
+        margin-top: 5px !important;
+        margin-bottom: 5px !important;
+        ion-row {
+          .unlock-img {
+            width: 80px;
+          }
+          .show-contact {
+            background: #11AD6E;
+            color: white;
+            text-align: center;
+            width: auto;
+            padding: 7px 12px 4px 5px;
+           // padding: 5px 0px 5px 0px;
+            border-radius: 5px;
+            img {
+              height: 16px;
+            }
+            span {
+              font-size: 12px;
+              text-align: center;
+              vertical-align: super;
+            }
+          }
+          // col 2nd
+
+          .wts-sms-img {
+              width: 80px;
+              border: 1px solid #c1c1c1;
+              border-radius: 7px;
+          }
+
+        }
+      }
+      // Extra
+      .extra-info {
+        line-height: 2.5;
+        margin-left: 4px;
+        ion-icon {
+          color: #E3556A;
+        }
+        .exp-group-title {
+          font-size: 13px !important;
+        }
+        .exp-group-value {
+          font-size: 14px !important;
+        }
+        .work-exp {
+          font-size: 14px !important;
+          font-weight: normal !important;
+          line-height: 0.1 !important;
+        }
+        .work-title {
+          font-weight: bold !important;
+          display: block !important;
+        }
+      }
+
+
+
+    }
+
+  }
+}

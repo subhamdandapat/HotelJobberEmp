@@ -1,0 +1,130 @@
+page-menu {
+
+  .ion-ios-call1-outline,
+  .ion-ios-call1,.ion-md-call1,.ion-md-call1-outline {
+    content: url('../assets/imgs/menu-mycall.png');
+    width: 30px;
+    float: left;
+  }
+
+    .ion-ios-phonebook-outline,
+    .ion-ios-phonebook,.ion-md-phonebook,.ion-md-phonebook-outline {
+      content: url('../assets/imgs/menu-candidate.png');
+      width: 30px;
+     float: left;
+    }
+
+    .ion-ios-job-outline,
+    .ion-ios-job,.ion-md-job,.ion-md-job-outline {
+      content: url('../assets/imgs/menu-postJob.png');
+      width: 30px;
+      float: left;
+    }
+
+    .ion-ios-job-outline,
+    .ion-ios-job,.ion-md-job,.ion-md-job-outline {
+      content: url('../assets/imgs/menu-postJob.png');
+      width: 30px;
+      float: left;
+    }
+
+    .ion-ios-dash-outline,
+    .ion-ios-dash,.ion-md-dash,.ion-md-dash-outline {
+      content: url('../assets/imgs/icon-left-dashboard.svg');
+      width: 30px;
+      float: left;
+    }
+
+    .ion-ios-myjob-outline,
+    .ion-ios-myjob,.ion-md-myjob,.ion-md-myjob-outline {
+      content: url('../assets/imgs/menu-myJob.png');
+      width: 30px;
+      float: left;
+    }
+
+    .ion-ios-price-outline,
+    .ion-ios-price,.ion-md-price,.ion-md-price-outline {
+      content: url('../assets/imgs/menu-plan.png');
+      width: 30px;
+      float: left;
+    }
+    .ion-ios-buycontacts-outline,
+    .ion-ios-buycontacts,.ion-md-buycontacts,.ion-md-buycontacts-outline {
+      content: url('../assets/imgs/icon-buy-contact.svg');
+      width: 30px;
+      float: left;
+    }
+
+    .ion-ios-chair-outline,
+    .ion-ios-chair,.ion-md-chair,.ion-md-chair-outline {
+      content: url('../assets/imgs/icons-chair.svg');
+      width: 30px;
+      float: left;
+    }
+    .ion-ios-logout-outline,
+    .ion-ios-logout,.ion-md-logout,.ion-md-logout-outline {
+      content: url('../assets/imgs/menu-logout.png');
+      width: 30px;
+      float: left;
+    }
+
+    .ion-ios-property-outline,
+    .ion-ios-property,.ion-md-property,.ion-md-property-outline {
+      content: url('../assets/imgs/menu-broadcast.png');
+      width: 30px;
+      float: left;
+    }
+
+    .ion-ios-helps-outline,
+    .ion-ios-helps,.ion-md-helps,.ion-md-helps-outline {
+      content: url('../assets/imgs/menu-help.png');
+      width: 30px;
+      float: left;
+    }
+
+  .ion-ios-notification-outline,
+  .ion-ios-notification,.ion-md-notification,.ion-md-notification-outline {
+    content: url('../assets/imgs/menu-notification.png');
+    width: 30px;
+    float: left;
+  }
+
+  .ion-ios-shortlisted-outline,
+  .ion-ios-shortlisted,.ion-md-shortlisted,.ion-md-shortlisted-outline {
+    content: url('../assets/imgs/menu-shortlisted.png');
+    width: 30px;
+    float: left;
+  }
+
+
+  .notfy {
+    width: 14% !important;
+    padding: 11px !important;
+  }
+
+  .profile {
+    padding: 10px 10px 12px 0px;
+    background: #0093AD;
+    height: auto;
+    text-align: center;
+  }
+  .aligntext {
+    color: #FFFFFF;
+    font-weight: bold;
+  }
+  .logo1 {
+    height:43px;
+  }
+  .side-menu-item:hover {
+    background: #ddd;
+ }
+  .separator {
+    border-top: 2px solid !important;
+    padding: 10px 0px 0px 0px;
+    text-align: center;
+    font-size:14px;
+    margin-top: 8px;
+    width: 106%;
+    color: #61A7B3;;
+  }
+}

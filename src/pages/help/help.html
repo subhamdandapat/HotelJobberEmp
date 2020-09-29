@@ -1,0 +1,79 @@
+<ion-header>
+
+
+  <ion-navbar hideBackButton>
+    <ion-buttons left (click)="back()">
+      <div class="back" >Back</div>
+      <button ion-button icon-only>
+        <!-- or your method, this is for closing a modal -->
+        <img width="25" height="25" src="assets/imgs/backicon.png">
+      </button>
+
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <div class="location">
+      <div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.0542844809743!2d73.83946701530914!3d18.526448887405564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf79d623c187%3A0xe70b203bc4039fe3!2sHotel%20Jobber%20Recruitment%20Services!5e0!3m2!1sen!2sin!4v1569838823367!5m2!1sen!2sin" width="300" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+      </div>
+        Office No.3, 2nd Floor, Aditya Centeegra,
+        FC Road, Deccan,
+        Pune - 411 004 (Maharashtra, India)
+    </div>
+    <div class="location">
+      <div class="col-2">
+        <img width="25" src="assets/imgs/mail.png">
+      </div>
+
+      <div class="col-10" (click)="shareViaMail()">
+
+       <span class="email">
+        support@hoteljobber.com
+       </span>
+
+      </div>
+    </div>
+
+    <div class="location">
+      <div class="col-2">
+        <img width="25" src="assets/imgs/call.png">
+      </div>
+
+      <div class="col-10 " >
+        <span (click)="call(7888179991)" style="padding: 6px 2px 0px 0px;;float:left">
+          7888179991 /
+        </span>
+        <span (click)="call(7888279992)" style="padding: 6px 2px 0px 0px;;float:left" >7888279992
+        </span>
+      </div>
+    </div>
+
+    <div class="location">
+      <div class="col-2">
+        <img width="25" src="assets/imgs/url.png">
+      </div>
+
+      <div class="col-10">
+        <a (click)="openWeb()" class="underline" >
+          www.hoteljobber.com<br>
+        </a>
+      </div>
+    </div>
+
+  <div class="appVersion">
+    <p>App Version {{appVer}}</p>
+  </div>
+
+ <!-- <ion-slides *ngIf="clientList && clientList.length"  autoplay="5000" loop="true" speed="500" class="slides">
+    <ion-slide *ngFor="let client of clientList">
+      &lt;!&ndash;<img src="https://hoteljobber.com/org_logos/{{client.Logo}}" alt="Product Image">&ndash;&gt;
+      <img src="https://hoteljobber.com/org_logos/15716655823871jannaat.jpg">
+    </ion-slide>
+  </ion-slides>-->
+  </ion-content>

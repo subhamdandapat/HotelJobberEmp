@@ -1,0 +1,177 @@
+<ion-header>
+  <ion-navbar>
+
+    <button  class="menu-btn" item-start ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <span>
+        <img class="logo" src="assets/imgs/apps-header-logo.svg">
+      </span>
+
+    <ion-buttons end style="margin-right: 20px;">
+      <button ion-button (click)="showNotification()">
+        <img class="notification-icon" src="assets/imgs/notification.svg">
+        <ion-badge  *ngIf="empProvider.totalNotification>0" class="top-right" id="notifications-badge" color="danger">{{empProvider.totalNotification}}</ion-badge>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="overflow-y: hidden;">
+
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <ion-col col-9>
+          <span class="title1">Broadcast My Jobs
+            <p class="subtitle">Reach upto 5000 staff in seconds</p>
+          </span>
+      </ion-col>
+      <!---->
+      <ion-col col-3>
+        <div class="more-info" (click)="openSentList()">
+          Sent List
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+   <ion-refresher-content pullingIcon="arrow-dropdown"
+                          pullingText="Pull to refresh"
+                          refreshingSpinner="circles"
+                          refreshingText="Refreshing">
+   </ion-refresher-content>
+ </ion-refresher>
+
+  <div [hidden]="!myPostedJob">
+    <ion-list *ngFor="let job of myPostedJob; let i = index">
+
+      <div class="box-white"   [class.background-red]="job.Expired">
+        <!--Active-->
+        <div style="padding-bottom: 30px">
+          <div class="top">
+            <span *ngIf="!job.Expired; else elseBlock">
+              <span class="activeDot activeExepired"></span>
+              <span>Active</span>
+            </span>
+            <ng-template #elseBlock>
+              <span class="expDot activeExepired"></span> <span>Expired</span>
+            </ng-template>
+          </div>
+          <!--Time and date-->
+          <div>
+            <div style="font-size:11px;float:right;color:#d06464;font-style:italic;padding-left: 5px">{{job.Expiry_Date | date: 'dd MMM yyyy'}}</div>
+            <div style="font-size:11px;float:right ; font-style:italic;color:#7bb541;">{{job.Post_Date | date: 'dd MMM yyyy'}} <span style="color:black">To</span></div>
+          </div>
+        </div>
+
+        <!--Details-->
+        <ion-grid no-padding>
+          <ion-row no-padding>
+            <!--Logo-->
+            <ion-col col-3>
+              <img *ngIf="job.organisation_logo != ''" src="https://www.hoteljobber.com/org_logos/{{job.organisation_logo}}" />
+              <img class="img-logo" *ngIf="job.organisation_logo == ''" src="assets/imgs/icon-org-logo.png"  />
+            </ion-col>
+            <!--Content-->
+            <ion-col col-9>
+              <div class="roll-text" (click)="jobDetails(job)">
+                {{job.Organisation_Name}}
+              </div>
+
+              <div class="org-type">
+                {{job?.Organisation_Type}}
+              </div>
+
+              <div class="location">
+                <ion-icon name="pin"></ion-icon>
+                <span> {{ job.City }}, {{ job.Country }}</span>
+              </div>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <!--Applied Count-->
+        <div class="applied" (click)="openBroadcast(job)">
+          <p ion-fab right>
+            <img  src="assets/imgs/broadcast-job.png"/>
+          </p> Rs. 500
+        </div>
+
+        <div class="jobExtra">
+          <p class="list-title" (click)="jobDetails(job)"> {{  job?.JobTitle}} Required</p>
+          <div>
+            <div class="jobCat">
+                <span>Job Category:
+                <img height="12px" src="assets/imgs/icon-candidates.svg"> <span class="title-value">{{ job.Roll }}</span>
+                </span>
+            </div>
+            <div class="workExp">
+                <span>
+                  Work Exp:
+                  <img src="assets/imgs/icon-s-exp.svg"  height="12px">
+                  <div class="title-value" style="display: inline-block;" *ngIf="(job?.MinExp > 0)">{{ job.MinExp }} yrs.</div>
+                  <div class="title-value" style="display: inline-block;" *ngIf="(job?.MinExp == 0)">Fresher</div>
+                </span>
+            </div>
+
+            <div class="salaryExp">
+                <span>
+                  Salary Offer:
+                  <span class="title-value" style="margin-top:5px" *ngIf="job.MinSalary!=''">{{ job.MinSalary | currency:'INR':true:'1.0-0' }} - <span *ngIf="job.MaxSalary!=''"> {{ job.MaxSalary  | currency:'INR':true:'1.0-0' }} </span>
+                  </span>
+                </span>
+            </div>
+            <div class="more-info" (click)="moreInfo()">
+              More Info
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-list>
+  </div>
+
+  <!--If No broadcast found-->
+  <div class="no-job" *ngIf="myPostedJob.length == 0" (click)="createOrganizationPage()">
+
+    <div class="circle-box">
+      <div class="steps">Step 1</div>
+      <div class="circle circle-green">
+        <img width="30px" src="assets/imgs/icon-br-org.png"/>
+        <div>Create</div>
+        <div>Organisation</div>
+      </div>
+      <img class="pointer" *ngIf="noOrgFound" src="assets/imgs/icon-br-cursor.png" />
+    </div>
+
+   <!-- <img width="16px" style="padding-bottom: 31px;animation: blinker 1.80s linear infinite;" src="assets/imgs/step-arrows.png"/>-->
+    <div class="circle-box">
+      <div class="steps">Step 2</div>
+      <div class="circle">
+        <img width="30px" src="assets/imgs/icon-br-jobs.png"/>
+        <div>&nbsp;</div>
+        <div>Post Job</div>
+      </div>
+      <img class="pointer" *ngIf="noJobsFound" src="assets/imgs/icon-br-cursor.png" />
+    </div>
+
+   <!-- <img width="16px" style="padding-bottom: 31px;animation: blinker 1.80s linear infinite;" src="assets/imgs/step-arrows.png"/>-->
+    <div class="circle-box">
+      <div class="steps">Step 3</div>
+      <div class="circle">
+        <img width="30px" src="assets/imgs/icon-br-broadcast.png"/>
+        <div>&nbsp;</div>
+        <div>Broadcast</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!--Scroll broadcast message list-->
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

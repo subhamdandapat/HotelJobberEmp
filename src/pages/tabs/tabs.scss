@@ -1,0 +1,94 @@
+page-tabs {
+    // .tabs .tab-item .icon.mcfly {
+    //     background-repeat: no-repeat;
+    //     background-position: 50%;
+    //     height: 100%;
+    //     background-image: url('assets/imgs/backicon.png');
+    //     background-size:contain;
+    //   }
+    // .tab-item-active{
+    //   background-color:#B6B6B6;
+    // }
+
+    .ion-ios-phonebook-outline,
+    .ion-ios-phonebook,.ion-md-phonebook,.ion-md-phonebook-outline {
+      content: url('../assets/imgs/icon-footer-candidates.svg');
+      width: 34px;
+     // color: #ff0000 !important;
+    }
+
+
+    .ion-ios-job-outline,
+    .ion-ios-job,.ion-md-job,.ion-md-job-outline {
+      content: url('../assets/imgs/icon-footer-org.svg');
+      width: 34px;
+      // padding-bottom: 2px;
+    //  color: #ff0000 !important;
+    }
+
+
+
+    .ion-ios-chair-outline,
+    .ion-ios-chair,.ion-md-chair,.ion-md-chair-outline {
+      content: url('../assets/imgs/icons-chair.svg');
+      width: 34px;
+
+    //  color: #ff0000 !important;
+    }
+
+    .ion-ios-dash-outline,
+    .ion-ios-dash,.ion-md-dash,.ion-md-dash-outline {
+      content: url('../assets/imgs/icon-menu-main.svg');
+      width: 34px;
+
+    //  color: #ff0000 !important;
+    }
+
+    .ion-ios-call-outline,
+    .ion-ios-call,.ion-md-call,.ion-md-call-outline {
+      content: url('../assets/imgs/icon-footer-mycontacts.svg');
+      width: 34px;
+
+      //color: #ff0000 !important;
+    }
+    .ion-ios-broadcast-outline,
+    .ion-ios-broadcast,.ion-md-broadcast,.ion-md-broadcast-outline {
+      content: url('../assets/imgs/icon-footer-broadcast2.svg');
+      width: 34px;
+      //color: #ff0000 !important;
+    }
+
+    .ion-ios-myjob-outline,
+    .ion-ios-myjob,.ion-md-myjob,.ion-md-myjob-outline {
+      content: url('../assets/imgs/icon-footer-jobs.svg');
+      width: 34px;
+
+    }
+
+  .tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+    background-color: #0093AD;
+    border-radius: 20px;
+    // border: 3px solid #d9d9d9;
+    -webkit-transform: translate3d(0, -2px, 0);
+    transform: translate3d(0, -2px, 0);
+}
+
+.tabs-ios .tab-button[aria-selected=true] .tab-button-icon {
+  background-color: #D8D8D8;
+  border-radius: 20px;
+  // padding: 4px;
+  -webkit-transform: translate3d(0, -2px, 0);
+  transform: translate3d(0, -2px, 0);
+}
+
+.tabs-md[tabsLayout=icon-top] .has-icon .tab-button-text {
+  margin-top: 0px;
+ margin-bottom: 0;
+ font-size: 10px;
+}
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-text {
+ font-size: 8px;
+ color: black;
+}
+}

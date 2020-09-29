@@ -1,0 +1,131 @@
+page-broadcast-payment {
+  ion-content {
+    .scroll-content {
+      padding: 8px !important;
+    }
+    .box-white {
+      background: rgb(255, 255, 255);
+      padding: 10px 10px 5px 5px;
+      margin-top: 10px;
+      overflow: hidden;
+      border: 1px solid #e6e4e4;
+      border-radius: 10px !important;
+
+      div.box-title {
+        padding: 0px 5px 0px 5px;
+        span:first-child {
+          font-size: 15px;
+          font-weight: bold;
+        }
+        .edit {
+          float: right;
+          text-decoration: underline;
+          color: blue;
+        }
+
+      }
+      // Message box
+      .broadMessageBox {
+        border: 1px solid #c1c1c1;
+        border-radius: 5px;
+        margin-top: 8px;
+        background-color: #0066CB;
+        color: white;
+        padding: 5px;
+        p {
+          margin: 3px 0px 5px 7px;
+        }
+      }
+      //Note
+      .note {
+        color: #EC5D5A;
+        margin-top: 10px;
+        ul {
+          margin: 5px 0px;
+          padding-left: 16px !important;
+          li {
+            font-size: 12px;
+          }
+        }
+      }
+      // Pay now
+      .broad-button {
+        background-color: #FF831F;
+        text-align: center;
+        padding: 5px 0px 5px 0px;
+        width: 50%;
+        border-radius: 6px;
+        margin-left: 25%;
+        margin-top: 22px;
+        margin-bottom: 6px;
+        .pay-now {
+          color: white;
+          font-weight: bold;
+          font-size: 16px;
+        }
+
+        .bro-now {
+          vertical-align: super !important;
+        }
+        .bro-img {
+          vertical-align: sub !important;
+          animation: blinker 1.80s linear infinite;
+        }
+
+        .price {
+          color:#3C3C3A;
+          display: block;
+          font-size: 12px !important;
+          font-weight: bold !important;
+        }
+      }
+      .broad-label {
+        text-align: center;
+        color: #DA495C;
+      }
+
+      .benifits-box {
+        border: 1px  solid #FEC445;
+        padding: 10px;
+        background-color: #FEF9CF;
+        border-radius: 6px;
+        margin-top: 25px;
+      }
+      .i-desc {
+        margin-top: 10px;
+        padding: 0px 0px 8px 12px;
+        margin-bottom: 10px;
+        width: 100%;
+      }
+      .i-desc h1 {
+        color: #000;
+      }
+      .i-desc ul {
+        list-style: none;
+        padding-left: 0px;
+        font-size: 16px;
+        margin-top: 0px;
+        width: 100%;
+        margin-bottom: 0px;
+      }
+      .i-desc ul li {
+        list-style:none;
+        font-size: 13px;
+        padding-top: 10px;
+      }
+      ul.icon li {
+        margin-left: 1.7em;
+      }
+
+      ul.icon li:before {
+        content: '\f058';
+        font-family: 'FontAwesome';
+        float: left;
+        margin-left: -1.5em;
+        color: #098D68;
+        font-size: 18px;
+      }
+    }
+
+  }
+}

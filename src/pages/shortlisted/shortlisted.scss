@@ -1,0 +1,342 @@
+page-shortlisted {
+  .scroll-content {
+    padding: 7px !important;
+  }
+  ion-content {
+
+    ion-refresher {
+      top: 52px !important;
+      .refresher-refreshing-text {
+        font-size: 12px;
+        color: #0093AD;
+      }
+      ion-spinner {
+        width: 25px !important;
+        height: 25px !important;
+      }
+    }
+
+    .tabList {
+      margin: 0px !important;
+    }
+    ion-item-sliding {
+      .item-md {
+        padding-left: 6px!important;
+      }
+    }
+
+    .fade {
+      opacity: 0.5 !important;
+    }
+    //Padding for row
+    ion-row {
+      padding: 0px 2px 0px 2px !important;
+    }
+    ion-col {
+      .item-inner {
+        padding-right: 6px;
+        border-bottom: none !important;
+      }
+      .item-md {
+        ion-avatar img {
+          width: 50px !important;
+          height: 50px !important;
+        }
+      }
+      .item-md ion-avatar[item-start], .item-md ion-thumbnail[item-start] {
+        margin: 5px 3px 0px -7px !important;
+      }
+    }
+
+    .wtsApp {
+      border: 1px solid #c1c1c1;
+      border-radius: 5px;
+      width: 75px;
+    }
+    .foot {
+      background-color: transparent;
+      width: 14% !important;
+      left: 83%;
+      button {
+        float: right !important;
+        background-color:white !important;
+        border: 1px solid #D8D8D8;
+      }
+      ion-icon {
+        color: #0093AD;
+        font-size: 1.5em !important;
+      }
+      ion-toolbar .toolbar-background {
+        background-color: transparent;
+      }
+    }
+    .HideScroll {
+      display: none !important;
+    }
+
+    .sendSMS {
+      position: absolute;
+      top: 45%;
+      right: 1px;
+    }
+
+    .optionsLD {
+      position: absolute;
+      right: 3px;
+      bottom: 6px;
+    }
+  }
+
+  .count {
+    background: #fff;
+    border-radius: 5px;
+    padding: 0px 2px 0px 2px;
+    margin: 2px;
+    float: left;
+    color:#11AD6E;
+    font-size: 20px;
+    border: 1px solid #c4e5e9;
+  }
+  .half{
+    float: left;
+    width:48%;
+    margin:5px 3px 0px 3px;
+
+
+  }
+  .main-header {
+    width: 40%;
+  }
+  .total-cand
+  {
+    font-size: 11px;
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    color: #0093ad;
+    font-style: italic;
+  }
+
+  .name-color
+  {
+    color: #9933CC !important;
+  }
+
+  .item-block {
+
+    min-height: 35px;
+
+  }
+  .label-md {
+    margin:0px
+  }
+  .select-searchable-label {
+    flex: none;
+    font-size: 13px
+  }
+  .select-searchable-value-item {
+    overflow: visible !important;
+    font-size: 13px
+  }
+  .box {
+    margin:10px ;
+    overflow: hidden;
+    clear: both;
+    // padding: 15px 15px 15px 15px ;
+  }
+
+  .box-white {
+    position: relative;
+    margin-right: 1px;
+    margin-left: 0px;
+    background: rgb(255, 255, 255);
+    overflow: hidden;
+    border: 1px solid #e6e4e4;
+    border-radius: 10px !important;
+    clear: both;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-right-color: #2AA52A;
+  }
+  .item-cover {
+    /* left: 0; */
+    /* top: 0; */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    /* cursor: pointer; */
+  }
+
+  .input-search{
+    border-radius: 5px !important;
+    font-size: 0.9em;
+    // margin-top: 35px;
+    padding-left: 5px;
+
+    line-height: 30px;
+    border: 1px solid #adacac;
+  }
+
+  ion-input {
+    background-color: #fff;
+    padding: 0px;
+  }
+  .search-btn{
+
+    margin-top: 5px;
+  }
+
+  .fix-content{
+    overflow: hidden;
+    background: #fff;
+    width: 100%;
+    height: 105px;
+  }
+  .candidate-data{
+    color:#434443;
+    // float:left;
+    font-weight: bold;
+    font-size: 12px;
+    //margin-right:5px;
+    text-transform:capitalize!important;
+    white-space: normal ;
+  }
+
+  .balance{
+    font-size:9px ;float:left;line-height: 10px;color:#4786CF;text-transform: uppercase;
+
+  }
+  .headers {
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .squre {
+    background: #F3FEFF;
+    border-radius: 4px;
+    padding: 0px;
+    float: left;
+    font-size: 11px;
+    border: 1px solid #c7d8da;
+    margin-right: 2px;
+    img {
+      float:left;
+      height: 15px;
+    }
+    label {
+      float:left;
+      line-height: 18px;
+      padding-left: 1px;
+      padding-right: 2px;
+    }
+  }
+
+  .squre-yellow {
+    background:#FFFBB5;
+    margin: 0px;
+    padding:0px 0px 0px 5px;
+    border:1px solid #ffee76;
+  }
+
+  .squre-red {
+    background:#FF7900;
+    border:1px solid #FF7900;
+    float: right;
+    margin: 2px;
+    padding:2px;
+    color: white;
+    font-size: 11px;
+  }
+  .align-right-item {
+    float: right;
+    overflow: hidden;
+  }
+
+  .active-icon {
+    color: #098D68;
+  }
+  .big {
+    font-size: 30px;
+  }
+
+  .list-ios {
+    margin:  0px 5px  0px 5px;
+  }
+
+  .report-text {
+    line-height: 20px;
+    text-align: right;
+    padding-right: 3px;
+  }
+  .show-contact {
+    position: absolute;
+    right: 2px;
+    top: 20px;
+    background: #11AD6E;
+    color: white;
+    padding:2px 4px 2px 6px;
+    border-radius: 4px;
+  }
+  .msg-icon {
+    float: left;
+    font-size: 22px;
+    color: #4092d9;
+    padding: 0px 0px 0px 10px;
+  }
+  .candidate .squre label {
+    float:left;
+    line-height: 18px;
+    padding-left: 1px;
+    padding-right: 2px;
+  }
+  .city {
+    color:rgb(139, 141, 141);
+  }
+  .report {
+    font-size:15px;color:#646464 !important;
+  }
+  .candidate .squre img{
+    float:left;
+    height: 15px;
+  }
+  .btn-pink {
+    float: right;
+    margin: 4px 1px 2px 1px;
+    width: 75px;
+  }
+
+  .contact {
+    float: right;
+    text-align: center;
+    padding-top: 4px
+  }
+  .select-searchable-md .select-searchable-value {
+    padding-left: 0px;
+  }
+  .candi-name {
+    margin-top:0px;margin-bottom:0px;
+    text-transform: capitalize;
+    font-weight: bold !important;
+    font-size: 14px;
+    width:100%;
+    text-decoration:underline;
+    font-style: normal !important;
+    white-space: normal !important;
+  }
+}
+.item-md ion-icon[item-left] + .item-inner, .item-md ion-icon[item-left] + .item-input, .item-md ion-icon[item-start] + .item-inner, .item-md ion-icon[item-start] + .item-input {
+  margin-left:5px;
+
+}
+.item-md h2 {
+  margin: 2px 0;
+  font-size: 13px;
+  font-weight: normal;
+  white-space: nowrap !important;
+  color: #0093AD;
+}
+ion-app.md [margin], ion-app.md [margin] .scroll-content {
+  margin: 16px;
+  display: none;
+}

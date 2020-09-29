@@ -1,0 +1,32 @@
+{
+    "data": [
+        {
+            "id":1,
+            "contacts": 100,
+            "price": 300         ,   
+            "color":"#e5e5e5"
+        },
+        {
+            "id":2,
+            "contacts": 500,
+            "price": 1000       , 
+              "color":"#e5e5e5"
+            
+        },
+        {
+            "id":3,
+            "contacts": 1000,
+            "price": 1800,
+            "color":"#e5e5e5"          
+            
+        },
+        {
+            "id":4,
+            "contacts": 2000,
+            "price": 3500  ,
+            "color":"#e5e5e5"        
+            
+        }
+       
+    ]
+  }

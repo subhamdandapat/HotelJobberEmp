@@ -1,0 +1,245 @@
+<ion-header>
+  <ion-navbar>
+    <button class="menu-btn" item-start ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <span>
+      <img class="logo" src="./assets/imgs/apps-header-logo.svg">
+    </span>
+
+    <ion-buttons end style="margin-right: 20px;">
+      <button ion-button (click)="showNotification()">
+        <img class="notification-icon" src="assets/imgs/notification.svg">
+        <ion-badge class="top-right"  *ngIf="empProvider.totalNotification > 0"  id="notifications-badge" color="danger">{{empProvider.totalNotification}}</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div  class="fix-content" slot="fixed" ion-fixed>
+    <div class="box">
+      <div style="width:100%;overflow: hidden;margin-bottom: 5px">
+        <div class="main-header" style="padding: 0px 0px 0px 5px;position:relative">Profiles
+          <span class="total-cand"> Total: {{countsData?.total_users}}</span>
+        </div>
+
+        <div class="align-right-item">
+          <span class="squre squre-yellow">
+            <img start style="width:45px;float:left;margin: 4px 3px 5px 0px;" src="assets/imgs/btn-bal-contacts.svg" />
+            <span class="count ">{{balance_contact}}</span>
+          </span>
+          <img (click)="goToContactPage()" start style="width:75px;float:left;margin-top:-2px" src="assets/imgs/icon-buy-more.svg" />
+        </div>
+      </div>
+
+      <ion-item class="input-search half">
+        <select-searchable style="text-align:center;"
+                           title="{{titleSearch}}"
+                           [(ngModel)]="selectedRoll"
+                           [items]="itemsRollList"
+                           itemValueField="RoleID"
+                           itemTextField="Roll"
+                           [canSearch]="true"
+                           (onChange)="portChangeRoll($event)">
+        </select-searchable>
+      </ion-item>
+
+      <ion-item class="input-search half">
+        <select-searchable style="text-align:center;"
+                           title="{{titleCity}}"
+                           [(ngModel)]="optionTitle"
+                           searchPlaceholder="Type City Name.."
+                           itemValueField="optionId"
+                           itemTextField="optionTitle"
+                           [items]="ports"
+                           [canSearch]="true"
+                           (onChange)="portSelectCity($event)"
+                           (onSearch)="searchPorts($event)">
+        </select-searchable>
+      </ion-item>
+
+    </div>
+  </div>
+
+  <div class="cand-list">
+    <!---->
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingIcon="arrow-dropdown"
+                             pullingText="Pull to refresh"
+                             refreshingSpinner="circles"
+                             refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+    <!---->
+    <div *ngIf="items.length">
+     <div class="box-white candidate" [class.border-shortlisted]="item.shortlist" *ngFor="let item of items; let i = index">
+      <ion-list class="tabList">
+       <ion-item-sliding #slidingItem>
+         <ion-item>
+           <!--Slide border-->
+           <!-- Ready to short-->
+           <div style="float: right" *ngIf="item.shortlist == undefined">
+             <img style="color:#F1C14D; height:20px; position:absolute; top:40%;" src="assets/imgs/slide-arrow.png" />
+           </div>
+           <!--Shorted-->
+           <div style="float: right" *ngIf="item.shortlist">
+             <img style="color:green; height:20px; position:absolute; top:40%;" src="assets/imgs/slide-arrow-green.png" />
+           </div>
+
+           <ion-grid no-padding no-border>
+             <ion-row>
+               <ion-col col-8 style="padding-bottom: 8px; !important;">
+                 <ion-item no-border no-padding (click)="candidateDetail(item, i)">
+                   <!--Candidate image  -->
+                   <ion-avatar item-start no-padding>
+                     <img  *ngIf="item.Image" style="border: 2px solid #DEDEDD;" src="https://www.hoteljobber.com/user_image/{{item.Image}}" />
+                     <img  *ngIf="!item.Image"  src="assets/imgs/icon-footer-candidates.svg" />
+                   </ion-avatar>
+                   <!--Active bulb-->
+                   <span *ngIf="item.Active_status==1">
+              <img start style="width:14px" src="assets/imgs/icon-sbulb-on.svg" />
+             </span>
+                   <span *ngIf="item.Active_status==0">
+            <img start style="width:14px" src="assets/imgs/icon-sbulb-off.svg" />
+            </span>
+                   <!--Name-->
+                   <h2 style="display: inline;" class="candi-name" [class.name-color]="item?.Status== true" >
+                     {{ item?.FirstName }}
+                     <span *ngIf="!item.ShowMobile">{{ item?.LastName}}</span>
+                     <span *ngIf="item.ShowMobile">{{ item?.full_name}}</span>
+                   </h2>
+                   <!--Roll-->
+                   <div style="overflow: hidden;line-height: 0.8;">
+                     <span class="candidate-data"> {{item.Roll }} </span>
+                   </div>
+                 </ion-item>
+                 <!--Salary-->
+                 <div *ngIf="item.MinSalary">
+                   <span class="headers"> Salary Exp:</span>
+                   <span style="color:#11AD6E; font-size: 12px">
+               {{ item.MinSalary | currency:'INR':true:'1.0-0'}}-{{ (item?.MaxSalary === 123)? parsCurrency(item.MaxSalary): item.MinSalary+5000 | currency:'INR':true:'1.0-0'}}
+              </span>
+                 </div>
+                 <!--From with flag-->
+                 <div style="padding-top:2px; font-size: 12px" *ngIf="item?.CountryFlag">
+                   <span style="color:black; font-weight: bold;">From:</span>
+                   <span class="city" *ngIf="item.city!=''">{{ item.City }} - {{ item.Country }}   <i style="width: 14px" class="flag-icon flag-icon-{{item?.CountryFlag.toLowerCase()}}"></i> </span>
+                 </div>
+                 <!--Preferred location-->
+                 <div style="padding-top:10px; margin-bottom: 5px">
+                    <span>
+                      <span style="font-size: 11px;color:#D9475C;">Preferred work location</span>
+                      <span *ngIf="item?.Preferred_location" style="margin-bottom: 4px;font-weight: bold; font-size: 12px;display: block; padding: 1px 1px; white-space: normal">
+                       <!-- <i class="flag-icon flag-icon-{{ locationFlag.toLowerCase() }}"></i> --> {{item?.Preferred_location}}
+                      </span>
+                      <span *ngIf="!item?.Preferred_location" style="margin-bottom: 4px;font-weight: bold; font-size: 12px; display: block; padding: 1px 1px;white-space: normal">
+                        <!--<i class="flag-icon flag-icon-{{ item?.CountryFlag.toLowerCase() }}"></i>-->  {{item.City}} - {{item.State}} - {{ item.Country }}
+                      </span>
+                    </span>
+                 </div>
+
+                 <!--Experience Age and Education-->
+                 <div class="ageExEdu">
+                   <div class="squre">
+                     <img  width="20px"  start src="assets/imgs/icon-s-exp.svg">
+                     <label *ngIf="item.Experience > 0; else frshr">Exp {{item.Experience}} yrs</label>
+                     <ng-template #frshr>
+                       <label>Exp: Fresher</label>
+                     </ng-template>
+                   </div>
+
+                   <div class="squre">
+                     <img width="20px" style="padding-left: 5px" start src="assets/imgs/icon-s-cake.svg">
+                     <label>Age {{ item.Age }}</label>
+                   </div>
+
+                   <div class="squre">
+                     <img width="20px" style="margin-top: 2px;" start src="assets/imgs/icon-edu.svg">
+                     <label class="b">{{ item.Education }}</label>
+                   </div>
+                 </div>
+
+               </ion-col>
+               <ion-col col-4 style="padding-right: 2px;">
+                 <!--Time-->
+                 <div *ngIf="item?.MyLabel"  style="float: right;font-size:10px; color:#7E7B7B;font-style: italic;white-space: nowrap;margin-top: 3px;">
+                   <ion-icon icon-only name="time" small></ion-icon>  {{item?.MyLabel}} - {{item?.Last_Update | amTimeAgo }}
+                 </div>
+
+                 <div *ngIf="!item.ShowMobile" style="text-align: end; right: 2px; top: 12px; position: absolute;display: grid;" (click)="displayContact(item.ID,i)">
+                   <img  src="assets/imgs/icon-unlock.svg"  class="btn-pink">
+                   <img  src="assets/imgs/wtsApp.png"  class="btn-pink wtsApp">
+                   <img  src="assets/imgs/smsApp.png"  class="btn-pink wtsApp">
+                 </div>
+                 <!--Call and MSG-->
+                 <i *ngIf="item.ShowMobile==true" style="width: 14px; top: 24px; position: absolute;right: 102px;" class="flag-icon flag-icon-{{item?.CountryFlag.toLowerCase()}}"></i>
+                 <div class="contact" *ngIf="item.ShowMobile==true">
+                   <div (click)="callJoint(item.Mobile)" class="show-contact">
+                     <img style="width:15px;margin: 3px 3px 0px 0px;" src="assets/imgs/icon-call1.svg" />
+                     <span style="line-height: 22px;font-size: 12px;text-align: center; float: right;">{{item.Mobile}}</span>
+                   </div>
+                   <!--SMSSend-->
+                   <div class="sendSMS">
+                     <!--Whats app-->
+                     <a style="display: block;color: #11AD6E;" [href]="getWtsApp(item.Mobile)"><img  src="assets/imgs/wtsApp.png"  class="btn-pink2 wtsApp"></a>
+                     <img start *ngIf='!item.SmsSend else SmsSend' class="btn-pink2 wtsApp" src="assets/imgs/smsApp.png" (click)="sendMsg(i)" />
+                     <ng-template #SmsSend>
+                       <img start style="float: right; margin: 4px 1px 2px 1px; width: 75px;"  src="./assets/imgs/sent-sms.png" />
+                     </ng-template>
+                   </div>
+
+                   <div class="optionsLD">
+                     <img *ngIf="item?.AlowReport == undefined || item?.AlowReport; else reported_icon" (click)="addReport($event,item,i)" src="assets/imgs/icon-report.svg">
+                     <ng-template #reported_icon>
+                       <img src="assets/imgs/icon-reported.svg">
+                     </ng-template>
+
+                     <span *ngIf="item?.like_status == undefined">
+                        <img  start  src="assets/imgs/icon-dislike-d.svg" (click)="myLikesDislikes($event,item,'no',i)" />
+                        <img  start  src="assets/imgs/icon-like-d.svg" (click)="myLikesDislikes($event,item,'yes',i)" />
+                     </span>
+
+                     <span  *ngIf="item?.like_status == 'yes'">
+                       <img *ngIf="item?.status!='none';" start  src="assets/imgs/icon-dislike-d.svg"  (click)="myLikesDislikes($event,item,'no',i)"/>
+                       <img start  style="width:24px" src="assets/imgs/icon-like-a.svg" />
+                     </span>
+                     <span *ngIf="item?.like_status == 'no'">
+                       <img *ngIf="item?.status!='none';" start  src="assets/imgs/icon-dislike-a.svg"/>
+                         <img  start  src="assets/imgs/icon-like-d.svg" (click)="myLikesDislikes($event,item,'yes',i)" />
+                     </span>
+                     <!--<span *ngIf="item?.shortlist">
+                       <img  src="assets/imgs/menu-shortlisted.png" />
+                     </span>-->
+                   </div>
+                 </div>
+
+               </ion-col>
+             </ion-row>
+           </ion-grid>
+
+
+         </ion-item>
+         <ion-item-options>
+           <button *ngIf="item?.shortlist == undefined" (click)="closeSwipe(slidingItem, item, i)"  style="color: black;background-color: #F0C14D;">
+             <ion-icon name="star" style="color: white;display: block;margin-bottom: 4px;"></ion-icon> Shortlist
+           </button>
+           <button *ngIf="item?.shortlist" (click)="onlyCloseSwipe(slidingItem)" style="color: white;background-color:#60B759;">
+             <ion-icon name="checkmark" style="color: white;display: block;font-size: 2.2em;margin-bottom: 4px;"></ion-icon> Shortlisted
+           </button>
+         </ion-item-options>
+       </ion-item-sliding>
+      </ion-list>
+
+     </div>
+    </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <ion-footer ion-fixed class="foot">
+    <ion-toolbar [class.HideScroll]="hideScroll">
+      <button right (click)="ScrollToTop()" ion-fab mini end ><ion-icon icon-only small name="arrow-round-up"></ion-icon></button>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

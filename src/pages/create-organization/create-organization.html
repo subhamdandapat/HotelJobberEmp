@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-buttons left (click)="back()">
+      <button ion-button icon-only>
+        <ion-icon  name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      Create Organisation
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup]="create_org_form">
+
+
+
+    <div class="squre">
+      <div style="text-align:center">
+        <div class="col-3">
+          <div class="circle">
+            <span class="step"> Step 1</span>
+          </div>
+
+        </div>
+        <div class="col-6 line-linear"></div>
+        <div class="col-3">
+          <div class="circle circle-gray">
+            <span class="step"> Step 2</span>
+          </div>
+
+        </div>
+      </div>
+      <div style="width:100%">
+        <div style="width:50% ;float: left;font-size: 15px;padding-top: 10px">
+          Create Organisation
+        </div>
+        <div style="width:50%;text-align: right;float: right;font-size: 15px;padding-top: 10px">
+          <span style="color:#E6574B"> Free</span> Job Posting
+        </div>
+      </div>
+
+    </div>
+
+    <div class="box">
+
+      <div class="main-header" style="width:100%">{{pageLabel}}
+        <span class="type">Add your Hotel / Restaurant /Cafe contact details</span>
+      </div>
+
+      <ion-item no-lines no-padding>
+        <ion-label floating>Org Name*</ion-label>
+        <ion-input type="text" formControlName="organization_name" name="organization_name"></ion-input>
+      </ion-item>
+      <div *ngIf=" (create_org_form.controls['organization_name'].dirty  && (!create_org_form.controls.organization_name.valid ))"
+        style="color:red;margin:0px;padding:0px;font-size: 13px;">
+        Name greater than 2 character
+      </div>
+
+      <ion-item no-lines no-padding>
+        <ion-label floating>Type of Organisation(Ex. Hotel / Restaurant /Cafe)*</ion-label>
+        <ion-input type="text" formControlName="organization_type" name="organization_type"></ion-input>
+      </ion-item>
+      <div *ngIf=" (create_org_form.controls['organization_type'].dirty  && (!create_org_form.controls.organization_type.valid ))"
+        style="color:red;margin:0px;padding:0px;font-size: 13px;">
+        Enter Organisation Type
+      </div>
+
+      <ion-item no-lines no-padding>
+          <ion-label floating>Email*</ion-label>
+          <ion-input type="email" formControlName="email" name="email"></ion-input>
+        </ion-item>
+        <div *ngIf=" (create_org_form.controls['email'].dirty  && (!create_org_form.controls.email.valid ))"
+          style="color:red;margin:0px;padding:0px;font-size: 13px;">
+          Enter valid email
+        </div>
+
+
+      <ion-item no-lines no-padding>
+        <ion-label floating>Address*</ion-label>
+        <ion-input type="text" formControlName="address" name="address"></ion-input>
+      </ion-item>
+      <div *ngIf=" (create_org_form.controls['address'].dirty  && (!create_org_form.controls.address.valid ))" style="color:red;margin:0px;padding:0px;font-size: 13px;">
+        Enter Addreess
+      </div>
+
+
+      <ion-item no-lines no-padding>
+        <ion-label floating>Landmark/Area/Branch Name*</ion-label>
+        <ion-input type="text" formControlName="landmark" name="landmark"></ion-input>
+      </ion-item>
+      <div *ngIf=" (create_org_form.controls['landmark'].dirty  && (!create_org_form.controls.landmark.valid ))" style="color:red;margin:0px;padding:0px;font-size: 13px;">
+        Enter Landmark/Area/Branch Name
+      </div>
+
+
+  <ion-item no-lines class='selectCity' no-padding>
+      <select-searchable style="text-align:center;" title="{{titleCity}}" formControlName="selectedCity"  searchPlaceholder="Type City Name"
+      itemValueField="optionId" itemTextField="optionTitle" [items]="ports" [canSearch]="true" (onChange)="portSelectCity($event)"
+      (onSearch)="searchPorts($event)">
+    </select-searchable>
+  </ion-item>
+
+      <ion-item no-lines no-padding>
+        <ion-label floating> Contact Person Name*</ion-label>
+        <ion-input type="text" formControlName="contact_name" name="contact_name"></ion-input>
+      </ion-item>
+      <div *ngIf=" (create_org_form.controls['contact_name'].dirty  && (!create_org_form.controls.contact_name.valid ))"
+        style="color:red;margin:0px;padding:0px;font-size: 13px;">
+        Enter contact person name
+      </div>
+
+      <ion-item no-lines class="half" no-padding>
+        <ion-label floating>Phone 1*</ion-label>
+        <ion-input type="number" formControlName="phone1" name="phone1"></ion-input>
+
+      </ion-item>
+
+
+      <ion-item no-lines class="half" no-padding>
+        <ion-label floating>Phone 2</ion-label>
+        <ion-input type="number" formControlName="phone2" name="phone2"></ion-input>
+
+      </ion-item>
+
+      <div class="btn-next">
+        <button color="secondary" class="next-btn" [disabled]="!create_org_form.valid" ion-button (click)="createOrganization()">
+          {{btnLabel}}</button>
+      </div>
+
+    </div>
+  </form>
+
+</ion-content>

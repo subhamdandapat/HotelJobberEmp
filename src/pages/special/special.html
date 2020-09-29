@@ -1,0 +1,154 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+
+    <ion-buttons left (click)="back()">
+      <button ion-button icon-only>
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>
+      Job Posting
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="postjob_form">
+    <div class="box">
+      <ion-list>
+
+        <ion-item no-lines>
+          <ion-label style="margin-bottom: 4px;" floating>Job Title*</ion-label>
+          <ion-input type="text" formControlName="job_title" name="job_title"></ion-input>
+        </ion-item>
+        <div *ngIf=" (postjob_form.controls['job_title'].dirty  && (!postjob_form.controls.job_title.valid ))" style="color:red;margin:0px;padding:0px;font-size: 13px;">
+          Name greater than 2 character
+        </div>
+
+        <div class="form-txt">Job Type </div>
+        <ion-row radio-group formControlName="job_type">
+        <ion-item no-lines class="half" style="border-radius: 5px ;
+        background: white;
+          font-size: 0.9em;
+
+          height: 40px;;
+          border: 1px solid #adacac;">
+          <ion-label>Full time</ion-label>
+          <ion-radio checked="true" item-left value="1"></ion-radio>
+        </ion-item>
+
+        <ion-item no-lines class="half" style="border-radius: 5px ;
+         background: white;
+          font-size: 0.9em;
+
+          height: 40px;;
+          border: 1px solid #adacac;">
+          <ion-label>Part Time</ion-label>
+          <ion-radio item-left value="2"></ion-radio>
+        </ion-item>
+      </ion-row>
+
+
+        <ion-item no-lines style="margin-top:18px;;margin-bottom: -10px;">
+
+            <!-- <ion-label floating> Looking For?*<span class="type">(Ex.Hotels/Restaurants/Cafe)</span></ion-label> -->
+            <select-searchable title="{{titleLookingFor}}" formControlName="selectedRoll" [items]="itemsRollList"
+              itemValueField="ID" itemTextField="Roll" [canSearch]="true" (onChange)="portChangeRoll($event)">
+            </select-searchable>
+          </ion-item>
+
+
+
+            <ion-item no-lines  *ngIf="visible">
+                <ion-label floating>Looking For?*</ion-label>
+                <ion-input type="text" formControlName="looking_for1"  name="looking_for"></ion-input>
+              </ion-item>
+              <div *ngIf=" (postjob_form.controls['looking_for1'].dirty  && (!postjob_form.controls.looking_for1.valid ))"
+              style="color:red;margin:0px;padding:0px">
+              Enter Role
+            </div>
+
+
+
+
+        <ion-item no-lines class="half">
+          <ion-label floating>Min Salary in Rs.*</ion-label>
+          <ion-select interface="popover"
+                      #sal
+                      formControlName="min_salary"
+                      (ionChange)="updateSalaryList(sal.value)">
+
+            <ion-option class="item item-text-wrap" *ngFor="let minSalary of salaryList" value="{{minSalary}}">
+
+              Rs. &nbsp; {{minSalary}}
+
+            </ion-option>
+          </ion-select>
+
+        </ion-item>
+
+
+        <ion-item no-lines class="half">
+          <ion-label floating>Max Salary in Rs</ion-label>
+          <ion-select interface="popover" formControlName="max_salary" (ionChange)="get_max_sal(max_salary)">
+
+            <ion-option class="item item-text-wrap" *ngFor="let maxSalary of maxSalaryList" value="{{maxSalary}}">
+
+              Rs. &nbsp;  {{maxSalary}}
+
+            </ion-option>
+          </ion-select>
+
+        </ion-item>
+
+
+        <ion-item no-lines class="half">
+          <ion-label floating> Min Experience*</ion-label>
+          <ion-select interface="popover" formControlName="min_exp" (ionChange)="get_exp(min_exp,'Min_exp')">
+
+            <ion-option class="item item-text-wrap" *ngFor="let item_exp of expList" value="{{item_exp}} ">
+
+
+
+              {{item_exp}}
+
+            </ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item no-lines class="half">
+          <ion-label floating>Vacancy* </ion-label>
+          <ion-select interface="popover" formControlName="vacuncy" (ionChange)="getVacuncy(vacuncy,'vaccancy')">
+
+            <ion-option class="item item-text-wrap" *ngFor="let item_vacuncy of vacuncyList" value="{{item_vacuncy}} ">
+
+
+
+              {{item_vacuncy}}
+
+
+            </ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item no-lines>
+          <ion-label floating>Job Description*</ion-label>
+          <ion-textarea rows="4" class="text-area_height" style="font-size:16px;" formControlName="job_desc" autosize></ion-textarea>
+        </ion-item>
+        <div *ngIf=" (postjob_form.controls['job_desc'].dirty  && (!postjob_form.controls.job_desc.valid ))" style="color:red;margin:0px;padding:0px;font-size: 13px;">
+          Enter Job Description
+        </div>
+
+        <div class="btn-next">
+          <button class="next-btn" [disabled]="!postjob_form.valid" ion-button (click)="postJob()"> Post Now</button>
+        </div>
+
+      </ion-list>
+    </div>
+
+  </form>
+
+</ion-content>

@@ -1,0 +1,54 @@
+page-login {
+  .bold{width: 60%}
+  .login-content {
+      // background:#098D68;
+   background: #0093AD;
+  }
+
+      .box{
+        text-align:center;
+        margin-top: 100px;
+
+      }
+      .reg-text{
+        color: white;
+        text-align: center;
+      }
+
+      .header {
+        margin-top: 5px;
+        margin-bottom: 40px;
+      }
+
+      .submit-btn {
+
+        background: #FF7900;
+        border-radius: 20px !important;
+         font-size: 20px;
+        text-transform: none;
+        margin-top: 30px;
+        width: 50%;
+        font-weight: 400;
+       //padding: 10px  10px  10px  10px;
+      }
+
+
+       .text-color{
+        //  margin-top: 20px;
+        align-content: center;
+        color: #fff;
+
+        text-align: center;
+        font-size: 26px;       }
+
+
+  .btn-next {
+    text-align: center;
+  }
+
+  .needJobLogo {
+    padding-top: 20px;
+    width: 100%;
+  }
+
+}

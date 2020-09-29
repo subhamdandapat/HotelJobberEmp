@@ -1,0 +1,58 @@
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <ion-title text-center *ngIf="pageTitle">
+       {{pageTitle}}
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div style="text-align:center;margin-top:10px">
+    <div class="center">
+      <div class="success-checkmark">
+        <div class="check-icon">
+          <span class="icon-line line-tip"></span>
+          <span class="icon-line line-long"></span>
+          <div class="icon-circle"></div>
+          <div class="icon-fix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;color:#2DB064;font-size:20px">
+    <strong *ngIf="pageSubTitle">  {{pageSubTitle}}</strong>
+  </div>
+
+  <div class="center" *ngIf="!broadcast">
+    <div class="ion_list" text-center>
+
+      <button ion-item no-lines>
+        <ion-icon name="clipboard" item-start small></ion-icon>
+        <span style="color: #13101094"> Plan Name:</span> <span class="label-value">{{order_details?.planName}}  </span>
+      </button>
+
+      <button ion-item no-lines>
+        <ion-icon name="create" item-start small></ion-icon>
+          <span style="color: #13101094"> Payment ID:</span>  <span class="label-value"> {{order_details?.paymentID}} </span>
+      </button>
+
+      <button ion-item no-lines>
+         <ion-icon name="pricetags" item-start small></ion-icon>
+           <span style="color: #13101094"> Price:</span> <span class="label-value">{{order_details?.planPrice}} </span>
+        </button>
+    </div>
+  </div>
+
+
+
+
+
+</ion-content>
+
+<ion-footer style="background-color: #0093AD;">
+    <button style="background-color: #0093AD" ion-button full (click)="back()">Continue</button>
+</ion-footer>

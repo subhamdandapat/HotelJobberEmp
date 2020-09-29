@@ -1,0 +1,160 @@
+<ion-content class="main-view" *ngIf="reportPage">
+  <div class="modal_content">
+
+    <div>
+     <span style="font-size:18px">Report </span> <img style="width:20px;float:right" src="assets/imgs/cross.png" (click)="closeReport()">
+    </div>
+<!--Report section-->
+    <div class="modal-top border">
+
+      <div class="modal-content" style="font-size:16px;">
+
+        <ion-list   radio-group [(ngModel)]="reportDtata">
+
+          <ion-item>
+              <ion-label>Already Working</ion-label>
+              <ion-radio item-left value="Already Working"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Number Out Of Service</ion-label>
+            <ion-radio item-left value="Number Out Of Service"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Wrong Number</ion-label>
+            <ion-radio item-left value="Wrong Number<"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Wrong Designation</ion-label>
+            <ion-radio item-left value="Wrong Designation"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Arrogant Behaviour</ion-label>
+            <ion-radio item-left value="Arrogant Behaviour"></ion-radio>
+          </ion-item>
+
+        </ion-list>
+      </div>
+
+    </div>
+    <div class="btn-align">
+      <button class="dialog-btn" (click)="reportUser()">Submit</button>
+    </div>
+  </div>
+</ion-content>
+
+<ion-content class="main-view" *ngIf="broadcast">
+
+  <div class="modal_content">
+    <div>
+      <span style="font-size: 16px; margin-left: 64px; color: #2d2da6;">Edit Broadcast </span> <img style="width:20px;float:right" src="assets/imgs/cross.png" (click)="closeBroadcast()">
+    </div>
+    <!--BroadCast Section-->
+    <div>
+      <div class='broadMessageBox' *ngIf="broadMessage?.jobTitle">
+        <p style="text-transform: capitalize !important;">Required {{broadMessage?.jobTitle}}</p>
+        <p>{{broadMessage?.hotelName}}, {{broadMessage.city}}</p>
+        <p>Salary Rs.&nbsp;{{broadMessage.minSal}} - {{broadMessage.maxSal}}</p>
+        <p>Contact: <span style="color: #f0f057;">{{broadMessage.contact}}</span></p>
+      </div>
+
+      <h5>Edit Fields Below</h5>
+        <ion-item class="half">
+          <ion-label>Min Salary</ion-label>
+          <ion-select interface="popover" #minSal (ionChange)="updateSalaryList(minSal.value)">
+            <ion-option class="item item-text-wrap" *ngFor="let minSalary of salaryList" value="{{minSalary}}" [selected]="broadMessage.minSal">
+              Rs.&nbsp;{{minSalary}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item class="half">
+          <ion-label>Max Salary</ion-label>
+          <ion-select interface="popover" #maxSal (ionChange)="updateMaxSalary(maxSal.value)">
+            <ion-option class="item item-text-wrap" *ngFor="let maxSalary of maxSalaryList" value="{{maxSalary}}">
+              Rs.&nbsp;{{maxSalary}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item [formGroup]="broadcast_form">
+          <ion-label floating>Contact Number</ion-label>
+          <ion-input type="number" formControlName="mobile" (ionChange)="bindContact()"></ion-input>
+        </ion-item>
+        <div *ngIf=" (broadcast_form.controls['mobile'].dirty  && (!broadcast_form.controls.mobile.valid ))"
+           style="color:red;margin:0px;padding:0px;font-size: 13px;">
+          Enter minimum 6 digit mobile number
+         </div>
+        <!--Button section-->
+      <ion-row text-center>
+        <ion-col col-2></ion-col>
+        <ion-col text-center>
+          <button ion-button style="background-color:#2AA52A; width: 75%;margin: 8px 8px 1px 1px;" [disabled]="(broadcast_form.controls['mobile'].dirty  && (!broadcast_form.controls.mobile.valid ))" (click)="saveBroadcast()">
+            <ion-icon style="margin-right: 6px;" name="md-done-all"></ion-icon>Save
+          </button>
+        </ion-col>
+        <ion-col col-2></ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>
+
+<ion-content class="main-view" *ngIf="canApply">
+
+  <div class="modal_content">
+    <div>
+       <img style="width:20px;float:right" src="assets/imgs/cross.png" (click)="closeBroadcast()">
+    </div>
+    <div>
+      <p style="padding-left: 12px; margin-left: 14px;">
+        <img style="width:90%;" (click)="playStore()" src="assets/imgs/candidate-app-download-curves.svg" />
+      </p>
+    </div>
+
+   <!-- <p>Register on hotel jobber candidate mobile application and select a job you are looking for</p>
+     <img style="width:90%;" (click)="playStore()" src="assets/imgs/candidate-redirect.svg" />-->
+  </div>
+
+</ion-content>
+<!--Remove Organization-->
+<ion-content *ngIf="org_ID" class="main-view remove-org-alert">
+  <div class="modal_content" style="padding-bottom: 25px">
+    <!--Mesasage-->
+    <div class="alert-text">
+      <span>Are you sure you want</span>
+      <span>to delete this</span>
+      <span>Organisation?</span>
+    </div>
+    <div>
+      <p>It will delete all <strong>JOBS</strong> under this Organisation & Application of candidates who have applied to your Jobs </p>
+    </div>
+    <!--Action Button-->
+    <div style="padding: 10px;">
+      <button style="background-color:#DA465C" ion-button large round left (click)="removeOrg()">
+        Delete
+      </button>
+      <button style="background-color:#37A333; float: right;" ion-button large round right (click)="closeBroadcast()">
+        Cancel
+      </button>
+    </div>
+
+  </div>
+</ion-content>
+
+<ion-content *ngIf="moreInfo" class="main-view">
+  <div class="modal_content" style="padding-bottom: 20px">
+
+    <div>
+      <span style="font-weight: bold;font-size: 16px; margin-left: 64px; color: #2d2da6;">Broadcast Features </span> <img style="width:20px;float:right" src="assets/imgs/cross.png" (click)="closeBroadcast()">
+    </div>
+
+    <div>
+      <div class="i-desc benifits-box" [innerHTML]="planList?.plan_description">
+      </div>
+    </div>
+
+  </div>
+</ion-content>

@@ -1,0 +1,96 @@
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <ion-buttons left (click)="back()">
+      <button ion-button icon-only>
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      Job Details
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="box"  *ngIf="jobDetails">
+<!--Date-->
+    <div style="text-align: right; padding: 5px;">
+      <span class="text-header" style="color:#cc6666"> Posted On:</span>
+      <span class="text-data" style="color:#cc6666"> {{jobDetails?.Post_Time  | date:' dd MMM yyyy'}}</span>
+    </div>
+<!--Job Title-->
+    <div class="job-title">Job opening for {{jobDetails?.Roll}},{{jobDetails?.City}} {{jobDetails?.Country}}</div>
+<!--Line-->
+    <div class="line">
+    </div>
+<!--Logo-->
+    <ion-grid no-padding>
+      <ion-row no-padding>
+
+        <ion-col col-2 no-padding>
+          <img *ngIf="logo" class="logoImg" src="https://www.hoteljobber.com/org_logos/{{logo}}" />
+          <img class="img-logo" *ngIf="logo == ''" src="assets/imgs/icon-org-logo.png" />
+        </ion-col>
+
+        <ion-col col-10 no-padding>
+          <div style="padding-left: 3px !important;">
+            <span class="org-name">{{jobDetails?.Organisation_Name}}</span>
+            <span class="org-type">{{jobDetails?.Organisation_Type}}</span>
+            <span class="org-type">{{jobDetails?.City}} - {{jobDetails.Country}}
+              <i style="width: 14px" class="flag-icon flag-icon-{{jobDetails?.CountryFlag.toLowerCase()}}"></i>
+            </span>
+          </div>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+  <div style="padding-left: 5px; padding-right: 5px;">
+    <!--Title-->
+    <div>
+      <span class="text-title">Title:</span>
+      <span>{{jobDetails?.JobTitle}}</span>
+    </div>
+    <!--Looking for-->
+    <div>
+      <span class="text-title">Looking For:</span>
+      <span>{{jobDetails?.Roll}}</span>
+    </div>
+    <!--Salary-->
+    <div>
+      <span class="text-title">Salary Offer:</span>
+      <span class="text-data"> {{jobDetails?.MinSalary | currency:'INR':true:'1.0-0'}} - {{jobDetails?.MaxSalary | currency:'INR':true:'1.0-0'}}</span>
+    </div>
+    <!--Experience-->
+    <div>
+      <span class="text-title">Experience:</span>
+      <span class="text-data">{{jobDetails?.MinExp}} yrs.</span>
+    </div>
+    <!--JD-->
+    <div style="margin-top:5px" *ngIf="jobDetails?.JD==undefined || jobDetails?.JD=='' ;else other_content">
+    </div>
+    <ng-template #other_content>
+      <div style="margin-top:5px">
+        <span class="text-title">Description:</span>
+      </div>
+      <span *ngIf="jobDetails?.JD" style="white-space: pre-line;border: 1px solid #D6D6D6;display: block;padding: 4px;font-size: 12px;border-radius: 4px;" class="text-data"> {{jobDetails?.JD}}</span>
+    </ng-template>
+
+    <div style="background:#ffffcc;padding:5px 10px 10px 10px;margin-top:10px;border:1px solid #fff0cc">
+      <div>
+        <img class="list-icon" start src="assets/imgs/icon-location.svg">
+        <span style="padding-left: 5px;"> Address </span>
+      </div>
+      <span class="org-add-name">{{jobDetails?.Organisation_Name}}</span>
+      <span class="text-address"> {{jobDetails?.organisation_address}}, {{jobDetails?.Country}}</span>
+    </div>
+
+    <div>
+      <img style="width:90%;" (click)="playStore()" src="assets/imgs/candidate-redirect.svg" />
+    </div>
+  </div>
+  </div>
+
+</ion-content>

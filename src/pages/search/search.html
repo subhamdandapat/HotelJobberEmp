@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>
+         Select Country
+      </ion-title>
+      <ion-buttons start>
+          <button ion-button (click)="closeModal()">
+              close
+          </button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-searchbar [showCancelButton]="shouldShowCancel" (ionInput)="getItems($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let itemsearch of items" (click)="search(itemsearch)">
+      {{ itemsearch }}
+    </ion-item>
+  </ion-list>
+</ion-content>

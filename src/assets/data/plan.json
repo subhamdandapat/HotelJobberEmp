@@ -1,0 +1,27 @@
+{
+    "data": [
+        {
+            "title": "Relief Plus",
+            
+            "validity": "(1 Year)"   ,
+            "price": "6400"            
+            
+        },
+        {
+            "title": "Relief Plus",
+            
+            "validity": "(6 months)"   ,
+            "price": "4200"            
+              
+            
+        },
+        {
+            "title":"Relief Plus",
+          
+            "validity": "(3 months)"   ,
+            "price": "2400"            
+            
+        }
+       
+    ]
+  }
