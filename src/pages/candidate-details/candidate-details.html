@@ -1,71 +1,72 @@
 <ion-header>
-<ion-navbar padding>
-  <ion-buttons left (click)="closeModal()">
-    <button ion-button icon-only>
-      <ion-icon  name="arrow-back"></ion-icon>
-    </button>
-  </ion-buttons>
-  <ion-title style="display: inline-block;margin-top: 7px;">Candidate Details</ion-title>
+  <ion-navbar padding>
+    <ion-buttons left (click)="closeModal()">
+      <button ion-button icon-only>
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title style="display: inline-block;margin-top: 7px;">Candidate Details</ion-title>
 
-  <div class="optionsLD" style="float: right;" *ngIf="candidateDetails?.ShowMobile">
-    <img *ngIf="candidateDetails?.AlowReport == undefined || candidateDetails?.AlowReport; else reported_icon" (click)="addReport()" src="assets/imgs/icon-report.svg" style="width:30px">
-    <ng-template #reported_icon>
-      <img src="assets/imgs/icon-reported.svg" style="width:30px">
-    </ng-template>
+    <!-- <div class="optionsLD" style="float: right;" *ngIf="candidateDetails?.ShowMobile">
+      <img *ngIf="candidateDetails?.AlowReport == undefined || candidateDetails?.AlowReport; else reported_icon"
+        (click)="addReport()" src="assets/imgs/icon-report.svg" style="width:30px">
+      <ng-template #reported_icon>
+        <img src="assets/imgs/icon-reported.svg" style="width:30px">
+      </ng-template>
 
-    <span *ngIf="candidateDetails?.LikeStatus == undefined">
-                        <img  start style="width:30px" (click)="myLikesDislikes('no')" src="assets/imgs/icon-dislike-d.svg"  />
-                        <img  start style="width:30px" (click)="myLikesDislikes('yes')" src="assets/imgs/icon-like-d.svg"  />
-                     </span>
+      <span *ngIf="candidateDetails?.LikeStatus == undefined">
+        <img start style="width:30px" (click)="myLikesDislikes('no')" src="assets/imgs/icon-dislike-d.svg" />
+        <img start style="width:30px" (click)="myLikesDislikes('yes')" src="assets/imgs/icon-like-d.svg" />
+      </span>
 
-    <span  *ngIf="candidateDetails?.LikeStatus == 'yes'">
-                       <img  (click)="myLikesDislikes('no')" start style="width:30px" src="assets/imgs/icon-dislike-d.svg" />
-                       <img start  style="width:30px" src="assets/imgs/icon-like-a.svg" />
-                     </span>
-    <span *ngIf="candidateDetails?.LikeStatus == 'no'">
-                       <img  start style="width:30px" src="assets/imgs/icon-dislike-a.svg"/>
-                       <img  start style="width:30px" (click)="myLikesDislikes('yes')" src="assets/imgs/icon-like-d.svg"  />
-                     </span>
-  </div>
+      <span *ngIf="candidateDetails?.LikeStatus == 'yes'">
+        <img (click)="myLikesDislikes('no')" start style="width:30px" src="assets/imgs/icon-dislike-d.svg" />
+        <img start style="width:30px" src="assets/imgs/icon-like-a.svg" />
+      </span>
+      <span *ngIf="candidateDetails?.LikeStatus == 'no'">
+        <img start style="width:30px" src="assets/imgs/icon-dislike-a.svg" />
+        <img start style="width:30px" (click)="myLikesDislikes('yes')" src="assets/imgs/icon-like-d.svg" />
+      </span>
+    </div>-->
 
 
-</ion-navbar>
+  </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <span class="reg-update" *ngIf="candidateDetails?.ID">
-    <!--Reg date-->
+  <!-- <span class="reg-update" *ngIf="candidateDetails?.ID">
+   
     <div class="reg-date" *ngIf="candidateDetails.Reg_Date">
              <span style="font-size: x-small;">
                Reg On:<span style="color:#11AD6E; font-size: x-small;margin-left: 4px;">{{candidateDetails.Reg_Date | date: 'dd MMM yyyy'}}</span>
              </span>
     </div>
-    <!--Last update-->
+    
     <div class="update-date" *ngIf="candidateDetails.Last_Update">
              <span style="font-size:x-small;">
                Last Seen:<span style="color:#11AD6E; font-size:x-small;margin-left: 4px;">{{candidateDetails.Last_Update | amTimeAgo }}</span>
              </span>
     </div>
-  </span>
+  </span>-->
   <div class="main-box" *ngIf="candidateDetails?.ID">
     <ion-item no-padding no-lines>
       <ion-thumbnail item-start no-padding>
         <img *ngIf="candidateDetails.Image" src="https://hoteljobber.com/user_image/{{candidateDetails?.Image}}">
-        <img *ngIf="!candidateDetails.Image" src="assets/imgs/default-profile-pic.svg">
+        <img *ngIf="!candidateDetails.Image" style="border: 0px;" src="assets/imgs/default-profile-pic.svg">
         <div class="id">ID - {{candidateDetails?.ID}}</div>
       </ion-thumbnail>
- <!--Candidate name-->
+      <!--Candidate name-->
       <div class="name-box">
         <span class="name">{{candidateDetails?.FirstName}}</span>
         <span class="name" *ngIf="candidateDetails.ShowMobile else hide">{{candidateDetails?.LastName}}</span>
-        <ng-template class="name"  #hide>{{candidateDetails?.LastName.charAt(0)}}</ng-template>
+        <ng-template class="name" #hide>{{candidateDetails?.LastName.charAt(0)}}</ng-template>
 
         <span style="display: inline-block" *ngIf="candidateDetails.Active_status==1">
-          <img  style="width:20px;height: 15px;" src="assets/imgs/icon-sbulb-on.svg" />
+          <img style="width:20px;height: 15px;" src="assets/imgs/icon-sbulb-on.svg" />
         </span>
         <span style="display: inline-block" *ngIf="candidateDetails.Active_status==0">
-          <img  style="width:20px;height: 15px" src="assets/imgs/icon-sbulb-off.svg" />
+          <img style="width:20px;height: 15px" src="assets/imgs/icon-sbulb-off.svg" />
         </span>
         <!--Candidate roll-->
         <div class="job-roll" *ngIf="candidateDetails?.Roll">
@@ -73,66 +74,98 @@
         </div>
       </div>
 
- <!--Exp-->
+      <!--Exp-->
       <div class="exp-group">
         <div>
-          <span class="exp-group-title">Exp:</span>
-          <span class="exp-group-value" *ngIf="candidateDetails?.Experience > 0">{{candidateDetails?.Experience}} Yrs</span>
-          <span class="exp-group-value" *ngIf="candidateDetails?.Experience <= 0">Fresher</span>
+          <span class="exp-group-title">Age:</span>
+          <span class="exp-group-value">{{candidateDetails?.Age}} Years</span>
+          <!-- <span class="exp-group-value" *ngIf="candidateDetails?.Experience > 0">{{candidateDetails?.Experience}} Yrs</span>
+          <span class="exp-group-value" *ngIf="candidateDetails?.Experience <= 0">Fresher</span>-->
         </div>
 
         <div>
-          <span class="exp-group-title">Sal Exp:</span>
-          <span class="exp-group-value"> {{candidateDetails?.MinSalary | currency:'INR':true:'1.0-1'}} - {{( ((candidateDetails?.MaxSalary === 123))? candidateDetails.MaxSalary : (candidateDetails?.MinSalary+5000))| currency:'INR':true:'1.0-1'}}</span>
+          <span class="exp-group-title">Reg On:</span>
+          <span style="color:#11AD6E; font-size: x-small;margin-left: 4px;">{{candidateDetails.Reg_Date | date: 'dd MMM
+            yyyy'}}</span>
+          <!-- <span class="exp-group-value"> {{candidateDetails?.MinSalary | currency:'INR':true:'1.0-1'}} - {{( ((candidateDetails?.MaxSalary === 123))? candidateDetails.MaxSalary : (candidateDetails?.MinSalary+5000))| currency:'INR':true:'1.0-1'}}</span>-->
         </div>
 
         <div>
-          <span class="exp-group-title">Preferred Location:</span>
-          <span class="exp-group-value">
+          <span class="exp-group-title">Last Seen:
+            <span style="color:#11AD6E; font-size:x-small;margin-left: 4px;">{{candidateDetails.Last_Update | amTimeAgo
+              }}</span>
+          </span>
+          <!--<span class="exp-group-value">
             <span  *ngIf="candidateDetails?.P_City_Name">{{candidateDetails?.P_City_Name}} </span>
             <span  *ngIf="candidateDetails?.P_Country_Name">Anywhere in {{candidateDetails?.P_Country_Name}} </span>
             <span  *ngIf="candidateDetails?.P_State_Name">Anywhere in {{candidateDetails?.P_State_Name}} </span>
-          </span>
+          </span>-->
         </div>
 
       </div>
     </ion-item>
-<!--Buttons-->
-    <ion-grid no-padding>
-      <ion-row text-center no-padding>
-        <ion-col col-4 no-padding>
-          <div class="unlock-img" *ngIf="!candidateDetails.ShowMobile; else show"  (click)="displayContact(candidateDetails.ID)">
+    <!--Buttons  #show-->
+    <ion-grid  style="padding: 0 !important;padding: 10px;">
+      <ion-row text-left no-padding >
+
+        <div class="unlock-img" *ngIf="!candidateDetails.ShowMobile; "
+            (click)="displayContact(candidateDetails.ID)">
             <img src="assets/imgs/icon-unlock.svg">
           </div>
-          <ng-template #show>
-            <div  class="show-contact" (click)="callJoint(candidateDetails.Mobile)">
-              <img  src="assets/imgs/icon-call1.svg" />
-              <span style="font-size: 10px;text-align: center; ">{{candidateDetails.Mobile}}</span>
-            </div>
-          </ng-template>
-        </ion-col>
-        <ion-col col-4 no-padding>
-          <!--Whats app-->
-          <a  *ngIf="candidateDetails.ShowMobile" [href]="getWtsApp(candidateDetails.Mobile)"><img  class="wts-sms-img" src="assets/imgs/wtsApp.png" ></a>
-        </ion-col>
-        <ion-col col-4 no-padding>
-          <!--SMS-->
-          <span *ngIf="candidateDetails.ShowMobile" style="float: left;">
-             <img class="wts-sms-img" *ngIf='!candidateDetails.SmsSend else SmsSend'  src="./assets/imgs/smsApp.png" (click)="sendMsg()" />
-             <ng-template #SmsSend>
-               <img  class="wts-sms-img"  src="./assets/imgs/sent-sms.png" />
-             </ng-template>
-          </span>
 
+         <ion-col col-4 no-padding *ngIf="candidateDetails.ShowMobile">
+          
+          <!--SMS-->
+          <span >
+            <button mode="md" *ngIf='!candidateDetails.SmsSend else SmsSend' ion-button icon-start
+              style="background-color: #f1f7f4;" (click)="sendMsg()">
+              <ion-icon ios="ios-chatbubbles" md="ios-chatbubbles" style="color:#317eaa;"></ion-icon>
+              
+              <p style="color: black;margin-right: 30px;">   SMS</p>
+            </button>
+            <ng-template #SmsSend>
+              <img class="wts-sms-img" src="./assets/imgs/sent-sms.png" />
+            </ng-template>
+          </span>
         </ion-col>
+        <ion-col col-4 no-padding *ngIf="candidateDetails.ShowMobile">
+          <!--Whats app-->
+          <a  [href]="getWtsApp(candidateDetails.Mobile)">
+            <button mode="md" ion-button icon-start style="background-color: #f1f7f4;">
+              <ion-icon ios="logo-whatsapp" md="logo-whatsapp" style="color: #11AD6E;"></ion-icon>
+              <p style="color: black;margin-right: 10px;">Wtsapp</p>
+            </button>
+          </a>
+        </ion-col>
+
+         <ion-col col-4 no-padding *ngIf="candidateDetails.ShowMobile">
+            <!-- <div class="show-contact"> -->
+              <button mode="md" (click)="callJoint(candidateDetails.Mobile)" ion-button icon-start
+                style="background-color: #11AD6E;" (click)="callJoint(candidateDetails.Mobile)">
+                <ion-icon ios="ios-call" md="ios-call"></ion-icon>
+                {{candidateDetails.Mobile}}
+              </button>
+            <!-- </div> -->
+         
+        </ion-col>
+
+
+
+      
+
+       
+
+
+       
       </ion-row>
     </ion-grid>
 
-<!--Extra info-->
-  <div class="extra-info">
+    <!--Extra info-->
+    <div class="extra-info">
       <div>
         <span class="exp-group-title">Experience:</span>
-        <span class="exp-group-value" *ngIf="candidateDetails?.Experience > 0; else frshr ">{{candidateDetails?.Experience}} Years</span>
+        <span class="exp-group-value"
+          *ngIf="candidateDetails?.Experience > 0; else frshr ">{{candidateDetails?.Experience}} Years</span>
         <ng-template class="exp-group-value" #frshr>Fresher</ng-template>
       </div>
 
@@ -153,15 +186,20 @@
 
       <div *ngIf="candidateDetails?.MinSalary">
         <span class="exp-group-title">Salary Expectation:</span>
-        <span class="exp-group-value"> {{candidateDetails?.MinSalary | currency:'INR':true:'1.0-1'}} - {{( ((candidateDetails?.MaxSalary === 123))? candidateDetails.MaxSalary : (candidateDetails?.MinSalary+5000))| currency:'INR':true:'1.0-1'}}</span>
+        <span class="exp-group-value"> {{candidateDetails?.MinSalary | currency:'INR':true:'1.0-1'}} - {{(
+          ((candidateDetails?.MaxSalary === 123))? candidateDetails.MaxSalary : (candidateDetails?.MinSalary+5000))|
+          currency:'INR':true:'1.0-1'}}</span>
       </div>
 
       <div>
         <span class="exp-group-title">Email ID:</span>
         <ion-icon *ngIf="!candidateDetails?.ShowMobile" style="padding-right: 2px;" name="lock" small> </ion-icon>
         <span *ngIf="candidateDetails?.ShowMobile">
-          <span *ngIf="candidateDetails?.Email_ID; else noEmail;" class="exp-group-value">{{candidateDetails?.Email_ID}}</span>
-          <ng-template class="exp-group-value" #noEmail>Not Mentioned</ng-template>
+          <span *ngIf="candidateDetails?.Email_ID; else noEmail;"
+            class="exp-group-value">{{candidateDetails?.Email_ID}}</span>
+          <ng-template class="exp-group-value" #noEmail>
+            <p style="color: red;">Missing</p>
+          </ng-template>
         </span>
       </div>
 
@@ -173,20 +211,25 @@
       <div *ngIf="candidateDetails?.Country_Name">
         <span class="exp-group-title">Location:</span>
         <span class="exp-group-value" *ngIf="candidateDetails?.City_Name;">
-            <span style="font-weight:bold">{{candidateDetails?.City_Name}}, </span>
-            <span style="font-weight:bold">{{candidateDetails?.State_Name}}, </span>
-            <span style="font-weight:bold">{{candidateDetails?.Country_Name}}</span>
-            <i class="flag-icon flag-icon-{{candidateDetails?.CountryFlag.toLowerCase()}}"></i>
+          <span style="font-weight:bold">{{candidateDetails?.City_Name}}, </span>
+          <span style="font-weight:bold">{{candidateDetails?.State_Name}}, </span>
+          <span style="font-weight:bold">{{candidateDetails?.Country_Name}}</span>
+          <i class="flag-icon flag-icon-{{candidateDetails?.CountryFlag.toLowerCase()}}"></i>
         </span>
       </div>
 
       <div>
-        <span class="exp-group-title">Preferred Location:</span>
+        <span class="exp-group-title">Preferred Location:
+          <img alt="logo" width="10" height="10" style="margin-top:3px;margin-left: 4px;"
+            src="assets/imgs/icon-location.svg">
+        </span>
+
         <span class="exp-group-value">
-              <span  *ngIf="candidateDetails?.P_City_Name">{{candidateDetails?.P_City_Name}} </span>
-              <span  *ngIf="candidateDetails?.P_Country_Name">Anywhere in {{candidateDetails?.P_Country_Name}} </span>
-              <span  *ngIf="candidateDetails?.P_State_Name">Anywhere in {{candidateDetails?.P_State_Name}} </span>
-            </span>
+
+          <span *ngIf="candidateDetails?.P_City_Name">{{candidateDetails?.P_City_Name}} </span>
+          <span *ngIf="candidateDetails?.P_Country_Name">Anywhere in {{candidateDetails?.P_Country_Name}} </span>
+          <span *ngIf="candidateDetails?.P_State_Name">Anywhere in {{candidateDetails?.P_State_Name}} </span>
+        </span>
       </div>
 
       <div>
@@ -198,18 +241,51 @@
 
       <div *ngIf="candidateDetails?.About_Exp.toString().trim()!=''">
         <!--<span class="work-exp" >{{candidateDetails?.About_Exp}}</span>-->
-        <span *ngIf="candidateDetails?.About_Exp" style="display: block; line-height: 1.5;background:#ffffcc;padding: 4px 6px 4px 6px;margin-top:4px;border:1px solid #fff0cc" class="text-data">
-          <span class="exp-group-title work-title">Work Experience <img src="assets/imgs/icon-s-exp.svg"  height="14px"></span>
+        <span *ngIf="candidateDetails?.About_Exp"
+          style="display: block; line-height: 1.5;background:#ffffcc;padding: 4px 6px 4px 6px;margin-top:4px;border:1px solid #fff0cc"
+          class="text-data">
+          <span class="exp-group-title work-title">Work Experience <img src="assets/imgs/icon-s-exp.svg"
+              height="14px"></span>
           {{candidateDetails?.About_Exp}}</span>
       </div>
 
-     </div>
+    </div>
+
+
+
+
+    <ion-row *ngIf="candidateDetails?.ShowMobile" style="padding-top: 20px;">
+      <ion-col text-center>
+        <span *ngIf="candidateDetails?.LikeStatus == 'no'">
+          <img start style="width:30px" src="assets/imgs/icon-dislike-a.svg" />
+          <img start style="width:30px" (click)="myLikesDislikes('yes')" src="assets/imgs/icon-like-d.svg" />
+        </span>
+
+        <span *ngIf="candidateDetails?.LikeStatus == 'yes'">
+
+          <img start style="width:30px" src="assets/imgs/icon-like-a.svg" />
+          <img (click)="myLikesDislikes('no')" start style="width:30px" src="assets/imgs/icon-dislike-d.svg" />
+        </span>
+        <span *ngIf="candidateDetails?.LikeStatus == undefined">
+
+          <img start style="width:30px" (click)="myLikesDislikes('yes')" src="assets/imgs/icon-like-d.svg" />
+          <img start style="width:30px" (click)="myLikesDislikes('no')" src="assets/imgs/icon-dislike-d.svg" />
+        </span>
+
+
+        <img *ngIf="candidateDetails?.AlowReport == undefined || candidateDetails?.AlowReport; else reported_icon"
+          (click)="addReport()" src="assets/imgs/icon-report.svg" style="width:30px">
+        <ng-template #reported_icon>
+          <img src="assets/imgs/icon-reported.svg" style="width:30px">
+        </ng-template>
+      </ion-col>
+    </ion-row>
   </div>
 
   <div *ngIf="candidateNotFound">
     <ion-card padding>
       <ion-card-content>
-       <h4>{{candidateNotFound}}</h4>
+        <h4>{{candidateNotFound}}</h4>
       </ion-card-content>
     </ion-card>
   </div>

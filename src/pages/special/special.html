@@ -57,7 +57,7 @@
 
             <!-- <ion-label floating> Looking For?*<span class="type">(Ex.Hotels/Restaurants/Cafe)</span></ion-label> -->
             <select-searchable title="{{titleLookingFor}}" formControlName="selectedRoll" [items]="itemsRollList"
-              itemValueField="ID" itemTextField="Roll" [canSearch]="true" (onChange)="portChangeRoll($event)">
+              itemValueField="optionId" itemTextField="optionTitle" [canSearch]="true" (onChange)="portChangeRoll($event)">
             </select-searchable>
           </ion-item>
 

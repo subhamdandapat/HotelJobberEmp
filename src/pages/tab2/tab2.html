@@ -42,14 +42,14 @@
         </ng-template>
       </div>
 
-      <div>
+      <!-- <div>
           <ion-item class="input-search half">
               <select-searchable style="text-align:center;"
                                  title="{{titleSearch}}"
                                  [(ngModel)]="selectedRoll"
                                  [items]="itemsRollList"
-                                 itemValueField="RoleID"
-                                 itemTextField="Roll"
+                                 itemValueField="optionId"
+                                 itemTextField="optionTitle"
                                  [canSearch]="true"
                                  (onChange)="portChangeRoll($event)">
               </select-searchable>
@@ -69,7 +69,7 @@
               </select-searchable>
 
             </ion-item>
-      </div>
+      </div>  -->
 
 
 
@@ -188,8 +188,21 @@
                 <!--SMSSend-->
                 <div class="sendSMS">
                   <!--Whats app-->
-                  <a style="display: block;color: #11AD6E;" [href]="getWtsApp(item.Mobile)"><img  src="assets/imgs/wtsApp.png"  class="btn-pink2 wtsApp"></a>
-                  <img start *ngIf='!item.SmsSend else SmsSend' class="wtsApp" src="./assets/imgs/smsApp.png" (click)="sendMsg(i)" />
+
+                  <a style="display: block;color: #11AD6E;" [href]="getWtsApp(item.Mobile)">
+                    <!--<img  src="assets/imgs/wtsApp.png"  class="btn-pink2 wtsApp">-->
+
+                    <button mode ="md" ion-button small icon-start style="background-color: #fafafa;">
+                      <ion-icon ios="logo-whatsapp" md="logo-whatsapp" style="color: #11AD6E;margin-left: -7px;font-size: 20px;"></ion-icon>
+                      <p style="color: black;font-size:12px;margin-right: -5px;">wtsapp</p>
+                    </button>
+                  </a>
+                  <!--<a style="display: block;color: #11AD6E;" [href]="getWtsApp(item.Mobile)"><img  src="assets/imgs/wtsApp.png"  class="btn-pink2 wtsApp"></a>-->
+                  <button mode ="md" ion-button small  icon-start *ngIf='!item.SmsSend else SmsSend' (click)="sendMsg(i)" style="background-color: #fafafa">
+                    <ion-icon ios="ios-chatbubbles" md="ios-chatbubbles" style="color: #317eaa;margin-left: -5px;font-size: 20px;"></ion-icon>
+                    <p style="color: black;font-size:12px;margin-right: 8px;">SMS</p>
+                  </button>
+                  <!--<img start *ngIf='!item.SmsSend else SmsSend' class="wtsApp" src="./assets/imgs/smsApp.png" (click)="sendMsg(i)" />-->
                   <ng-template #SmsSend>
                     <img start style="width:75px ;margin-top: 5px"  src="./assets/imgs/sent-sms.png" />
                   </ng-template>

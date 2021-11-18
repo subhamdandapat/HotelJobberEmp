@@ -159,9 +159,9 @@ export class SpecialPage {
 
     //alert(parentElement.className);
     this.titleLookingFor = "";
-    this.selectedRollID = event.value.ID;
+    this.selectedRollID = event.value.optionId;
 
-    if (this.selectedRollID.trim() == "") {
+    if (this.selectedRollID == "") {
       this.visible = true;
     } else {
       this.visible = false;
@@ -201,7 +201,7 @@ export class SpecialPage {
     body.append('Address', this.organizationDetails.organisation_address);
 
     body.append('Job_Type', this.postjob_form.get('job_type').value);
-    body.append('Role_ID', this.postjob_form.get('selectedRoll').value.ID);
+    body.append('Role_ID', this.postjob_form.get('selectedRoll').value.optionId);
     body.append('New_Roll', this.postjob_form.get('looking_for1').value);
 
     body.append('Vacancy', this.postjob_form.get('vacuncy').value);
@@ -222,6 +222,7 @@ export class SpecialPage {
     body.append('Mobile', this.organizationDetails.organisation_phone);
     body.append('Mobile1', this.organizationDetails.organisation_phone1);
     //  body.append('Email_ID',this.organizationDetails.organisation_email);
+console.log(body,this.postjob_form.get('selectedRoll').value.optionId)
 
     this.job_service.postJob('job.php', body).subscribe((data: any) => {
 

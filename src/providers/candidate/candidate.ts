@@ -14,13 +14,20 @@ export class CandidateProvider {
     return this.http.get(this.baseUrl + url).map(res => res);
   }
 
+  getCandidatesforopen(url, body_parms) {
+    return this.http.post(this.newBaseUrl + url, body_parms).map(res => res)
+  }
+
   getCandidates(url, body_parms) {
     return this.http.post(this.baseUrl + url, body_parms).map(res => res)
   }
 
+
   //New API which will give you the list of candidate same like website
   getCandidateList(option, Emp_ID, page, cityTitle, jobRoll) {
-    return this.http.get(this.newBaseUrl+'candidate.php?Option='+option+'&ItemPerPage=50&Employer_ID='+Emp_ID+'&PageNo='+page+'&City='+cityTitle+'&RoleID='+jobRoll+'&OrderBy=')
+    //return this.http.get(this.newBaseUrl+'candidate.php?Option='+option+'&ItemPerPage=50&Employer_ID='+Emp_ID+'&PageNo='+page+'&City='+cityTitle+'&RoleID='+jobRoll+'&OrderBy=')
+    return this.http.get(this.newBaseUrl+'candidate.php?Option='+option+'&ItemPerPage=50&Employer_ID='+Emp_ID+'&PageNo='+page+'&City='+cityTitle+'&apply_for='+jobRoll+'&OrderBy=')
+
       .map(res => res);
   }
 

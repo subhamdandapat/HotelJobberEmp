@@ -29,9 +29,27 @@
             <img start style="width:45px;float:left;margin: 4px 3px 5px 0px;" src="assets/imgs/btn-bal-contacts.svg" />
             <span class="count ">{{balance_contact}}</span>
           </span>
-          <img (click)="goToContactPage()" start style="width:75px;float:left;margin-top:-2px" src="assets/imgs/icon-buy-more.svg" />
+         <!-- <img (click)="goToContactPage()" start style="width:75px;float:left;margin-top:-2px" src="assets/imgs/icon-buy-more.svg" />-->
+         <button ion-button  small icon-start (click)="gotoPlans()" style="background-color: orange" style="height: 32px;margin-top: 0px;margin-bottom: 0px;">
+          <ion-icon ios="md-add-circle" md="md-add-circle" style="color:white;font-size: 25px;margin-left: -5px;"></ion-icon>
+          <p style="color: white;font-size:13px;font-weight: bold;">BUY</p>
+        </button>
         </div>
       </div>
+
+      <!-- <ion-item class="input-search half">
+        <select-searchable style="text-align:center;"
+                           title="{{titleSearch}}"
+                           [(ngModel)]="selectedRoll"
+                           [items]="itemsRollList"
+                           itemValueField="ID"
+                           itemTextField="Name"
+                           [canSearch]="true"
+                           (onChange)="portChangeRoll($event)"
+                           >
+        </select-searchable>
+      </ion-item>  -->
+
 
       <ion-item class="input-search half">
         <select-searchable style="text-align:center;"
@@ -43,7 +61,12 @@
                            [canSearch]="true"
                            (onChange)="portChangeRoll($event)">
         </select-searchable>
-      </ion-item>
+    </ion-item>
+
+    
+     <!--itemValueField="ID"
+      itemTextField="Name"--> 
+     
 
       <ion-item class="input-search half">
         <select-searchable style="text-align:center;"
@@ -74,9 +97,9 @@
     <!---->
     <div *ngIf="items.length">
      <div class="box-white candidate" [class.border-shortlisted]="item.shortlist" *ngFor="let item of items; let i = index">
-      <ion-list class="tabList">
+      <ion-list class="tabList" mode=“ios” lines=“none”>
        <ion-item-sliding #slidingItem>
-         <ion-item>
+         <ion-item no-padding>
            <!--Slide border-->
            <!-- Ready to short-->
            <div style="float: right" *ngIf="item.shortlist == undefined">
@@ -90,9 +113,9 @@
            <ion-grid no-padding no-border>
              <ion-row>
                <ion-col col-8 style="padding-bottom: 8px; !important;">
-                 <ion-item no-border no-padding (click)="candidateDetail(item, i)">
+                 <ion-item mode=“ios” no-border no-padding (click)="candidateDetail(item, i)">
                    <!--Candidate image  -->
-                   <ion-avatar item-start no-padding>
+                   <ion-avatar mode=“ios” item-start no-padding>
                      <img  *ngIf="item.Image" style="border: 2px solid #DEDEDD;" src="https://www.hoteljobber.com/user_image/{{item.Image}}" />
                      <img  *ngIf="!item.Image"  src="assets/imgs/icon-footer-candidates.svg" />
                    </ion-avatar>
@@ -168,12 +191,20 @@
                  </div>
 
                  <div *ngIf="!item.ShowMobile" style="text-align: end; right: 2px; top: 12px; position: absolute;display: grid;" (click)="displayContact(item.ID,i)">
-                   <img  src="assets/imgs/icon-unlock.svg"  class="btn-pink">
-                   <img  src="assets/imgs/wtsApp.png"  class="btn-pink wtsApp">
-                   <img  src="assets/imgs/smsApp.png"  class="btn-pink wtsApp">
+                   <img  src="assets/imgs/icon-unlock.svg"  class="btn-pink" style="margin-top: 10px;">
+                   <!--<img  src="assets/imgs/wtsApp.png"  class="btn-pink wtsApp">-->
+                   <button mode ="md" ion-button small icon-start style="background-color: #fafafa; margin-top: 15px;">
+                    <ion-icon ios="logo-whatsapp" md="logo-whatsapp" style="color: #11AD6E;margin-left: -7px;font-size: 20px;"></ion-icon>
+                    <p style="color: black;font-size:12px;margin-right: -5px;">wtsapp</p>
+                  </button>
+                  <button mode ="md" ion-button small  icon-start style="background-color: #fafafa; margin-top: 15px;">
+                    <ion-icon ios="ios-chatbubbles" md="ios-chatbubbles" style="color: #317eaa;margin-left: -15px;font-size: 20px;"></ion-icon>
+                    <p style="color: black;font-size:12px;">SMS</p>
+                  </button>
+                   <!--<img  src="assets/imgs/smsApp.png"  class="btn-pink wtsApp">-->
                  </div>
                  <!--Call and MSG-->
-                 <i *ngIf="item.ShowMobile==true" style="width: 14px; top: 24px; position: absolute;right: 102px;" class="flag-icon flag-icon-{{item?.CountryFlag.toLowerCase()}}"></i>
+                 <i *ngIf="item.ShowMobile==true" style="width: 14px; top: 24px; position: absolute;right: 102px;" class="flag-icon flag-icon-{{item?.CountryFlag}}"></i>
                  <div class="contact" *ngIf="item.ShowMobile==true">
                    <div (click)="callJoint(item.Mobile)" class="show-contact">
                      <img style="width:15px;margin: 3px 3px 0px 0px;" src="assets/imgs/icon-call1.svg" />
@@ -182,8 +213,22 @@
                    <!--SMSSend-->
                    <div class="sendSMS">
                      <!--Whats app-->
-                     <a style="display: block;color: #11AD6E;" [href]="getWtsApp(item.Mobile)"><img  src="assets/imgs/wtsApp.png"  class="btn-pink2 wtsApp"></a>
-                     <img start *ngIf='!item.SmsSend else SmsSend' class="btn-pink2 wtsApp" src="assets/imgs/smsApp.png" (click)="sendMsg(i)" />
+                     <a style="display: block;color: #11AD6E;" [href]="getWtsApp(item.Mobile)">
+                      <!--<img  src="assets/imgs/wtsApp.png"  class="btn-pink2 wtsApp">-->
+
+                      <button mode ="md" ion-button small icon-start style="background-color: #fafafa;">
+                        <ion-icon ios="logo-whatsapp" md="logo-whatsapp" style="color: #11AD6E;margin-left: -7px;font-size: 20px;"></ion-icon>
+                        <p style="color: black;font-size:12px;margin-right: -5px;">wtsapp</p>
+                      </button>
+                    </a>
+                     <!--<img start *ngIf='!item.SmsSend else SmsSend' class="btn-pink2 wtsApp" src="assets/imgs/smsApp.png" (click)="sendMsg(i)" />-->
+
+                     <button mode ="md" ion-button small  icon-start *ngIf='!item.SmsSend else SmsSend' (click)="sendMsg(i)" style="background-color: #fafafa">
+                      <ion-icon ios="ios-chatbubbles" md="ios-chatbubbles" style="color: #317eaa;margin-left: -5px;font-size: 20px;"></ion-icon>
+                      <p style="color: black;font-size:12px;margin-right: 8px;">SMS</p>
+                    </button>
+
+
                      <ng-template #SmsSend>
                        <img start style="float: right; margin: 4px 1px 2px 1px; width: 75px;"  src="./assets/imgs/sent-sms.png" />
                      </ng-template>
@@ -238,8 +283,14 @@
     </ion-infinite-scroll>
   </div>
   <ion-footer ion-fixed class="foot">
-    <ion-toolbar [class.HideScroll]="hideScroll">
+    <ion-toolbar [class.HideScroll]="hideScroll" mode=“ios” lines=“none”>
       <button right (click)="ScrollToTop()" ion-fab mini end ><ion-icon icon-only small name="arrow-round-up"></ion-icon></button>
+    </ion-toolbar>
+  </ion-footer>
+  
+  <ion-footer ion-fixed class="foott">
+    <ion-toolbar mode=“ios” lines=“none”>
+      <button right (click)="openIMP()" ion-fab mini end ><ion-icon><p style="font-size: x-small;color: #fafafa;">IMP <br>NOTE</p></ion-icon></button>
     </ion-toolbar>
   </ion-footer>
 </ion-content>

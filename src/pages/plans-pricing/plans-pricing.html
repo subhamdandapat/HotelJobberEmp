@@ -65,9 +65,9 @@
             | date: 'dd MMM yyyy' }}</span>
         </div>
 
-        <div class="job-details">
+        <!-- <div class="job-details">
           <span>Validity:</span> <span>{{MyplansData?.plan_duration}} Months</span>
-        </div>
+        </div> -->
 
         <div class="job-details">
           <span>Your plan will expire on:</span> <span style="color:rgb(156, 86, 86);font-style:italic">{{MyplansData?.Expiry_Date
@@ -106,7 +106,7 @@
         <div>
           <div style="font-size:12px;float:right;color:rgb(156, 86, 86);font-style:italic;padding-left: 5px">{{MyplansData?.Expiry_Date
             | date: 'dd MMM yyyy'}}</div>
-          <div style="font-size:12px;float:right ; font-style:italic;color:rgb(56, 146, 56);">{{MyplansData?.Purchase_Date
+          <div style="font-size:12px;float:right ; font-style:italic;color:rgb(56, 146, 56);">{{MyplansData?.Purchase_Date.slice(0,10)
             | date: 'dd MMM yyyy'}}<span style="color:black;padding-left: 5px">To</span></div>
 
         </div>
@@ -132,13 +132,13 @@
           </div>
 
           <div class="job-details">
-            <span>Registered On:</span> <span style="color:rgb(56, 146, 56);font-style:italic">{{MyplansData?.Purchase_Date
+            <span>Registered On:</span> <span style="color:rgb(56, 146, 56);font-style:italic">{{MyplansData?.Purchase_Date.slice(0,10)
               | date: 'dd MMM yyyy'}}</span>
           </div>
 
-          <div class="job-details">
+          <!-- <div class="job-details">
             <span>Validity:</span> <span>{{MyplansData?.plan_duration}} Months</span>
-          </div>
+          </div> -->
 
           <div class="job-details">
             <span>Your plan will expire on:</span> <span style="color:rgb(156, 86, 86);font-style:italic">{{MyplansData?.Expiry_Date

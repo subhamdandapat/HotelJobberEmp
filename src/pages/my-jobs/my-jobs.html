@@ -1,24 +1,25 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>My Jobs</ion-title>
+    <ion-title>Jobs In {{orgInformation.jobTitle}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content  padding>
-  <div style="overflow:hidden;background:#fff;width:100% ;padding:5px;" ion-fixed>
+ <!-- <div style="overflow:hidden;background:#fff;width:100% ;padding:5px;" ion-fixed>
     <div class="main-header" style="color: #5d9029;text-align: center;width:100%"> {{orgInformation?.jobTitle}}</div>
-  </div>
+  </div>-->
 
-  <div style="margin-top:20px" *ngIf="jobList">
+  <div style="margin-top:20px" *ngIf="jobList ">
     <ion-list *ngFor="let job of jobList; let i = index">
 
-      <div class="box-white"   [class.background-red]="job.Expired">
+      <div class="box-white"   [class.background-red]="job.Expired"  *ngIf="orgInformation.jobTitle  == job.Organisation_Name">
         <!--Active-->
         <div style="padding-bottom: 30px">
           <div class="top">
-            <span *ngIf="!job.Expired; else elseBlock">
+            <!--<span *ngIf="!job.Expired; else elseBlock">-->
+              <span *ngIf=" !job.Job_Expired; else elseBlock">
               <span class="activeDot activeExepired"></span>
               <span>Active</span>
             </span>
@@ -38,8 +39,8 @@
           <ion-row no-padding>
             <!--Logo-->
             <ion-col col-3>
-              <img *ngIf="job.organisation_logo != ''" src="https://www.hoteljobber.com/org_logos/{{job.organisation_logo}}" />
-              <img class="img-logo" *ngIf="job.organisation_logo == ''" src="assets/imgs/icon-org-logo.png"  />
+              <img *ngIf="job.organisation_logo" src="https://www.hoteljobber.com/org_logos/{{job.organisation_logo}}" />
+              <img class="img-logo" *ngIf="!job.organisation_logo" src="assets/imgs/icon-org-logo.png"  />
             </ion-col>
             <!--Content-->
             <ion-col col-9>
@@ -47,12 +48,11 @@
                 {{job.Organisation_Name}}
               </div>
 
-              <div class="org-type">
-                {{job?.Organisation_Type}}
-              </div>
+              <div style="font-style: italic;font-size: 12px;color: #919191;font-weight: bold;">{{job.organisation_type}}</div>
+              <div style="font-size: 12px;">{{job.organisation_address}}</div>
 
               <div class="location">
-                <ion-icon name="pin"></ion-icon>
+                <ion-icon name="pin" style="color:tomato;"></ion-icon>
                 <span> {{ job.City }}, {{ job.Country }}</span>
               </div>
 
@@ -60,14 +60,25 @@
           </ion-row>
         </ion-grid>
 
+        <div class="applied" *ngIf="job?.Applied_Count > 0" >
+          <div  *ngIf="job?.Applied_Count" (click)="openAppliedList(job.ID)">
+            <p ion-fab right>{{job?.Applied_Count}}</p>
+          </div>
+          <p  style="color: #0093AD; ">Applications</p>
+  
+        </div>
+        
         <div class="jobExtra">
           <p class="list-title" (click)="jobDetails(job)"> {{  job?.JobTitle}} Required</p>
           <div>
 
             <!--Applied Count-->
-            <div class="applied" *ngIf="job?.Applied_Count > 0" (click)="openAppliedList(job.ID)">
-              <p ion-fab right>{{job?.Applied_Count}}</p> Applied
-            </div>
+           <!-- <div class="applied" *ngIf="job?.Applied_Count > 0" (click)="openAppliedList(job.ID)">
+              <p ion-fab right>{{job?.Applied_Count}}</p>
+              <p  style="font-size: 8px;color: #0093AD; ">Applications</p>
+            </div>-->
+
+           
 
             <div class="jobCat">
                 <span>Job Category:
@@ -97,6 +108,12 @@
           <ion-icon name="pause" left small icon-only></ion-icon>
           <span>Pause</span>
         </div>-->
+        <div class="bbox">
+          <button  ion-button color="#ed8000" (click)="openBroadcast(job)"> 
+           <p style="font-weight:500;">Broadcast Job @<br>
+            Just Rs.{{plan_cost}}</p>
+          </button>
+        </div>
       </div>
     </ion-list>
   </div>

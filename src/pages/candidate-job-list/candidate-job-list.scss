@@ -195,21 +195,8 @@ page-candidate-job-list {
         display: inline-block;
       }
 
-      .applied {
-        color: #a69b9b;
-        float: right;
-        padding-right: 6px;
-        .fab {
-          width: 40px;
-          height: 40px;
-          background-color: #2AA52A;
-          margin: 3px;
-        }
-        p {
-          font-size: 14px;
-        }
-
-      }
+     
+     
       .applied:active {
          .fab {
            width: 42px !important;
@@ -220,6 +207,7 @@ page-candidate-job-list {
 
     }
 
+   
     .foot {
       background-color: transparent;
       width: 14% !important;
@@ -262,7 +250,7 @@ page-candidate-job-list {
       }
 
       ion-col[col-9] {
-        padding-top: 8px!important;
+       // padding-top: 8px!important;
         .roll-text {
           font-size: 14px;
           color: #0093AD;
@@ -281,9 +269,20 @@ page-candidate-job-list {
         }
       }
     }
+    .bbox {
+      background: rgb(255, 255, 255);
+      //padding: 20px 20px 20px 40px;
+      text-align: center;
+      //margin-left: 60px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      
+    
+    }
     .box-white {
-      padding: 6px 6px 6px 6px;
-      margin: 2px 0px 8px 0px;
+     // padding: 6px 6px 6px 6px;
+      //margin: 2px 0px 8px 0px;
+      padding: 10px 10px 10px 6px;
       overflow: hidden;
       border: 1px solid #e6e4e4;
       border-radius: 10px !important;
@@ -319,6 +318,25 @@ page-candidate-job-list {
       }
       .job-details {
         margin-top: 8px;
+      }
+
+      .aapplied {
+        color: #a69b9b;
+        float: right;
+       // padding-right: 6px;
+        .fab {
+          width: 40px;
+          height: 40px;
+          background-color: #2AA52A;
+          margin: 3px;
+        }
+        p {
+          font-size: 14px;
+          align-items: center;
+          margin-left: -15px;
+          margin-top: 0px;
+        }
+
       }
 
     }

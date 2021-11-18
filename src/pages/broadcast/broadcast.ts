@@ -30,14 +30,20 @@ export class BroadcastPage {
   transID: string = '';
   noJobsFound: boolean = false;
   noOrgFound: boolean = false;
+  planList: any;
+  plan_cost: any;
+  plan_id: any;
+  islist: boolean  =false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private localStorage: StorageProvider, private platform: Platform,
               private modalCtrl: ModalController, private empProvider: EmployeerProvider,  public job_service: JobProvider, private planProvider: PlanPrizeProvider,
-              public alertCtrl: AlertController, private widget:WidgetProvider, private orgProvider: OrganizationProvider) {}
+              public alertCtrl: AlertController, private widget:WidgetProvider, private orgProvider: OrganizationProvider,
+              private broadPlanProvider: BroadcastProvider) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BroadcastPage');
     this.fetchSP();
+    this.getPlanList()
   }
 
   ionViewWillEnter(): void {
@@ -54,6 +60,7 @@ export class BroadcastPage {
     this.localStorage.getStorage('employeer_details').then((employeeDetail: any) => {
       this.Emp =  JSON.parse(employeeDetail);
       this.getMyJob(this.Emp.ID);
+      this.getSentList()
     });
   }
 
@@ -91,17 +98,18 @@ export class BroadcastPage {
     body.append('Emp_ID', EMP_ID);
 
     this.job_service.postJob('job.php', body).subscribe((data:any) => {
+      console.log("myPostedJob------->>",data)
        if (data.status == "success") {
          if (this.myPostedJob.length > 0) {
            for (let i = 0; i < data.jobs.length; i++) {
-             if (!data.jobs[i].Expired) {
+             if (!data.jobs[i].Job_Expired ) {
                this.myPostedJob.push(data.jobs[i]);
              }
            }
          } else {
            for (let i = 0; i < data.jobs.length; i++) {
-             if (!data.jobs[i].Expired) {
-               this.myPostedJob.push(data.jobs[i]);
+             if (data.jobs[i].Job_Expired) {
+               //this.myPostedJob.push(data.jobs[i]);
              }
            }
          }
@@ -180,5 +188,43 @@ export class BroadcastPage {
       event.complete();
     }, 2000);
   }
+
+  openAppliedList(jobID): void {
+    const modalOptions: ModalOptions = { enableBackdropDismiss: false };
+    let openAppliedJob: Modal = this.modalCtrl.create('AppliedCandidatePage',{info:jobID}, modalOptions);
+    openAppliedJob.onDidDismiss((data) => {
+      this.backButton();
+    });
+    openAppliedJob.present().then(res => {});
+  }
+
+    // This will give you all plan and details
+    getPlanList(): void {
+      // This will get available plans for purchase
+      this.broadPlanProvider.getBroadcastPlanList('plans.php?option=broadcast_plans').subscribe((res:any) => {
+        console.log("getBroadcastPlanList----------->",res)
+        if (res.status == 'success') {
+         /* res.plans.filter(plan => true).map(plan => {  plan['iconName'] = 'remove-circle'});*/
+          this.planList = res.plans;
+          this.plan_cost = res.plans[0].plan_cost;
+          this.plan_id = res.plans[0].plan_id;
+          
+        }
+      });
+    }
+
+    getSentList(): void {
+      this.broadPlanProvider.getBroadcastSentList('broadcast.php?Option=sendList&ItemPerPage=50&Emp_ID='+this.Emp.ID+'&PageNo='+this.page)
+        .subscribe((res: any) => {
+          console.log(res)
+          if (res.status == 'success') {
+            if ( res.broadcast_list.length > 0 ) {
+             this.islist  = true
+            } else {
+              
+            }
+          }
+        })
+    }
 
 }

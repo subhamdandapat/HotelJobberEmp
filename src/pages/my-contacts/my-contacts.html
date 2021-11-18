@@ -20,9 +20,9 @@
 <ion-content class="login-content" padding>
 
   <div class="box">
-    <h1>My Contacts</h1>
+    <h1 *ngIf  = "planstatus != 'failed'">My Contacts</h1>
 
-    <ion-row>
+    <ion-row *ngIf  = "planstatus != 'failed'">
       <ion-col>
 
         <h6>
@@ -37,7 +37,7 @@
 
     </ion-row>
 
-    <div class="box-yellow">
+    <div class="box-yellow" *ngIf  = "planstatus != 'failed'">
       <div class="i-desc">
         <h5 style="padding-right:-2px;">
           Viewed
@@ -57,10 +57,13 @@
       </div>
     </div>
 
-    <div class="text-colors text-colors-gray">
+    <div class="text-colors text-colors-gray" *ngIf  = "planstatus != 'failed'">
       Your Plan Validity Expires On: <span class="text-colors-red">{{newDate | date :'dd MMM yyyy'}}</span>
     </div>
 
+    <div class="box">
+      <button  ion-button (click)="gotoPlans()"> Plans & Pricing</button>
+    </div>
   </div>
 <div *ngIf="Total_Contact > 0">
 
@@ -111,13 +114,12 @@
       </div>
     </ng-template>
 
+    <!--<button class="dialog-btn" (click)="gotoPlans()">Plans & Pricing</button>-->
 
   </div>
 
 
-  <!--<div class="box">
-    <button class="next-btn" ion-button (click)="PaymentDetails()"> Buy Now</button>
-  </div>-->
+  
 
 </div>
 

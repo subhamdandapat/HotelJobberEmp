@@ -65,7 +65,7 @@ export class Tab2Page {
   selectedCountry: any;
   update_flag: boolean = false;
   page: number = 0;
-  titleSearch: String = "Search by Role";
+  titleSearch: String = "Search by Category";
   titleCity: String = "Search by City";
   ports: any = [] = [];
   hideScroll: boolean = true;
@@ -170,8 +170,10 @@ export class Tab2Page {
 
   getAllRoll() {
     let body = new FormData();
-    body.append('option', 'AllActiveRoles');
+    //body.append('option', 'AllActiveRoles');
+    body.append('option', 'AvailableRoles');
     this.org_service.createOrganization('common-operations.php', body).subscribe((data: any) => {
+     
         this.itemsRollList = data;
       },
       err => {
@@ -205,12 +207,12 @@ export class Tab2Page {
     this.titleSearch = "";
     this.flags = "search";
     this.search_flag = true;
-    this.selectedRollID = event.value.RoleID;
+    this.selectedRollID = event.value.optionId;
     //this.selectedCountry=event.value.Name;
 
     this.localStorage.setStorage('search_roll_index', this.itemsRollList.indexOf(event.value));
     this.page = 0;
-    console.log('this.getCandidates()  called:');
+    console.log('this.getCandidates()  called:',this.itemsRollList.indexOf(event.value));
     this.getCandidates();
     this.items = '';
   }
@@ -361,6 +363,7 @@ export class Tab2Page {
     body.append('RoleID', this.selectedRollID);
     body.append('City', this.optionTitle1);
     this.service.getCandidates('candidate.php', body).subscribe((data: any) => {
+      console.log("tab 2 data ------>",data)
         if (data.status == "success") {
           //Lets put last seen label based on regDate == lastUpdate.
           this.items1 = data.candidates;

@@ -24,6 +24,7 @@ export class BroadcastSentPage {
   getSentList(): void {
     this.broadcastProvider.getBroadcastSentList('broadcast.php?Option=sendList&ItemPerPage=50&Emp_ID='+this.navParams.get('emp_ID')+'&PageNo='+this.page)
       .subscribe((res: any) => {
+        console.log(res)
         if (res.status == 'success') {
           if ( this.broadcastList.length > 0 ) {
             for (let i = 0; i < res.broadcast_list.length; i++) {

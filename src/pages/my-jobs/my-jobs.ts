@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {IonicPage, Modal, ModalController, ModalOptions, NavController, NavParams, Platform} from 'ionic-angular';
+import { BroadcastProvider } from '../../providers/broadcast/broadcast';
 import { JobProvider } from "../../providers/job/job";
+import { StorageProvider } from '../../providers/storage/storage';
 
 @IonicPage()
 @Component({
@@ -8,17 +10,28 @@ import { JobProvider } from "../../providers/job/job";
   templateUrl: 'my-jobs.html',
 })
 export class MyJobsPage {
+  Emp: any;
   orgInformation: any;
   page: number = 0;
   jobList: any[] = [];
+  jobtitle:any="My Jobs";
+  currentDate :any = new Date()
+  planList: any;
+  plan_cost: any;
+  plan_id: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private  job_service: JobProvider, private modalCtrl:  ModalController,
-              private platform: Platform) {
+              private platform: Platform,private localStorage: StorageProvider,private broadPlanProvider: BroadcastProvider) {
     this.orgInformation = this.navParams.get('orgInfo');
+    console.log(this.orgInformation)
     this.getMyJobList();
+    this.getPlanList()
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MyJobsPage');
+    console.log('ionViewDidLoad MyJobsPage',this.currentDate);
+    this.localStorage.fetchSP().then((employeeDetail: any) => {
+      this.Emp =  JSON.parse(employeeDetail);
+    });
   }
 
   ionViewWillEnter() {
@@ -35,6 +48,8 @@ export class MyJobsPage {
     this.job_service.getJobList('job.php?option=employerJobs&Jobs_Per_Page=50&Emp_ID='+this.orgInformation.emp_ID+'&Org_ID='+this.orgInformation.org_ID+'&Page_No='+this.page).subscribe((data: any) => {
 
         if (data.status == 'success' && data.jobs) {
+          console.log("my jobs----->k,",data.jobs);
+          this.jobtitle  ="Jobs In" + " " +data.jobs[0].Organisation_Name
           //If jobList empty or not
           if (this.jobList.length > 0) {
             for (let i = 0; i < this.jobList.length; i++) {
@@ -70,6 +85,27 @@ export class MyJobsPage {
     openAppliedJob.present().then(res => {});
   }
 
+   //Finally Broadcast page
+   openBroadcast(post): void {
+    let broadMessage = { job_roll: post.Roll, emp_Name: this.Emp.Name, rollID: post.RollID, cityID: post.CityID, emp_mobile: this.Emp.Mobile, emp_email: this.Emp.Email_ID, emp_ID: this.Emp.ID, postID: post.ID, jobTitle: post.JobTitle, city: post.City, hotelName: post.Organisation_Name, minSal: post.MinSalary, maxSal: post.MaxSalary, contact: post.ContactNo};
+    this.navCtrl.push('BroadcastPaymentPage', {message: broadMessage}).then();
+  }
+
+
+   // This will give you all plan and details
+   getPlanList(): void {
+    // This will get available plans for purchase
+    this.broadPlanProvider.getBroadcastPlanList('plans.php?option=broadcast_plans').subscribe((res:any) => {
+      console.log("getBroadcastPlanList----------->",res)
+      if (res.status == 'success') {
+       /* res.plans.filter(plan => true).map(plan => {  plan['iconName'] = 'remove-circle'});*/
+        this.planList = res.plans;
+        this.plan_cost = res.plans[0].plan_cost;
+        this.plan_id = res.plans[0].plan_id;
+        
+      }
+    });
+  }
   /*deleteJob(Job_id) {
     let alert = this.alertCtrl.create({
       title: '',

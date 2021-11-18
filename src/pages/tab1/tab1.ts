@@ -37,7 +37,7 @@ export class Tab1Page {
   selectedCountryID: any;
   itemsCountryList: any;
   selectedRollID: any="";
-  itemsRollList: any[] = [];
+  itemsRollList: any;
   searchResultsCount: any;
   search_text: string;
   EMP_ID: any;
@@ -66,8 +66,8 @@ export class Tab1Page {
   selectedCountry: any;
   update_flag:boolean=false;
   page: number = 0;
-  titleSearch: String = "Search by Role";
-  titleCity: String = "Search by City Name";
+  titleSearch: String = "Search in Group";
+  titleCity: String = "Search City";
   ports: any  []=[];
   hideScroll: boolean = true;
   flagName: string = 'in';
@@ -85,6 +85,10 @@ export class Tab1Page {
   appCloseOpen: boolean = false;
  wtsURL: string = '';
   finalWtsUrl: any;
+
+  //serch list ...
+  showLevel1 = null;
+showLevel2 = null;
   constructor( public alertCtrl: AlertController, private cityService:CityProvider, private checkUpdate: CheckupdateProvider,
                public org_service: OrganizationProvider, private empProvider: EmployeerProvider,
                public navCtrl: NavController, public modalCtrl: ModalController, private datePipe: DatePipe,
@@ -169,6 +173,7 @@ export class Tab1Page {
     this.localStorage.fetchSP().then((employeeDetail: any) => {
       this.EMP_ID = JSON.parse(employeeDetail).ID;
       this.Plan_ID = JSON.parse(employeeDetail).Plan;
+      console.log("plan id----->",this.Plan_ID)
       this.getDashboardCount(this.EMP_ID);
       this.countNotification();
     });
@@ -231,8 +236,11 @@ export class Tab1Page {
 
     body.append('option', 'DashboardCounts');
     body.append('Employer_ID', ID);
-    this.org_service.createOrganization('common-operations.php', body).subscribe(
+    this.org_service.createOrganizationcount('common-operations.php', body).subscribe(
+      
       (data: any) => {
+        //console.log("dashboard data ------->>",data);
+        
         this.countsData = data;
         this.balance_contact = data.balance_contact;
       },
@@ -245,10 +253,31 @@ export class Tab1Page {
   // This will get all job roll/Job type.
   getAllRoll() {
     let body = new FormData();
-    body.append('option', 'AllActiveRoles');
+    //body.append('option', 'AllActiveRoles');
+    //body.append('option', 'AvailableRoles');
+    body.append('option', 'AllJobCategoryAndRolls');
+
+
     this.org_service.createOrganization('common-operations.php', body).subscribe(
-      (data: any) => {
-        this.itemsRollList = data;
+      (data:any) => {
+        
+        //this.itemsRollList = data
+       // this.itemsRollList  = this.itemsRollList - 1
+       
+       var arr =[]
+       arr.push({RoleID:0,Roll:"All"})
+        for(let i=0;i<data.length-1;i++){
+        
+          let newName = {
+            RoleID:data[i].Job_Rolls,
+            Roll:data[i].Name
+            
+         }
+         arr.push(newName)
+        }
+       
+        this.itemsRollList =arr
+        //console.log("port chnage roll-------->",this.itemsRollList);
         this.getFilter();
       },
       err => {
@@ -264,17 +293,49 @@ export class Tab1Page {
   onClear(event: { component: SelectSearchable, value: any }) {}
 
   portChangeRoll(event: { component: SelectSearchable, value: any }) {
+    //   console.log("selected value----->",event)
+    // const modalOptions: ModalOptions = { enableBackdropDismiss: true };
+    // let modal = this.modalCtrl.create('VirtualscrollPage',{info:event.value}, modalOptions);
+    // modal.onDidDismiss((data: any) => {
+    //  console.log("on dismiss data ----------->",data);
+    // this.titleSearch = "";
+    // this.flags = "search";
+    // this.search_flag = true;
+    // this.selectedRollID = data;
+    // this.localStorage.setStorage('search_roll_index', this.itemsRollList.indexOf(event.value));
+    // this.items = [];
+    // this.getFilter(true);
+    //   this.backButton();
+    // });
+    // modal.present().then();
+
+
+
+    //console.log("selected value----->",event.value)
     this.titleSearch = "";
     this.flags = "search";
     this.search_flag = true;
     this.selectedRollID = event.value.RoleID;
-    //this.selectedCountry=event.value.Name;
+    //this.selectedRollID = event.value.ID;
+
     this.localStorage.setStorage('search_roll_index', this.itemsRollList.indexOf(event.value));
-    //this.page = 0;
     this.items = [];
     this.getFilter(true);
+    //this.getCandidates();
   }
 
+  customsearch(event: { component: SelectSearchable, value: any }){
+    //console.log("custom search---->",event)
+    let text = (event.value || '').trim().toLowerCase();
+    if (!text) {
+      event.component.items = [];
+      return;
+    } else if (event.value.length < 3) {
+      return;
+    }
+
+    event.component.isSearching = true;
+  }
   searchPorts(event: { component: SelectSearchable, text: string }) {
     let text = (event.text || '').trim().toLowerCase();
     if (!text) {
@@ -318,8 +379,10 @@ export class Tab1Page {
   }
 
  getFilter(searchByCity?) {
+console.log("search data--->",this.selectedRollID)
     this.service.getCandidateList('SearchCandidatesShow',this.EMP_ID, this.page, this.searchCityID, this.selectedRollID).subscribe(
       (data: any) => {
+        console.log("sssss-------",data)
         this.Total_Contact = data.total_contact;
         if (data.status == 'success') {
           // After get data then will update existing according to condition. this.do_Refresh
@@ -406,6 +469,7 @@ export class Tab1Page {
  }
 
  goToContactPage() {
+   console.log("this.Plan_ID----->",this.Plan_ID)
     if (this.Plan_ID > 0) {
       this.navCtrl.push('MyContactsPage', {
 
@@ -418,7 +482,7 @@ export class Tab1Page {
   }
 
   gotoPlans(): void {
-    this.navCtrl.setRoot("PlansPricingPage", {}).then();
+    this.navCtrl.push("PlansPricingPage", {}).then();
   }
 
   // This will auto pop-up the native calling pad.
@@ -432,16 +496,17 @@ export class Tab1Page {
     //this.reported_flag=false;
     this.play();
     this.widget.showLoading('').then();
-
+console.log(candidate_id,this.EMP_ID)
     if (this.Plan_ID > 0) {
       let body = new FormData();
       body.append('Option', 'ViewContacts');
       body.append('User_ID', candidate_id);
       body.append('Employer_ID', this.EMP_ID);
-
-      this.service.getCandidates('candidate.php', body).subscribe(
+       //candidate.php
+      this.service.getCandidatesforopen('common-operations.php', body).subscribe(
         (data: any) => {
           this.displatDetails = data;
+          console.log("this.displatDetails------>",data)
           if (this.displatDetails.access) {
             this.items[index].AlowReport = true;
             this.flag = true;
@@ -451,6 +516,8 @@ export class Tab1Page {
             this.View_Contact = this.displatDetails.user.View_Contact;
           } else {
             this.flag = false;
+            
+            this.widget.presentToast(this.displatDetails.message).then()
           }
           this.widget.hideLoading().then();
         },
@@ -486,8 +553,10 @@ export class Tab1Page {
   }
 
   getCandidates(): void {
+    
     this.service.getCandidateList('SearchCandidatesShow',this.EMP_ID, this.page, this.searchCityID, this.selectedRollID).subscribe((data: any) => {
         this.items1 = data.candidates;
+        
         if (data.status == 'success') {
           this.items1.filter(object => object.ID == object.ID).map((res: any) => {
             if (res.Reg_Date) {
@@ -604,6 +673,17 @@ export class Tab1Page {
       this.hideScroll = true;
     });
   }
+
+  openIMP(){
+    const modalOptions: ModalOptions = { enableBackdropDismiss: true };
+    let modal = this.modalCtrl.create('ImportantNotePage', modalOptions);
+    modal.onDidDismiss((data: any) => {
+     // Do things if required :-)
+      this.backButton();
+    });
+    modal.present().then();
+  }
+
 
 }
 

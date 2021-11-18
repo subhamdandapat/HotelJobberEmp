@@ -8,6 +8,7 @@ import { StorageProvider } from "../../providers/storage/storage";
 import { WidgetProvider } from "../../providers/widget/widget";
 import { EmployeerProvider } from "../../providers/employeer/employeer";
 import { SelectSearchable } from "ionic-select-searchable";
+import { BroadcastProvider } from '../../providers/broadcast/broadcast';
 
 @IonicPage()
 @Component({
@@ -15,6 +16,7 @@ import { SelectSearchable } from "ionic-select-searchable";
   templateUrl: 'candidate-job-list.html',
 })
 export class CandidateJobList {
+  Emp: any;
   candidateJobList: any[] = [];
   jobRollList: any[] = [];
   empJobList: any[] = [];
@@ -31,12 +33,18 @@ export class CandidateJobList {
   totalJobs: number = 0;
   expiredJobCount: number = 0;
   activeJobCount: number = 0;
+  currentDate :any = new Date()
+  planList: any;
+  plan_cost: any;
+  plan_id: any;
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, private alertCtrl: AlertController,
               private datePipe: DatePipe, public platform: Platform, public navParams: NavParams,private empProvider: EmployeerProvider,
-              private localStorage: StorageProvider, public job_service: JobProvider, private widget: WidgetProvider) {
+              private localStorage: StorageProvider, public job_service: JobProvider, private widget: WidgetProvider,
+              private broadPlanProvider: BroadcastProvider) {
     this.getCandidateJobList();
     this.getAllRoll();
     this.fetchSData();
+    this.getPlanList()
   }
 
   ionViewWillEnter(): void {
@@ -56,6 +64,7 @@ export class CandidateJobList {
 
   fetchSData(): void {
     this.localStorage.fetchSP().then((employeeDetail: any) => {
+      this.Emp =  JSON.parse(employeeDetail);
      this.getMyJobs(JSON.parse(employeeDetail).ID);
     });
   }
@@ -63,8 +72,22 @@ export class CandidateJobList {
   getMyJobs(Emp_ID): void {
     this.job_service.getEmpMyJobs('job.php?option=employerJobs&Jobs_Per_Page=100&Emp_ID='+Emp_ID+'&Org_ID=&Page_No=0&OrderBy=').subscribe( (data:any) => {
       if (data.status == 'success') {
-        this.empJobList = data.jobs;
+        console.log("my jobs data------->",data.jobs);
+       // this.empJobList = data.jobs;
         this.countNumberOfJobs(this.empJobList);
+        if (this.empJobList.length > 0) {
+          for (let i = 0; i < data.jobs.length; i++) {
+            if (!data.jobs[i].Job_Expired ) {
+              this.empJobList.push(data.jobs[i]);
+            }
+          }
+        } else {
+          for (let i = 0; i < data.jobs.length; i++) {
+            if (data.jobs[i].Job_Expired) {
+              //this.myPostedJob.push(data.jobs[i]);
+            }
+          }
+        }
       }
     })
   }
@@ -80,6 +103,9 @@ export class CandidateJobList {
   getCandidateJobList() {
     this.job_service.getCandidateJobList('job.php?option=userJobs&Jobs_Per_Page=100&User_ID=&Page_No='+this.page+'&OrderBy=desc&quicksearch='+this.selectedRollID).subscribe((data: any) => {
       if (data.status == 'success' && data.jobs) {
+        
+        console.log("jobs data------->",data.jobs);
+
         this.totalJobs = data.total_job_count;
         if (this.candidateJobList.length > 0) {
           for (let i = 0; i < data.jobs.length; i++) {
@@ -171,11 +197,31 @@ export class CandidateJobList {
     });
   }
 
+   //Finally Broadcast page
+   openBroadcast(post): void {
+    let broadMessage = { job_roll: post.Roll, emp_Name: this.Emp.Name, rollID: post.RollID, cityID: post.CityID, emp_mobile: this.Emp.Mobile, emp_email: this.Emp.Email_ID, emp_ID: this.Emp.ID, postID: post.ID, jobTitle: post.JobTitle, city: post.City, hotelName: post.Organisation_Name, minSal: post.MinSalary, maxSal: post.MaxSalary, contact: post.ContactNo};
+    this.navCtrl.push('BroadcastPaymentPage', {message: broadMessage}).then();
+  }
   doRefresh(event) {
     this.candidateJobList = [];
     this.getCandidateJobList();
     setTimeout(() => {
       event.complete();
     }, 3000);
+  }
+
+   // This will give you all plan and details
+   getPlanList(): void {
+    // This will get available plans for purchase
+    this.broadPlanProvider.getBroadcastPlanList('plans.php?option=broadcast_plans').subscribe((res:any) => {
+      console.log("getBroadcastPlanList----------->",res)
+      if (res.status == 'success') {
+       /* res.plans.filter(plan => true).map(plan => {  plan['iconName'] = 'remove-circle'});*/
+        this.planList = res.plans;
+        this.plan_cost = res.plans[0].plan_cost;
+        this.plan_id = res.plans[0].plan_id;
+        
+      }
+    });
   }
 }

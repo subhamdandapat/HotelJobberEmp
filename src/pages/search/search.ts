@@ -11,9 +11,10 @@ export class SearchPage {
   list: any;
   items:any = [];
   selectedItem:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private view: ViewController) {console.log('Search');}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private view: ViewController) {console.log('Search----------<<<>>>>');}
 
   ionViewWillEnter() {
+    console.log("search data log-------------->>>")
     this.list = this.navParams.get('data');
     for (let data1 of this.list) {
       this.posts.push(data1.Name);
@@ -45,6 +46,7 @@ export class SearchPage {
   }
 
   closeModal(): void {
+    console.log("close modal---------->")
     this.view.dismiss().then();
   }
 }

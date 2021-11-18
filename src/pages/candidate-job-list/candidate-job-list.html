@@ -28,11 +28,11 @@
 
       <!--When employer job list open-->
       <div *ngIf="myJobsOpen" style="display: inline">
-        <!--Title-->
+       
         <h4> <span style="margin-left: 2px">{{pageTitle}}</span> </h4>
-        <!--Avtive-->
+        
         <span class="box-green2">{{activeJobCount}}</span>Active
-        <!--Expired-->
+       
         <span class="box-red2">{{expiredJobCount}}</span>Expired
       </div>
 
@@ -68,8 +68,8 @@
        <ion-grid no-padding>
          <ion-row>
            <ion-col col-2 padding>
-             <img *ngIf="item.organisation_logo != ''" src="https://www.hoteljobber.com/org_logos/{{item.organisation_logo}}" />
-             <img class="img-logo" *ngIf="item.organisation_logo == ''" src="assets/imgs/icon-org-logo.png"  />
+             <img *ngIf="item.organisation_logo" src="https://www.hoteljobber.com/org_logos/{{item.organisation_logo}}" />
+             <img class="img-logo" *ngIf="!item.organisation_logo" src="assets/imgs/icon-org-logo.png"  />
            </ion-col>
            <ion-col col-10 padding>
              <div>
@@ -127,17 +127,19 @@
     <ion-list *ngFor="let job of empJobList; let i = index">
       <div class="box-white myJobs"  [class.background-red]="job.Expired">
         <!--Active-->
-       <div style="padding-bottom: 30px">
-          <div class="top">
-            <span *ngIf="!job.Expired; else elseBlock">
+       <div style="padding-bottom: 30px;">
+          <!-- <div class="top">
+           
+              <span *ngIf=" !job.Job_Expired ; else elseBlock">
+
               <span class="activeDot activeExepired"></span>
               <span>Active</span>
             </span>
             <ng-template #elseBlock>
               <span class="expDot activeExepired"></span> <span>Expired</span>
             </ng-template>
-          </div>
-          <!--Time and date-->
+          </div> -->
+        
           <div>
             <div style="font-size:11px;float:right;color:#d06464;font-style:italic;padding-left: 5px">{{job.Expiry_Date | date: 'dd MMM yyyy'}}</div>
             <div style="font-size:11px;float:right ; font-style:italic;color:#7bb541;">{{job.Post_Date | date: 'dd MMM yyyy'}} <span style="color:black">To</span></div>
@@ -145,37 +147,53 @@
        </div>
 
   <!--Details-->
-       <ion-grid no-padding>
-          <ion-row no-padding>
-  <!--Logo-->
-            <ion-col col-3>
-              <img *ngIf="job.organisation_logo != ''" src="https://www.hoteljobber.com/org_logos/{{job.organisation_logo}}" />
-              <img class="img-logo" *ngIf="job.organisation_logo == ''" src="assets/imgs/icon-org-logo.png" />
-            </ion-col>
-  <!--Content-->
-            <ion-col col-9>
-              <div class="roll-text" (click)="myJobDetails(job.ID)">
-                {{job.Organisation_Name}}
-              </div>
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <!--Logo-->
+      <ion-col col-3>
+        <img *ngIf="job.organisation_logo" src="https://www.hoteljobber.com/org_logos/{{job.organisation_logo}}" />
+        <img class="img-logo" *ngIf="!job.organisation_logo" src="assets/imgs/icon-org-logo.png"  />
+      </ion-col>
+      <!--Content-->
+      <ion-col col-9>
+        <div class="roll-text" (click)="jobDetails(job)">
+          {{job.Organisation_Name}}
+        </div>
 
-              <div class="location">
-                <ion-icon name="pin"></ion-icon>
-                <span> {{ job.City }}, {{ job.Country }}</span>
-              </div>
+        <div style="font-style: italic;font-size: 12px;color: #919191;font-weight: bold;">{{job.organisation_type}}</div>
+        <div style="font-size: 12px;">{{job.organisation_address}}</div>
 
-            </ion-col>
-          </ion-row>
-       </ion-grid>
+        <div class="location">
+          <ion-icon name="pin" style="color:tomato;"></ion-icon>
+          <span> {{ job.City }}, {{ job.Country }}</span>
+        </div>
 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="aapplied" *ngIf="job?.Applied_Count > 0 ">
+    <div  *ngIf="job?.Applied_Count " (click)="openAppliedList(job.ID)">
+      <p ion-fab right>{{job?.Applied_Count}}</p>
+    </div>
+    <p  style="color: #0093AD;">Applications</p>
+  </div>
+  
         <div class="jobExtra">
-          <p class="list-title" (click)="myJobDetails(job.ID)"> {{  job?.JobTitle}} Required</p>
-          <div>
+          <p class="list-title" (click)="myJobDetails(job.ID)"> {{job?.JobTitle}} Required</p>
+         
 
             <!--Applied Count-->
-            <div class="applied" *ngIf="job?.Applied_Count > 0" (click)="openAppliedList(job.ID)">
-              <p ion-fab right>{{job?.Applied_Count}}</p>
-              <span style="text-align: center">Applied</span>
-            </div>
+           <!--<ion-col no-padding>-->
+            <!--<div class="applied" *ngIf="job?.Applied_Count > 0" (click)="openAppliedList(job.ID)">
+              <p ion-fab >{{job?.Applied_Count}}</p>
+              <p  style="font-size: 8px;color: #0093AD; ">Applications</p>
+            </div>-->
+            
+            
+           
+          
+        <!--</ion-col>-->
 
               <div class="jobCat">
                 <span>Job Category:
@@ -192,15 +210,31 @@
                 </span>
               </div>
               <div class="salaryExp">
+               
+
                 <span>
                   Salary Offer:
                   <span class="my-value" *ngIf="job.MinSalary!=''">{{ job.MinSalary | currency:'INR':true:'1.0-0' }} - <span *ngIf="job.MaxSalary!=''"> {{ job.MaxSalary  | currency:'INR':true:'1.0-0' }} </span>
                   </span>
+                 
                 </span>
+                
               </div>
-            </div>
+
+             
+           
+            
         </div>
+
+        <div class="bbox">
+          <button   ion-button color="#ed8000" (click)="openBroadcast(job)"> 
+           <p style="font-weight:500;">Broadcast Job @<br>
+            Just Rs.{{plan_cost}}</p>
+          </button>
+        </div>
+
       </div>
+      
     </ion-list>
   </div>
   <ion-footer ion-fixed class="foot">

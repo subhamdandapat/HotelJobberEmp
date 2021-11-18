@@ -58,6 +58,17 @@ page-broadcast {
         font-size: 13px;
         margin-top: 3px;
       }
+      .moreb-info {
+        background-color:#088f2ab9;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        text-align: center;
+        color: white;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 11px;
+        margin-top: 3px;
+      }
 
       .back-arrow {
         color: #9d9999;
@@ -68,6 +79,13 @@ page-broadcast {
       }
     }
 
+    .box {
+      background: rgb(255, 255, 255);
+      padding: 20px 20px 20px 20px;
+      text-align: center;
+ 
+    
+    }
     //My Job List
     .box-white {
       background: rgb(255, 255, 255);
@@ -80,13 +98,13 @@ page-broadcast {
         img {
           width: 60px;
           border: 1px solid #c1c1c1;
-          border-radius: 30px;
+          border-radius: 40px;
           height: 60px;
         }
 
         .img-logo {
-          padding: 8px;
-          opacity: 0.5;
+          
+          //opacity: 0.5;
         }
       }
 
@@ -138,27 +156,30 @@ page-broadcast {
       }
 
       .applied {
-        font-weight: bold;
+        color: #a69b9b;
         float: right;
-        padding-right: 6px;
+       // padding-right: 6px;
         .fab {
           width: 40px;
           height: 40px;
-          background-color: whitesmoke;
-          margin: 4px;
+          background-color: #2AA52A;
+          margin: 3px;
         }
         p {
-          font-size: 16px;
-          font-weight: normal !important;
+          font-size: 14px;
+          align-items: center;
+          margin-left: -15px;
+          margin-top: 0px;
+          
         }
-      }
 
+      }
       .applied:active {
-        .fab {
-          width: 42px !important;
-          height: 42px !important;
-          border: 2px solid #0093AD;
-        }
+         .fab {
+           width: 42px !important;
+           height: 42px !important;
+           border: 5px solid #0093AD;
+         }
       }
 
       .jobExtra {

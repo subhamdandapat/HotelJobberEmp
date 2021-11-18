@@ -13,7 +13,7 @@ export class PlanPrizeProvider {
   }
 
   getPlans(url, body_parms) {
-    return this.http.post(this.baseUrl + url, body_parms).map(res => res)
+    return this.http.post(this.newBaseURL + url, body_parms).map(res => res)
   }
 
   getOptions(url) {

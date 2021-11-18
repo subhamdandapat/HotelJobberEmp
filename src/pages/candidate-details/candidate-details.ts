@@ -114,12 +114,18 @@ export class CandidateDetailsPage {
       body.append('Option', 'ViewContacts');
       body.append('User_ID', candidate_id);
       body.append('Employer_ID', this.EMP_ID);
-      this.service.getCandidates('candidate.php', body).subscribe((data: any) => {
+      this.service.getCandidatesforopen('common-operations.php', body).subscribe((data: any) => {
           this.widget.hideLoading().then();
+          console.log("ERROR!: ", data);
           if (data.access) {
             this.candidateDetails.ShowMobile = true;
             this.getDetails(true);
+          }else {
+            
+            this.widget.hideLoading().then();
+            this.widget.presentToast(data.message).then()
           }
+          
         },
         err => {
           this.widget.presentToast('Please try after some time').then();

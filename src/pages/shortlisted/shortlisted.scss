@@ -75,9 +75,16 @@ page-shortlisted {
     }
 
     .sendSMS {
+      // position: absolute;
+      // top: 45%;
+      // right: 1px;
+
+
       position: absolute;
-      top: 45%;
-      right: 1px;
+      top: 35%;
+      right: 9px;
+      width: 75%;
+      text-align: right;
     }
 
     .optionsLD {

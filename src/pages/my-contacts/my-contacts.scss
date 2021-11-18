@@ -22,7 +22,7 @@ page-my-contacts {
           background: rgb(255, 255, 255);
         //  padding: 20px 20px 20px 20px;
           text-align: center;
-     
+     margin-top: 20px;
         
         }
      .left-icon{
@@ -71,7 +71,14 @@ color: #D5D5D5;
 .medium{
   font-size: 20px;
 }
+.dialog-btn{
+  background: #DC7672;
+  color: white;
+  font-size: 18px;
+ // border: 1px solid  #0071B7 ;
+  padding: 10px;
 
+}
 
 
 .big{
@@ -135,6 +142,8 @@ color: #D5D5D5;
      
          .next-btn {
            background: #FF7900;
+           //background: #ed8000;
+
             border-radius: 15px !important;
             width: 50%;
             float: center;

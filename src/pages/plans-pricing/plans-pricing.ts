@@ -71,7 +71,7 @@ export class PlansPricingPage {
     body.append('Emp_ID', emp_id);
 
     this.planProvider.getPlans('plans.php', body).subscribe((data: any) => {
-
+console.log(data)
         if (data.status == "success") {
           //  this.planData=data;
           this.no_plan_present="yes_plan";

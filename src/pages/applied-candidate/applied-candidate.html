@@ -76,7 +76,16 @@
 
              <div class="sendSMS">
                <!--Whats app-->
-               <a style="display: block;color: #11AD6E;" [href]="getWtsApp(item.Mobile)"><img  src="assets/imgs/wtsApp.png"  class="wtsApp"></a>
+              <!-- <a style="display: block;color: #11AD6E;" [href]="getWtsApp(item.Mobile)"><img  src="assets/imgs/wtsApp.png"  class="wtsApp"></a>-->
+
+               <a style="display: block;color: #11AD6E;" [href]="getWtsApp(item.Mobile)">
+                <!--<img  src="assets/imgs/wtsApp.png"  class="btn-pink2 wtsApp">-->
+
+                <button ion-button small icon-start style="background-color: #fafafa;">
+                  <ion-icon ios="logo-whatsapp" md="logo-whatsapp" style="color: #11AD6E;margin-left: -7px;font-size: 20px;"></ion-icon>
+                  <p style="color: black;font-size:12px;margin-right: -5px;">wtsapp</p>
+                </button>
+              </a>
               <!-- <img start *ngIf='!item.SmsSend else SmsSend' class="wtsApp" style="margin-top: 5px;" src="./assets/imgs/smsApp.png" (click)="sendMsg(i)" />
                <ng-template #SmsSend>
                  <img start style="width:75px"  src="./assets/imgs/sent-sms.png" />

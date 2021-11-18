@@ -6,7 +6,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="login-content">
+<ion-content >
 
 
   <div class="box">
@@ -24,7 +24,8 @@
           <ion-label floating>Mobile Number/Email ID*</ion-label>
           <ion-input type="text" formControlName="email" name="email"></ion-input>
         </ion-item>
-        <div *ngIf=" (login_form.controls['email'].dirty  && (!login_form.controls.email.valid ))" style="color:red;margin:0px;padding:0px;font-size: 13px;float: left;">
+        <div *ngIf=" (login_form.controls['email'].dirty  && (!login_form.controls.email.valid ))"
+          style="color:red;margin:0px;padding:0px;font-size: 13px;float: left;">
           Please enter Email or Mobile No.
         </div>
 
@@ -32,20 +33,52 @@
           <ion-label floating>Password*</ion-label>
           <ion-input type="password" formControlName="password" name="password"></ion-input>
         </ion-item>
-        <div *ngIf=" (login_form.controls['password'].dirty  && (!login_form.controls.password.valid ))" style="color:red;margin:0px;padding:0px;font-size: 13px;float: left;">
+        <div *ngIf=" (login_form.controls['password'].dirty  && (!login_form.controls.password.valid ))"
+          style="color:red;margin:0px;padding:0px;font-size: 13px;float: left;">
           Please enter Password.
         </div>
 
         <div class="btn-next">
-          <div style="overflow:hidden">
+          <div style="overflow:hidden;">
             <button ion-button [disabled]="!login_form.valid" class="submit-btn" (click)="loginUser()"> Login</button>
+
+
+
+
+
+
+            <div class="ion-padding" *ngIf="isLoggedIn === true">
+
+              <p>
+                <button ion-button expand="full" color="secondary" (click)="logout()">
+                  Logout
+                  <ion-icon name="log-out"></ion-icon>
+                </button>
+              </p>
+
+            </div>
+
+
+
             <button ion-button class="forgot" block clear (click)="forgetPassword()">Forgot Password?</button>
           </div>
+
+
+          <!-- <div style="padding-top: 15px;">
+            <button ion-button expand="full"  style="background-color: #3b5998;" (click)="fbLogin()">
+                <ion-icon style="padding: 10px;" name="logo-facebook"></ion-icon>
+             <p style="color: white;font-weight: 400;">Login with Facebook</p> 
+            </button>
+          </div> -->
+
           <div class="line"></div>
+
+
 
           <div class="main-header" style="color:#000">New User? Please click below button to register</div>
           <button ion-button class="register-btn" (click)="getRegister()">Register</button>
         </div>
+
 
       </form>
     </div>

@@ -7,6 +7,14 @@ page-my-jobs {
     ion-list {
       margin-bottom: 8px !important;
     }
+    .bbox {
+      background: rgb(255, 255, 255);
+      //padding: 20px 20px 20px 40px;
+      text-align: center;
+     // margin-left: 10px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
     .box-white {
       background: rgb(255, 255, 255);
       padding: 10px 10px 5px 5px;
@@ -92,21 +100,7 @@ page-my-jobs {
         .title-value {
           font-weight: bold;
         }
-        .applied {
-          color: #a69b9b;
-          float: right;
-          padding-right: 6px;
-          .fab {
-            width: 40px;
-            height: 40px;
-            background-color: #2AA52A;
-            margin: 2px;
-          }
-          p {
-            font-size: 16px;
-            font-weight: normal !important;
-          }
-        }
+       
 
         .applied:active {
           .fab {
@@ -114,6 +108,24 @@ page-my-jobs {
             height: 42px !important;
             border: 5px solid #0093AD;
           }
+        }
+      }
+
+      .applied {
+        color: #a69b9b;
+        float: right;
+        //padding-right: 6px;
+        .fab {
+          width: 40px;
+          height: 40px;
+          background-color: #2AA52A;
+          margin: 2px;
+        }
+        p {
+          font-size: 14px;
+        align-items: center;
+        margin-left: -15px;
+        margin-top: 0px;
         }
       }
 
@@ -126,4 +138,5 @@ page-my-jobs {
       color: #867d7d;
     }
   }
+  
 }

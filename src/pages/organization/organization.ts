@@ -19,12 +19,15 @@ declare var cordova: any;
   templateUrl: 'organization.html',
 })
 export class OrganizationPage {
+  coverpic:any="assets/imgs/upload-ext-photo.jpg";
+  interior:any ="assets/imgs/upload-int-photo.jpg";
   ORG_ID: any;
   lastImage: any;
   notification_count: number;
   notification_data: any;
   loading: Loading;
   organizationList: any[] = [];
+  galleryImages:any[]=[];
   SpData: any;
   EMP_ID: any;
   index: number;
@@ -44,6 +47,7 @@ export class OrganizationPage {
     console.log('ionViewWillEnter');
     this.fetchSData();
     this.backButton();
+    //this.getMyOrganizationImages();
   }
 
   backButton(): void {
@@ -54,15 +58,21 @@ export class OrganizationPage {
     this.widget.openNotification();
   }
 
-  getMyOrganization(ID) {
-    this.org_service.getMyOrganization(ID).subscribe((data: any) => {
-        this.organizationList = data.organisation;
-        if (this.organizationList == undefined) {
-          this.organizationList = [];
-          if(this.openPage) {
-            this.openPage = false;
-            this.createOrganizationPage();
-          }
+  getMyOrganizationImages(ID) {
+    console.log("org id---->",ID);
+    
+    this.org_service.getMyOrganizationImages(ID).subscribe((data: any) => {
+      console.log("organizations images------->",data)
+
+         if (data.galleryImg && data.galleryImg.length == 1) {
+           this.interior = 'https://hoteljobber.com/images/org_album/' + data.galleryImg[0].small;
+           console.log(this.interior);
+                   
+         }
+        if(data.organisation.organisation_image){
+          this.coverpic = 'https://hoteljobber.com/images/org_cover_photo/' + data.organisation.organisation_image;
+          console.log(this.coverpic);
+
         }
         this.widget.hideLoading().then();
       },
@@ -73,6 +83,26 @@ export class OrganizationPage {
     );
   }
 
+  getMyOrganization(ID) {
+    this.org_service.getMyOrganization(ID).subscribe((data: any) => {
+      console.log("organizations------->",data.organisation)
+        this.organizationList = data.organisation;
+        if (this.organizationList == undefined) {
+          this.organizationList = [];
+          if(this.openPage) {
+            this.openPage = false;
+            this.createOrganizationPage();
+          }
+        }
+       
+        this.widget.hideLoading().then();
+      },
+      err => {
+        console.log("ERROR!: ", err);
+        this.widget.hideLoading().then();
+      }
+    );
+  }
   createOrganizationPage(): void  {
     this.navCtrl.push('CreateOrganizationPage',{
       navigate:"create",
@@ -116,6 +146,7 @@ export class OrganizationPage {
   }*/
 
   changeLogo(Org_id, index) {
+    console.log("Org ids-----", Org_id)
    console.log('transfer file', this.transfer.create());
     this.ORG_ID = Org_id;
     this.index = index;
@@ -181,6 +212,7 @@ export class OrganizationPage {
 
       fileTransfer.upload(base64Image, url, options).then((data: any) => {
         let res = JSON.parse(data.response);
+        console.log("changed logo-------->",data.response)
         if (res.status == 'success') {
           this.widget.presentToast(res.message).then();
           this.organizationList[this.index].organisation_logo = res.Image;
@@ -266,6 +298,7 @@ export class OrganizationPage {
 
   //Open my job list specific for organization
   openMyJobs(items) {
+    console.log("items log------>",items)
      let orgInfo = { org_ID: items.ID, emp_ID: items.EMP_ID, jobTitle: items.organisation_name };
      this.navCtrl.push('MyJobsPage', { orgInfo: orgInfo}).then();
   }
@@ -277,4 +310,211 @@ export class OrganizationPage {
     }, 2000);
   }
 
+
+  changeExterior(Org_id, index){
+   // console.log("Org ids-----", Org_id)
+    console.log('transfer file', this.transfer.create());
+     this.ORG_ID = Org_id;
+     this.index = index;
+     let actionSheet = this.actionSheetCtrl.create({
+       title: 'Select Image Source',
+       buttons: [
+         {
+           text: 'From Gallery',
+           icon: 'ios-film-outline',
+           handler: () => {
+             this.takeExPicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+             //console.log('Source Library Type:',this.camera.PictureSourceType.PHOTOLIBRARY );
+           }
+         },
+         {
+           text: 'Use Camera',
+           icon: 'ios-camera-outline',
+           handler: () => {
+             this.takeExPicture(this.camera.PictureSourceType.CAMERA);
+             //console.log('Source Camera Type:',this.camera.PictureSourceType.CAMERA );
+           }
+         },
+         {
+           text: 'Cancel',
+           icon: 'ios-close-outline',
+           role: 'cancel'
+         }
+       ]
+     });
+     actionSheet.present().then();
+  }
+
+  public takeExPicture(sourceType) {
+    this.widget.showLoading('').then();
+    // Create options for the Camera Dialog
+    let options = {
+      quality: 100,
+      sourceType: sourceType,
+      saveToPhotoAlbum: false,
+      correctOrientation: true,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: true,
+      targetWidth: 230,
+      targetHeight: 250
+    };
+
+    // Get the data of an image
+    this.camera.getPicture(options).then((imagePath) => {
+      let base64Image = 'data:image/jpeg;base64,' + imagePath;
+      //this.coverpic  = base64Image;
+      let url = "https://www.hoteljobber.com/new-api/organisation.php";
+
+      let options: FileUploadOptions  = {
+       // fileKey: "fileToUpload",
+       fileKey: "org_cover_photo",
+
+        //fileName: 'org_logo.jpg',
+        fileName: 'org_cover_photo.jpg',
+
+        chunkedMode: false,
+        mimeType: "image/jpeg",
+        //params : { 'myFile': base64Image,'option':'org_gallery','Org_ID':this.ORG_ID,'Employer_ID': this.EMP_ID }
+        params : { 'org_cover_photo': base64Image,'option':'org_gallery','Org_ID':this.ORG_ID,'Employer_ID': this.EMP_ID }
+
+      };
+      console.log("file upload option exterior------------->",options,this.ORG_ID)
+      const fileTransfer: TransferObject = this.transfer.create();
+
+      fileTransfer.upload(base64Image, url, options).then((data: any) => {
+        let res = JSON.parse(data.response);
+        console.log("changed gallery-------->",data.response)
+        if (res.status == 'success') {
+          this.widget.presentToast(res.message).then();
+          this.getMyOrganization(this.EMP_ID)
+          this.coverpic  = 'https://hoteljobber.com/images/org_cover_photo/'+ res.org_cover_photo
+          //this.organizationList[this.index].organisation_logo = res.Image;
+        }
+      }, err => {
+        this.widget.presentToast('Profile upload failed').then();
+      });
+
+      // Special handling for Android library
+      /*if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
+        this.filePath.resolveNativePath(imagePath)
+          .then(filePath => {
+            this.widget.presentToast('Gallery').then();
+            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+            let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+            this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+          });
+      } else {
+        let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+        let correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+        this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+      }*/
+
+    }, (err) => {
+      this.widget.presentToast('Error while selecting image.').then();
+    });
+  }
+
+  changeInterior(Org_id, index){
+    console.log("Org ids-----", Org_id)
+    console.log('transfer file', this.transfer.create());
+     this.ORG_ID = Org_id;
+     this.index = index;
+     let actionSheet = this.actionSheetCtrl.create({
+       title: 'Select Image Source',
+       buttons: [
+         {
+           text: 'From Gallery',
+           icon: 'ios-film-outline',
+           handler: () => {
+             this.takeInPicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+             //console.log('Source Library Type:',this.camera.PictureSourceType.PHOTOLIBRARY );
+           }
+         },
+         {
+           text: 'Use Camera',
+           icon: 'ios-camera-outline',
+           handler: () => {
+             this.takeInPicture(this.camera.PictureSourceType.CAMERA);
+             //console.log('Source Camera Type:',this.camera.PictureSourceType.CAMERA );
+           }
+         },
+         {
+           text: 'Cancel',
+           icon: 'ios-close-outline',
+           role: 'cancel'
+         }
+       ]
+     });
+     actionSheet.present().then();
+  }
+
+  public takeInPicture(sourceType) {
+    this.widget.showLoading('').then();
+    // Create options for the Camera Dialog
+    let options = {
+      quality: 50,
+      sourceType: sourceType,
+      saveToPhotoAlbum: false,
+      correctOrientation: true,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: true,
+      targetWidth: 230,
+      targetHeight: 250
+    };
+
+    // Get the data of an image
+    this.camera.getPicture(options).then((imagePath) => {
+      let base64Image = 'data:image/jpeg;base64,' + imagePath;
+      //this.interior  = base64Image;
+      let url = "https://www.hoteljobber.com/new-api/organisation.php";
+
+      let options: FileUploadOptions  = {
+        //fileKey: "fileToUpload",
+        fileKey: "org_album",
+        //fileName: 'org_logo.jpg',
+        fileName: 'org_album.jpg',
+
+        chunkedMode: false,
+        mimeType: "image/jpeg",
+        params : { 'myFile': base64Image,'option':'org_gallery','Org_ID':this.ORG_ID,'Employer_ID': this.EMP_ID }
+      };
+console.log("file upload option------------->",options,this.ORG_ID)
+      const fileTransfer: TransferObject = this.transfer.create();
+
+      fileTransfer.upload(base64Image, url, options).then((data: any) => {
+        let res = JSON.parse(data.response);
+        console.log("changed gallery-------->",data.response)
+        if (res.status == 'success') {
+          this.widget.presentToast(res.message).then();
+          this.getMyOrganization(this.EMP_ID)
+          this.interior ='https://hoteljobber.com/images/org_album/'+res.Image
+          //this.organizationList[this.index].organisation_logo = res.Image;
+        }
+      }, err => {
+        this.widget.presentToast('Profile upload failed').then();
+      });
+
+      // Special handling for Android library
+      /*if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
+        this.filePath.resolveNativePath(imagePath)
+          .then(filePath => {
+            this.widget.presentToast('Gallery').then();
+            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+            let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+            this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+          });
+      } else {
+        let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+        let correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+        this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+      }*/
+
+    }, (err) => {
+      this.widget.presentToast('Error while selecting image.').then();
+    });
+  }
 }

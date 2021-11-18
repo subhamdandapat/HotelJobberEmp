@@ -25,6 +25,8 @@ export class MyContactsPage {
   View_Contact: any;
   balance_contact: number;
   newDate: number;
+  plan_Id: any;
+  planstatus: any;
   constructor(private app: App, public navCtrl: NavController, private localStorage: StorageProvider,
               public org_service: OrganizationProvider, public platform: Platform, public navParams: NavParams,
               private service: PlanPrizeProvider, private widget: WidgetProvider) {
@@ -54,8 +56,8 @@ export class MyContactsPage {
     body.append('option', 'DashboardCounts');
     body.append('Employer_ID', ID);
 
-    this.org_service.createOrganization('common-operations.php', body).subscribe((data: any) => {
-
+    this.org_service.createOrganizationforplans('common-operations.php', body).subscribe((data: any) => {
+      console.log(data)
         this.countsData = data;
         this.balance_contact = data.balance_contact;
         this.View_Contact = data.View_Contact;
@@ -63,6 +65,9 @@ export class MyContactsPage {
 
         var date = new Date(this.countsData.order_date);
         this.newDate = date.setMonth(parseInt(this.countsData.plan_duration) + 1);
+        if(data.plan_id){
+          this.plan_Id = data.plan_id
+        }
       },
       err => {
         console.log("ERROR!: ", err);
@@ -95,6 +100,7 @@ export class MyContactsPage {
     this.service.getPlans('plans.php', body).subscribe((data: any) => {
       console.log('get my Plans--', data);
         this.plans = data.plans;
+        this.planstatus = data.status
         this.widget.hideLoading().then();
       },
       err => {
@@ -112,5 +118,8 @@ export class MyContactsPage {
 
   back(): void {
     this.navCtrl.pop().then();
+  }
+  gotoPlans(){
+      this.navCtrl.push("PlansPricingPage",{navigate:this.nav}).then();
   }
 }

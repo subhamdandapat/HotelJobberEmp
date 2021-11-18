@@ -1,5 +1,9 @@
 page-tab1 {
 
+  body {
+    margin-top: constant(safe-area-inset-top);
+    margin-top: env(safe-area-inset-top);
+}
  ion-navbar {
    ion-badge {
      padding: 2px 5px !important;
@@ -77,6 +81,24 @@ ion-content {
     button {
       float: right !important;
       background-color:white !important;
+      border: 1px solid #D8D8D8;
+    }
+    ion-icon {
+      color: #0093AD;
+      font-size: 1.5em !important;
+    }
+    ion-toolbar .toolbar-background {
+      background-color: transparent;
+    }
+  }
+
+  .foott {
+    background-color: transparent;
+    width: 14% !important;
+    left: 42%;
+    button {
+      float: right !important;
+      background-color:red !important;
       border: 1px solid #D8D8D8;
     }
     ion-icon {

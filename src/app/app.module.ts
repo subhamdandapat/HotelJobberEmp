@@ -36,6 +36,8 @@ import { leaveModalAnimation } from "./animation/leavemodal";
 import { NativeAudio } from "@ionic-native/native-audio";
 import { SoundProvider } from '../providers/sound/sound';
 import { BroadcastProvider } from '../providers/broadcast/broadcast';
+//import { Facebook } from '@ionic-native/facebook';
+
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { BroadcastProvider } from '../providers/broadcast/broadcast';
     SplashScreen,
     CallNumber,DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    //Facebook,
     StorageProvider,
     WidgetProvider,
     EmployeerProvider,

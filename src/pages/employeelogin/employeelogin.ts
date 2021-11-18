@@ -7,6 +7,8 @@ import { App, Platform } from 'ionic-angular';
 import { StorageProvider } from "../../providers/storage/storage";
 import { WidgetProvider } from "../../providers/widget/widget";
 import { FCM } from "@ionic-native/fcm";
+//import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+
 
 @IonicPage()
 @Component({
@@ -18,11 +20,17 @@ export class EmployeeloginPage {
   email: any ;
   password: any ;
   login_form: FormGroup;
+  isLoggedIn = false;
+users = { id: '', name: '', email: '', picture: { data: { url: '' } } };
   /* private fb: Facebook*/
   constructor(public navCtrl: NavController,public platform: Platform, public formBuilder: FormBuilder, private fcm: FCM,
               private localStorage: StorageProvider, public navParams: NavParams, public emp_service: EmployeerProvider,
-              private widget: WidgetProvider) {
+              private widget: WidgetProvider,
+              //private fb: Facebook
+              ) {
 
+
+ 
     // this.localStorageService.clear();
     this.login_form = formBuilder.group({
       email: ['', Validators.required],
@@ -106,29 +114,52 @@ export class EmployeeloginPage {
 
 
 
-  // fbLogin(){
-  //   this.fb.login(['public_profile', 'user_friends', 'email'])
-  //   .then((res: FacebookLoginResponse) =>
-  //   this.navCtrl.setRoot('MenuPage'))
-  //   .catch(e => console.log('Error logging into Facebook', e));
+  
 
 
-  // //this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
+  // fbLogin() {
+  //   this.fb.login(['public_profile',  'email'])
+  //     .then(res => {
+
+  //       if (res.status === 'connected') {
+  //         this.isLoggedIn = true;
+  //         this.getUserDetail(res.authResponse.userID);
+  //       } else {
+  //         this.isLoggedIn = false;
+  //       }
+  //     })
+  //     .catch(e => console.log('Error logging into Facebook', e));
   // }
 
+  sociallogin(res){
+    // let data  = {
+    //   Provider_ID:res.id,
+    //   Provider:"facebook",
+    //   option:"socical-login"
+    // }
+    let data  = {
+      Email_ID:res.email,
+      Name:res.name,
+      option:"rigistration"
+    }
+    this.emp_service.socialLogin('member.php',data).subscribe((response:any) =>{
+      console.log("social login res =/------->",response)
+    },err =>{
+      console.log("social error0----->",err)
+    })
+  }
 
+  //  getUserDetail(userid) {
 
-  // getUserDetail(userid) {
-
-  //   this.fb.api("/" + userid + "/?fields=id,email,name,picture.type(normal),gender", ["public_profile"])
+  //    this.fb.api("/" + userid + "/?fields=id,email,name,picture.type(normal),gender", ["public_profile"])
   //     .then(res => {
-  //       console.log(res);
+  //       console.log("fb response---------->",res);
 
-  //       this.localStorageService.set('fb_data', JSON.stringify(res));
-
+  //      this.localStorage.setStorage('fb_data', JSON.stringify(res));
+  //      this.sociallogin(res)
   //       this.emp_service.callToast(res.picture.data.url);
-  //       this.navCtrl.setRoot('MenuPage');
-  //       // this.users = res;
+  //      this.navCtrl.setRoot('MenuPage');
+  //       this.users = res;
   //     })
   //     .catch(e => {
   //       console.log(e);

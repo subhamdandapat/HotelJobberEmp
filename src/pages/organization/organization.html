@@ -49,12 +49,12 @@
         <div class="box">
           <div class="left-image" *ngIf="item?.organisation_logo;else else_part"  (click)="changeLogo(item.ID, i)">
             <img style="width:80px;height:80px" start src="https://hoteljobber.com/org_logos/{{item.organisation_logo}}">
-            <div class="change-logo">Edit Logo</div>
+            <div class="change-logo">Change Logo</div>
           </div>
           <ng-template #else_part>
             <div class="left-image"  (click)="changeLogo(item.ID, i)">
               <img style="width:80px;height:80px" start src="assets/imgs/company.jpg">
-              <div class="change-logo">Upload Logo</div>
+              <div class="change-logo">Change Logo</div>
             </div>
           </ng-template>
 
@@ -73,6 +73,29 @@
             </div>
           </div>
         </div>
+
+        <ion-grid>
+          <ion-row>
+            
+           <ion-col (click)="changeExterior(item.ID, i)">
+           
+                <img *ngIf ="item.organisation_image" alt="logo" class="difimg"  
+                 src="https://hoteljobber.com/images/org_cover_photo/{{item.organisation_image}}">
+               
+                <img *ngIf ="!item.organisation_image" alt="logo" class="difimg"  src="assets/imgs/upload-ext-photo.jpg">
+           
+             
+            </ion-col>
+            <ion-col (click)="changeInterior(item.ID, i)">
+              
+                <img *ngIf  ="item.gallery_images.length >0" alt="logo" class="difimg"  src="https://hoteljobber.com/images/org_album/{{item.gallery_images[0].big}}">
+                <img *ngIf  ="!item.gallery_images.length" alt="logo" class="difimg" src="assets/imgs/upload-int-photo.jpg">          
+              
+            </ion-col> 
+
+           
+          </ion-row>
+        </ion-grid>
 <!---->
         <div class="org-content">
           <div style="margin-top:10px;color:#838282">
@@ -97,12 +120,18 @@
            </div>
         </div>
         <div class="org-btn">
-          <img class="mylikes" (click)="postJobPage(item.ID, item.TotalJobs)" src="assets/imgs/icon-my-jobs.svg">
-          <div style="float:right;margin-top:5px;">
+          <div style="float:left;margin-top:5px;padding-left: 10px;margin-top: 10px;">
             <button class="search-btn" ion-button clear (click)="remove(item.ID)">
               <ion-icon class="btn-red" name="trash"></ion-icon>Remove
             </button>
           </div>
+         <!-- <img class="mylikes" (click)="postJobPage(item.ID, item.TotalJobs)" src="assets/imgs/icon-my-jobs.svg" style="text-align: center;">-->
+         <div style="text-align:center;margin-right: 60px;">
+          <button ion-button icon-start style="background-color: #0093AD;height:30px; margin-right: 30px;margin-top: 10px;margin-bottom: 10px;" (click)="postJobPage(item.ID, item.TotalJobs)">
+            <ion-icon ios="ios-send" md="ios-send" style="color:white;font-size: 25px;"></ion-icon>
+            Post Job
+          </button>
+        </div>
           <!-- <button class="next-btn1" ion-button (click)="postJobPage(item.ID)"> Post Job</button> -->
         </div>
 

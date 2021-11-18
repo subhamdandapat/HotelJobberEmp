@@ -4,6 +4,7 @@ import { WidgetProvider } from "../../providers/widget/widget";
 import { PlanPrizeProvider } from "../../providers/plan-prize/plan-prize";
 import { BroadcastProvider } from "../../providers/broadcast/broadcast";
 import {StorageProvider} from "../../providers/storage/storage";
+import { checkAndUpdateTextDynamic } from '@angular/core/src/view/text';
 
 @IonicPage()
 @Component({
@@ -27,6 +28,39 @@ export class BroadcastPaymentPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BroadcastPaymentPage',  this.broadMessage);
+    this.chec()
+  }
+  chec() {
+    this.storage.getStorage('temp').then((res:any) => {
+      console.log("temp--------->",res)
+      let body = new FormData();
+      // this will calling for check either plan purchased or not
+      body.append('Option', 'broadcastJobs');
+      body.append('Emp_ID', res.Emp_ID);
+      body.append('City', res.City);
+      body.append('CityID', res.CityID);
+      body.append('Job_ID',res.Job_ID);
+      body.append('Location', res.Location);
+      body.append('MaxSalary', res.MaxSalary);
+      body.append('MinSalary', res.MinSalary);
+      body.append('Mobile_No', res.Mobile_No);
+      body.append('Name', res.Name);
+      body.append('PlanBroadcast', res.PlanBroadcast);
+      body.append('Roll', res.Roll);
+      body.append('RollID', res.RollID);
+      this.broadPlanProvider.fireBroadcast('broadcast.php', body).subscribe((res:any) => {
+        console.log("broadcast.php--------->",res)
+        this.widget.hideLoading().then();
+        if (res.status == 'success') {
+          this.widget.presentToast(res.message).then();
+          this.navCtrl.push('PaymentSuccessPage').then();
+        }
+      }, error => {
+        this.widget.hideLoading().then();
+        console.log("broadcast.php err--------->",error)
+        alert(error);
+      });
+    });
   }
 
   ionViewWillEnter() {
@@ -155,6 +189,7 @@ export class BroadcastPaymentPage {
       body.append('Roll', res.Roll);
       body.append('RollID', res.RollID);
       this.broadPlanProvider.fireBroadcast('broadcast.php', body).subscribe((res:any) => {
+        console.log("broadcast.php--------->",res)
         this.widget.hideLoading().then();
         if (res.status == 'success') {
           this.widget.presentToast(res.message).then();
@@ -162,7 +197,8 @@ export class BroadcastPaymentPage {
         }
       }, error => {
         this.widget.hideLoading().then();
-        alert('Something went wrong');
+        console.log("broadcast.php err--------->",error)
+        alert(error);
       });
     });
 
@@ -182,6 +218,7 @@ export class BroadcastPaymentPage {
     body.append('option', 'my_broadcast_plan');
     body.append('Emp_ID', this.broadMessage.emp_ID);
     this.broadPlanProvider.getBroadcastActivePlan('plans.php', body).subscribe((res:any) => {
+      console.log("getBroadcastActivePlan---->",res)
       if (res.status == 'success') {
         if (res.plans.Broadcast == 'send') {
           this.isPaymentCompleted = false;
@@ -198,6 +235,7 @@ export class BroadcastPaymentPage {
   getPlanList(): void {
     // This will get available plans for purchase
     this.broadPlanProvider.getBroadcastPlanList('plans.php?option=broadcast_plans').subscribe((res:any) => {
+      console.log("getBroadcastPlanList----------->",res)
       if (res.status == 'success') {
        /* res.plans.filter(plan => true).map(plan => {  plan['iconName'] = 'remove-circle'});*/
         this.planList = res.plans;

@@ -8,6 +8,7 @@ import { OrganizationProvider } from '../../providers/organization/organization'
 import { CityProvider } from '../../providers/city/city';
 import { StorageProvider } from "../../providers/storage/storage";
 import { WidgetProvider } from "../../providers/widget/widget";
+//import { Facebook } from '@ionic-native/facebook';
 
 @IonicPage()
 @Component({
@@ -35,10 +36,13 @@ export class EmployeeregistrationPage {
   optionId: any;
   array: any[] = [];
   removeLabel: any;
+  isLoggedIn: boolean  =false;
 
   constructor(public navCtrl: NavController, private cityService: CityProvider, public org_service: OrganizationProvider,
               public formBuilder: FormBuilder, public platform: Platform, private localStorage: StorageProvider,
-              public navParams: NavParams, public emp_service: EmployeerProvider, private widget: WidgetProvider) {
+              public navParams: NavParams, public emp_service: EmployeerProvider, private widget: WidgetProvider,
+              //private fb: Facebook
+              ) {
     this.registration_form = formBuilder.group({
       name: ['', [Validators.required]],
       selectedCity: ['', Validators.required],
@@ -146,4 +150,38 @@ export class EmployeeregistrationPage {
   goToLogin(): void {
     this.navCtrl.push('EmployeeloginPage').then();
   }
+
+
+  // fbLogin() {
+  //   this.fb.login(['public_profile', 'email'])
+  //     .then(res => {
+
+  //       if (res.status === 'connected') {
+  //         this.isLoggedIn = true;
+  //         this.getUserDetail(res.authResponse.userID);
+  //       } else {
+  //         this.isLoggedIn = false;
+  //       }
+  //     })
+  //     .catch(e => console.log('Error logging into Facebook', e));
+  // }
+
+  
+
+  //  getUserDetail(userid) {
+
+  //    this.fb.api("/" + userid + "/?fields=id,email,name,picture.type(normal),gender", ["public_profile"])
+  //     .then(res => {
+  //       console.log(res);
+
+  //      this.localStorage.setStorage('fb_data', JSON.stringify(res));
+
+  //       //this.emp_service.callToast(res.picture.data.url);
+  //      this.navCtrl.setRoot('MenuPage');
+  //       //this.users = res;
+  //     })
+  //     .catch(e => {
+  //       console.log(e);
+  //     });
+  // }
 }
